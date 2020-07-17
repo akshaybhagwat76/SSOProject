@@ -1,0 +1,57 @@
+﻿@model List<SSOApp.ViewModels.UserViewModel>
+
+
+<table width="80%" class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <td>
+                First Name
+            </td>
+            <td>
+                Last Name
+            </td>
+            <td>
+                User Logged In
+            </td>
+            <td>
+                Last LogIn
+            </td>
+            <td>
+                Active
+            </td>
+            <td>
+            </td>
+        </tr>
+    </thead>
+    @if (Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            if (Context.User.Identity.Name != item.UserName)
+            {
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td><div class="@item.UserName">No</div></td>
+
+                    <td>@(item.LastLoggedIn.HasValue ? item.LastLoggedIn.Value.ToString("dd/MM/yyyy hh:mm") : string.Empty)</td>
+                    <td>@(item.IsActive ? "Yes" : "No")</td>
+                    <td>
+                        <a href="@Url.Content("~/Users/ChangeUserPassword/" + item.UserID)">Password</a> |
+                        <a href="@Url.Content("~/RolesManagement/UserIndex?id=" + item.UserID + "&tcode="+item.TenanntCode +"&tname="+item.TenanntName)">Roles</a> |
+                        <a href="@Url.Content("~/Users/Edit/" + item.UserID)">Edit</a> |
+                        <a href="@Url.Content("~/Users/Delete/" + item.UserID)" onclick="return confirm('Are you sure want to delete this user?')">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="6">
+                No Users Available
+            </td>
+        </tr>
+    }
+</table>

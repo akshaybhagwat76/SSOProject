@@ -1,0 +1,83 @@
+﻿@model SSOApp.ViewModels.FeildModelView
+@{
+    ViewData["Title"] = "Roles";
+
+}
+
+<script>
+    @*$(document).ready(function () {
+        getRolesBytenant();
+    });
+        function getRolesBytenant() {
+            $.post("@Url.Content("~/ModuleManagement/GetModuleByTenant")", { tcode: $("#selectTenant").val() }, function (htmlData) {
+                debugger;
+                $("#gridBodyRoles").html(htmlData);
+            })
+        }*@
+</script>
+
+<h1>Module Feilds</h1>
+<p>
+    @if (TempData["Success"] != null)
+    {
+        <label class="bg-success">@TempData["Success"]</label>
+        TempData["Success"] = null;
+    }
+    @if (TempData["Failed"] != null)
+    {
+        <label class="bg-danger">@TempData["Failed"]</label>
+        TempData["Failed"] = null;
+    }
+</p>
+
+
+<div style="float:right;">
+   <a asp-action="CreateField" asp-route-moduleid="@Model.ModuleId"><input type="button"  name="btnCreate" value="Add Feild" /></a>
+</div>
+
+
+<div>
+    <table width="80px" class="table table-hover">
+        <thead>
+            <tr>
+                <td>
+                    Feilds
+                </td>
+                <td>
+                    Feild Type
+                </td>
+                <td>
+                    Visible
+                </td>
+                <td>
+                    Actions
+                </td>
+            </tr>
+        </thead>
+        
+            @foreach(var items in Model.ModuleFieldDetailsList)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => items.FieldLabel)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => items.FieldType)
+                </td>
+                <td>
+                    @Html.EditorFor(m => items.visible)
+                </td>
+                <td>
+                    <a asp-action="EditField"  asp-route-Fieldid="@items.ID">Edit</a>
+                </td>
+
+
+            </tr>
+            }
+        
+
+    </table>
+</div>
+<div class="panel-body" id="gridBodyRoles">
+
+</div>

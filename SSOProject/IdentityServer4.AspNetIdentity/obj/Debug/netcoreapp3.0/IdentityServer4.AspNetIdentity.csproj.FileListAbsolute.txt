@@ -1,0 +1,42 @@
+D:\Works\SSOApp\SSOApp\IdentityServer4.AspNetIdentity\bin\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.deps.json
+D:\Works\SSOApp\SSOApp\IdentityServer4.AspNetIdentity\bin\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.dll
+D:\Works\SSOApp\SSOApp\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.AssemblyInfoInputs.cache
+D:\Works\SSOApp\SSOApp\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.AssemblyInfo.cs
+D:\Works\SSOApp\SSOApp\IdentityServer4.AspNetIdentity\bin\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.pdb
+D:\Works\SSOApp\SSOApp\IdentityServer4.AspNetIdentity\bin\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.xml
+D:\Works\SSOApp\SSOApp\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.dll
+D:\Works\SSOApp\SSOApp\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.xml
+D:\Works\SSOApp\SSOApp\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.pdb
+D:\Works\SSOApp\SSOApp\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.csprojAssemblyReference.cache
+C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\IdentityServer4.AspNetIdentity\bin\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.deps.json
+C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\IdentityServer4.AspNetIdentity\bin\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.dll
+C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\IdentityServer4.AspNetIdentity\bin\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.pdb
+C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\IdentityServer4.AspNetIdentity\bin\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.xml
+C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.csprojAssemblyReference.cache
+C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.AssemblyInfoInputs.cache
+C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.AssemblyInfo.cs
+C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.dll
+C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.xml
+C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.pdb
+E:\vicky\New folder\SSOProject\IdentityServer4.AspNetIdentity\bin\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.deps.json
+E:\vicky\New folder\SSOProject\IdentityServer4.AspNetIdentity\bin\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.dll
+E:\vicky\New folder\SSOProject\IdentityServer4.AspNetIdentity\bin\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.pdb
+E:\vicky\New folder\SSOProject\IdentityServer4.AspNetIdentity\bin\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.xml
+E:\vicky\New folder\SSOProject\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.csprojAssemblyReference.cache
+E:\vicky\New folder\SSOProject\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.AssemblyInfoInputs.cache
+E:\vicky\New folder\SSOProject\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.AssemblyInfo.cs
+E:\vicky\New folder\SSOProject\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.csproj.CoreCompileInputs.cache
+E:\vicky\New folder\SSOProject\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.dll
+E:\vicky\New folder\SSOProject\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.xml
+E:\vicky\New folder\SSOProject\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.pdb
+F:\James\SSOProject\SSOProject\IdentityServer4.AspNetIdentity\bin\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.deps.json
+F:\James\SSOProject\SSOProject\IdentityServer4.AspNetIdentity\bin\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.dll
+F:\James\SSOProject\SSOProject\IdentityServer4.AspNetIdentity\bin\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.pdb
+F:\James\SSOProject\SSOProject\IdentityServer4.AspNetIdentity\bin\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.xml
+F:\James\SSOProject\SSOProject\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.csprojAssemblyReference.cache
+F:\James\SSOProject\SSOProject\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.csproj.CoreCompileInputs.cache
+F:\James\SSOProject\SSOProject\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.AssemblyInfoInputs.cache
+F:\James\SSOProject\SSOProject\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.AssemblyInfo.cs
+F:\James\SSOProject\SSOProject\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.dll
+F:\James\SSOProject\SSOProject\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.xml
+F:\James\SSOProject\SSOProject\IdentityServer4.AspNetIdentity\obj\Debug\netcoreapp3.0\IdentityServer4.AspNetIdentity.pdb

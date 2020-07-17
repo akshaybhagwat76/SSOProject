@@ -1,0 +1,72 @@
+﻿@using SSOApp.ViewModels
+@{
+    ViewData["Title"] = "UsersByRole";
+    List<RoleViewModel> roles = ViewBag.Roles as List<RoleViewModel>;
+    List<RoleViewModel> userselectedroles = ViewBag.UserRoles as List<RoleViewModel>;
+      string tenant = ViewBag.TenantName;
+    string tenantcode = ViewBag.TenantCode;
+    string username = ViewBag.UserRoles.FirstOrDefault().UserFullName;
+    string userid = ViewBag.UserID;
+}
+
+<h1>Users</h1>
+
+<p>
+    @if (TempData["Success"] != null)
+    {
+        <label class="bg-success">@TempData["Success"]</label>
+        TempData["Success"] = null;
+    }
+    @if (TempData["Failed"] != null)
+    {
+        <label class="bg-danger">@TempData["Failed"]</label>
+        TempData["Failed"] = null;
+    }
+</p>
+
+<div>
+    Tenant : @Model.Tenant.Name (CODE : @Model.Tenant.Code)
+    <br />
+    Role :  @Model.RoleName
+</div>
+
+<div class="panel-body" id="gridBodyUsers" style="width:40%;">
+    @*<div style="float:right;">
+            <a href="@Url.Content("~/Users/AddUserToRole?roleid="+Model.RoleID+"&tcode="+Model.Tenant.Code)"><input type="button" name="btnCreate" value="Add Users" /></a>
+        </div>*@
+    <table width="80%" class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <td>
+                    Users
+                </td>
+                <td>
+                </td>
+            </tr>
+        </thead>
+        @if (Model.Users.Count > 0)
+        {
+            foreach (var item in Model.Users)
+            {
+                <tr>
+                    <td>@item.FirstName @item.LastName</td>
+                    <td>
+                        <a href="@Url.Content("~/Users/DeleteRole?rolename=" + Model.RoleName + "&userid=" + item.Id)" onclick="return confirm('Are you sure want to delete this user from this role?')">Delete</a>
+                    </td>
+                </tr>
+
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6">
+                    No Users Assigned
+                </td>
+            </tr>
+        }
+    </table>
+    <div style="float:right;">
+        <a href="@Url.Content("~/RolesManagement/Index")"><input type="button" name="btnFinished" value="Finished" /></a>
+    </div>
+</div>

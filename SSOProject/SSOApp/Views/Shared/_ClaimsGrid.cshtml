@@ -1,0 +1,35 @@
+﻿@model List<SSOApp.ViewModels.ClaimsViewModel>
+
+<table width="80%" class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <td>
+                Claim
+            </td>
+           
+            <td>
+            </td>
+        </tr>
+    </thead>
+    @if (Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                  <td>
+                    <a href="@Url.Content("~/ClaimsManagement/Edit?cid="+item.ID+"&tcode="+item.TenantCode)">Edit</a>
+                    <a href="@Url.Content("~/ClaimsManagement/Delete/"+item.ID)" onclick="return confirm('Are you sure want to delete this role?')">Delete</a>
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="6">
+                No Roles Available
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,54 @@
+﻿@model List<SSOApp.ViewModels.ModuleViewModel>
+
+<table width="80%" class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <td>
+                Module
+            </td>
+            <td>
+                Fields
+            </td>
+            <td>
+                Roles
+            </td>
+
+            <td>
+                View
+            </td>
+            <td>
+            </td>
+        </tr>
+    </thead>
+    @if (Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+<tr>
+    <td>@item.Name</td>
+    <td>
+        <a href="@Url.Content("~/ModuleManagement/FieldsList?cid="+item.ID+"&tcode="+item.TenantCode +"&moduleId="+item.ID)">Field List</a>
+    </td>
+    <td>
+        <a href="@Url.Content("~/ModuleManagement/Roles?cid="+item.ID+"&tcode="+item.TenantCode+"&moduleId="+item.ID)">Roles List</a>
+    </td>
+    <td>
+        <a href="@Url.Content("~/ModuleManagement/Edit?cid="+item.ID+"&tcode="+item.TenantCode)">View</a>
+    </td>
+
+    <td>
+        <a href="@Url.Content("~/ModuleManagement/Edit?cid="+item.ID+"&tcode="+item.TenantCode)">Edit</a>
+        <a href="@Url.Content("~/ModuleManagement/Delete/"+item.ID)" onclick="return confirm('Are you sure want to delete this module?')">Delete</a>
+    </td>
+</tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="6">
+                No Modules Available
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,23 @@
+﻿@model SSOApp.Controllers.UI.LogoutViewModel
+
+<div class="logout-page">
+    <div class="page-header">
+        <h1>Logout</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            @*<p>Would you like to logout of IdentityServer?</p>*@
+            <p>Would you like to logout ?</p>
+            <form asp-action="Logout">
+                <input type="hidden" name="logoutId" value="@Model.LogoutId" />
+                <input type="hidden" id="logoutUsername" value="@User.Identity.Name" />
+                <fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-primary" id="logout-btn">Yes</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

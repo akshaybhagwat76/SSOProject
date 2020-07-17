@@ -1,0 +1,48 @@
+﻿@model List<SSOApp.ViewModels.UserViewModel>
+@{
+    ViewData["Title"] = "Users";
+    List<SelectListItem> tenants = ViewBag.TenantDD as List<SelectListItem>;
+}
+
+<script>
+    @*$(document).ready(function () {
+        getUsersBytenant();
+    });
+        function getUsersBytenant() {
+            $.post("@Url.Content("~/Users/GetUsersByTenant")", { tcode: $("#selectTenant").val() }, function (htmlData) {
+                $("#gridBody").html(htmlData);
+            })
+        }*@
+</script>
+
+<h1>User Management</h1>
+
+<p>
+    @if (TempData["Success"] != null)
+    {
+        <label class="bg-success">@TempData["Success"]</label>
+        TempData["Success"] = null;
+    }
+    @if (TempData["Failed"] != null)
+    {
+        <label class="bg-danger">@TempData["Failed"]</label>
+        TempData["Failed"] = null;
+    }
+</p>
+
+<div style="float:right;">
+    <a href="@Url.Content("~/Users/Create")"><input type="button" name="btnCreate" value="Add User" /></a>
+</div>
+<div>
+    Tenant : 
+    <select id="selectTenant" onchange="getUsersBytenant();">
+        @foreach (var item in tenants)
+        {
+            <option value="@item.Value">@item.Text</option>
+        }
+    </select>
+</div>
+
+<div class="panel-body" id="gridBody">    
+
+</div>

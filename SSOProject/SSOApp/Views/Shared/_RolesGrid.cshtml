@@ -1,0 +1,38 @@
+﻿@model List<SSOApp.ViewModels.RoleViewModel>
+
+<table width="80%" class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <td>
+                Role
+            </td>
+            <td>
+                Users
+            </td>
+            <td>
+            </td>
+        </tr>
+    </thead>
+    @if (Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td><a href="@Url.Content("~/Users/UsersByRole?roleid="+item.ID)">Users List</a></td>
+                <td>
+                    <a href="@Url.Content("~/RolesManagement/Edit?rid="+item.ID+"&tcode="+item.TenantCode)">Edit</a>
+                    <a href="@Url.Content("~/RolesManagement/Delete/"+item.ID)" onclick="return confirm('Are you sure want to delete this role?')">Delete</a>
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="6">
+                No Roles Available
+            </td>
+        </tr>
+    }
+</table>

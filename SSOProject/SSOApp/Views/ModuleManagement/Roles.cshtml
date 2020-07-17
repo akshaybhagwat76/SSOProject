@@ -1,0 +1,92 @@
+﻿@model SSOApp.ViewModels.TenantRoleModel
+
+
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<h1>Roles</h1>
+<script>
+    function MoveListBoxItem(fromId, toId) {
+        debugger;
+        $("#" + fromId + " option:selected").remove().appendTo("#" + toId);
+    }
+
+    function MoveListBoxItemAll(fromId, toId) {
+        debugger;
+        $("#" + fromId + " option").remove().appendTo("#" + toId);
+    }
+
+
+    function MoveListBoxItemTo(fromId, toId) {
+        debugger;
+        $($('#' + fromId + '> option:selected')).each(function () {
+            psSelectedSelectLid = $(this).text();
+
+        $($('#' + toId +'> option')).each(function () {
+            if (psSelectedSelectLid == $(this).text()) {
+                alert(psSelectedSelectLid + 'alredy exists')
+            }
+            });
+
+        })
+    }
+
+</script>
+@using (Html.BeginForm("Roles", "ModuleManagement"))
+{
+    @Html.HiddenFor(m => m.TennantId)
+    @Html.HiddenFor(m => m.ModuleId)
+
+    <table width="100%" border="0">
+        <tr>
+            <td style="width:48%">Un-Selected</td>
+            <td rowspan="2" style="width:4%">
+                <input type="button" value=">>" onclick="javascript: MoveListBoxItemTo('UnSelectedRoleID','SelectedRoleID')" /><br />
+                <input type="button" value="<<" onclick="javascript: MoveListBoxItem('SelectedRoleID', 'UnSelectedRoleID')" />
+                <input type="button" value=">>>>" onclick="javascript: MoveListBoxItemAll('UnSelectedRoleID','SelectedRoleID')" /><br />
+                <input type="button" value="<<<<" onclick="javascript: MoveListBoxItemAll('SelectedRoleID','UnSelectedRoleID')" /><br />
+
+
+            </td>
+            <td>Selected</td>
+        </tr>
+        <tr>
+            <td>
+                @*@Html.ListBox("UnSelectedRoleID", new SelectList(Model.RolesUnSelectedList, "Id", "Name"), new { @style = "width:100%" })*@
+
+                @*@Html.ListBoxFor(model => model.UnSelectedRoleID,
+                    new MultiSelectList(ViewBag.RolesUnSelectedList, "Id",
+                    "Name", Model.UnSelectedRoleID),
+                    new { size = "6" })%>*@
+
+                <select multiple="multiple" asp-for="@Model.UnSelectedRoleID" class="form-control" asp-items="@Model.RolesUnSelectedList">
+                </select>
+
+
+            </td>
+            <td>
+
+                @*@Html.ListBoxFor(m => m.SelectedRoleID, new SelectList(Model.RolesSelectedList, "Id", "Name"), new { @style = "width:100%" })*@
+                @*@Html.ListBoxFor(model => model.SelectedRoleID,
+                    new MultiSelectList(ViewBag.RolesSelectedList, "Id",
+                    "Name", Model.SelectedRoleID))%>*@
+
+
+                <select multiple="multiple" asp-for="@Model.SelectedRoleID" class="form-control" asp-items="@Model.RolesSelectedList">
+                </select>
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Submit" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @*Selected Country: @ViewBag.SelectedCountryId*@
+            </td>
+        </tr>
+    </table>
+}

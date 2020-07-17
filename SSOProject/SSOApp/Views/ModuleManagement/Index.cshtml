@@ -1,0 +1,45 @@
+﻿@model List<SSOApp.ViewModels.ModuleViewModel>
+@{
+    ViewData["Title"] = "Roles";
+    List<SelectListItem> tenants = ViewBag.TenantDD as List<SelectListItem>;
+}
+<script>
+    $(document).ready(function () {
+        getRolesBytenant();
+    });
+        function getRolesBytenant() {
+            $.post("@Url.Content("~/ModuleManagement/GetModuleByTenant")", { tcode: $("#selectTenant").val() }, function (htmlData) {
+                debugger;
+                $("#gridBodyRoles").html(htmlData);
+            })
+        }
+</script>
+<h1>Module Management</h1>
+<p>
+    @if (TempData["Success"] != null)
+    {
+        <label class="bg-success">@TempData["Success"]</label>
+        TempData["Success"] = null;
+    }
+    @if (TempData["Failed"] != null)
+    {
+        <label class="bg-danger">@TempData["Failed"]</label>
+        TempData["Failed"] = null;
+    }
+</p>
+<div style="float:right;">
+    <a href="@Url.Content("~/ModuleManagement/Create")"><input type="button" name="btnCreate" value="Add Module" /></a>
+</div>
+<div>
+    Tenant :
+    <select id="selectTenant" onchange="getRolesBytenant();">
+        @foreach (var item in tenants)
+        {
+            <option value="@item.Value">@item.Text</option>
+        }
+    </select>
+</div>
+
+<div class="panel-body" id="gridBodyRoles">
+
+</div>

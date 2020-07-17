@@ -1,0 +1,211 @@
+﻿@using SSOApp.ViewModels
+@{
+    ViewData["Title"] = "UserRoles";
+
+    ViewData["Title"] = "UsersByRole";
+    List<RoleViewModel> roles = ViewBag.Roles as List<RoleViewModel>;
+    List<RoleViewModel> userselectedroles = ViewBag.UserRoles as List<RoleViewModel>;
+    string tenant = ViewBag.TenantName;
+    string tenantcode = ViewBag.TenantCode;
+    string username = ViewBag.UserRoles[0].UserFullName;
+    string userid = ViewBag.UserID;
+}
+<link rel="stylesheet" media="(max-width: 767px)" href="~/css/StyleSheet.less" />
+
+<h1>User Roles</h1>
+
+<p>
+    @if (TempData["Success"] != null)
+    {
+        <label class="bg-success">@TempData["Success"]</label>
+        TempData["Success"] = null;
+    }
+    @if (TempData["Failed"] != null)
+    {
+        <label class="bg-danger">@TempData["Failed"]</label>
+        TempData["Failed"] = null;
+    }
+</p>
+
+<div>
+    Tenant : @tenant (CODE : @tenantcode)
+    User :  @username
+</div>
+<div class="card-columns">
+    @*<form asp-controller="RolesManagement" asp-action="SaveUserRoles" method="post" id="form1">
+        <input type="hidden" name="hdnUserID" value="@ViewBag.UserID" />
+
+        <div class="subject-info-box-1">
+            <select multiple="multiple" id='lstBox1' name="hdnMultiple" class="form-control">
+                @foreach (var i in roles)
+                {
+                    <option value=@i.Name>@i.Name</option>
+                }
+
+            </select>
+
+
+
+            <div class="subject-info-arrows text-center">
+                <input type="button" id="btnAllRight" value=">>" class="btn btn-default" /><br />
+                <input type="button" id="btnRight" value=">" class="btn btn-default" /><br />
+                <input type="button" id="btnLeft" value="<" class="btn btn-default" /><br />
+                <input type="button" id="btnAllLeft" value="<<" class="btn btn-default" />
+            </div>
+
+            <div class="subject-info-box-2">
+                <select multiple="multiple" id='lstBox2' class="form-control">
+
+                    @foreach (var i in userselectedroles)
+                    {
+                        <option value=@i.Name>@i.Name</option>
+                    }
+                </select>
+            </div>
+        </div>*@
+    @*<div style="float:right;">
+            <a href="@Url.Content("~/Users/AddRoleToUser?userid="+userid+"&tcode="+tenantcode)"><input type="button" name="btnCreate" value="Add Role" /></a>
+        </div>
+        <table width="80%" class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <td>
+                        Roles
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </thead>
+            @if (Model.Count > 0 && roleNamecheck != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>
+                            <a href="@Url.Content("~/Users/DeleteRole?rolename=" + item.Name + "&userid=" + item.UserID)" onclick="return confirm('Are you sure want to delete this role from this user?')">Delete</a>
+                        </td>
+                    </tr>
+
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6">
+                        No Roles Assigned
+                    </td>
+                </tr>
+            }
+        </table>*@
+    @*<div style="float:right;">
+            <a href="@Url.Content("~/Users/Index")"><input type="button" name="btnFinished" value="Finished" /></a>
+        </div>*@
+    @*<input type="submit" name="btnSubmit" id="btn-submit" value="Finished" />
+
+        </form>*@
+
+    <!--
+      Blog entry: https://esausilva.com/2016/01/29/move-items-between-two-listbox-using-jquery-html-select-tag/
+
+      I recommend using my plug in instead: https://esausilva.com/2016/02/28/jquery-selectlistactions-js-plugin-to-move-items-between-two-select-lists-remove-select-list-items-and-move-up-and-down-select-list-items/
+    -->
+    <div class="subject-info-box-1">
+        <select multiple="multiple" id='lstBox1' class="form-control">
+            @foreach (var i in userselectedroles)
+            {
+                <option value=@i.Name>@i.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="subject-info-arrows text-center">
+        <input type='button' id='btnAllRight' value='>>' class="btn btn-default" /><br />
+        <input type='button' id='btnRight' value='>' class="btn btn-default" /><br />
+        <input type='button' id='btnLeft' value='<' class="btn btn-default" /><br />
+        <input type='button' id='btnAllLeft' value='<<' class="btn btn-default" />
+    </div>
+
+    <div class="subject-info-box-2">
+        <select multiple="multiple" id='lstBox2' class="form-control">
+            @foreach (var i in userselectedroles)
+            {
+                <option value=@i.Name>@i.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <input type="submit" name="btnSubmit" id="btn-submit" value="Finished" />
+
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#btn-submit").click(function () {
+            // let's show a loading image\
+            debugger;
+
+            var selectedValues = $('#lstBox2 option');
+            let a = [];
+
+            for (var i = 0; i < selectedValues.length; i++) {
+                if (selectedValues[i].value != "") {
+                    a.push(selectedValues[i].value);
+
+                }
+            }
+            alert(selectedValues);
+            var input = $("<input>")
+                .attr("type", "hidden")
+                .attr("name", "mydata").val(a);
+
+            $('#form1').append(input);
+
+
+            return true;
+        });
+        $('#btnRight').click(function (e) {
+            var selectedOpts = $('#lstBox1 option:selected');
+            if (selectedOpts.length == 0) {
+                alert("Nothing to move.");
+                e.preventDefault();
+            }
+            $('#lstBox2').append($(selectedOpts).clone());
+            $(selectedOpts).remove();
+            e.preventDefault();
+        });
+        $('#btnAllRight').click(function (e) {
+            var selectedOpts = $('#lstBox1 option');
+            if (selectedOpts.length == 0) {
+                alert("Nothing to move.");
+                e.preventDefault();
+            }
+            $('#lstBox2').append($(selectedOpts).clone());
+            $(selectedOpts).remove();
+            e.preventDefault();
+        });
+        $('#btnLeft').click(function (e) {
+            var selectedOpts = $('#lstBox2 option:selected');
+            if (selectedOpts.length == 0) {
+                alert("Nothing to move.");
+                e.preventDefault();
+            }
+            $('#lstBox1').append($(selectedOpts).clone());
+            $(selectedOpts).remove();
+            e.preventDefault();
+        });
+        $('#btnAllLeft').click(function (e) {
+            var selectedOpts = $('#lstBox2 option');
+            if (selectedOpts.length == 0) {
+                alert("Nothing to move.");
+                e.preventDefault();
+            }
+            $('#lstBox1').append($(selectedOpts).clone());
+            $(selectedOpts).remove();
+            e.preventDefault();
+        });
+    });
+</script>

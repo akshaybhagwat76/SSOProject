@@ -1,0 +1,118 @@
+﻿@model SSOApp.ViewModels.UserViewModel
+@{
+    ViewData["Title"] = "Users";
+}
+<script>
+    function checkRoles() {
+        
+        var chk_arr = document.getElementsByName("SelectedRoles");
+        var chklength = chk_arr.length;
+        alert(chklength);
+        for (k = 0; k < chklength; k++) {
+            if (chk_arr[k].checked)
+                return true;
+        }
+        return false;
+    }
+</script>
+<div class="container">
+
+    <div class="login-page">
+        <div class="card-header">
+            <h1>Update User</h1>
+        </div>
+
+        <partial name="_ValidationSummary" />
+        <p>
+            @if (TempData["Success"] != null)
+            {
+                <label class="bg-success">@TempData["Success"]</label>
+                TempData["Success"] = null;
+            }
+            @if (TempData["Failed"] != null)
+            {
+                <label class="bg-danger">@TempData["Failed"]</label>
+                TempData["Failed"] = null;
+            }
+        </p>
+
+        <div class="row">
+
+
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"></h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <form asp-controller="Users" asp-action="Edit" method="post">
+                            <input type="hidden" name="UserID" value="@Model.UserID" />
+                            <fieldset>
+                                <div class="form-group">
+                                    <label asp-for="FirstName"></label>
+                                    <input class="form-control" placeholder="FirstName" asp-for="FirstName" value="@Model.FirstName" autofocus required>
+                                    <span asp-validation-for="FirstName"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="LastName"></label>
+                                    <input class="form-control" placeholder="LastName" asp-for="LastName" value="@Model.LastName">
+                                    <span asp-validation-for="LastName"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Email"></label>
+                                    <input class="form-control" placeholder="Email" asp-for="Email" value="@Model.Email" required>
+                                    <span asp-validation-for="Email"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserName"></label>
+                                    <input class="form-control" placeholder="Username" asp-for="UserName" value="@Model.UserName" readonly>
+                                    <span asp-validation-for="UserName"></span>
+                                </div>
+                                @*<h3>Change Password</h3>
+                                <input type="hidden" name="Password" value="xxxx" />
+                                <input type="hidden" name="ConfirmPassword" value="xxxx" />
+                                Click <a href="@Url.Content("~/Users/ChangePassword/"+Model.UserID)">here</a> to go to change password page.*@
+                                @*<div class="form-group">
+                                        <label asp-for="Password"></label>
+                                        <input type="password" class="form-control" placeholder="Password" asp-for="Password" autocomplete="off">
+                                        <span asp-validation-for="Password"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="ConfirmPassword"></label>
+                                        <input type="password" class="form-control" placeholder="ConfirmPassword" asp-for="ConfirmPassword" autocomplete="off">
+                                        <span asp-validation-for="ConfirmPassword"></span>
+                                    </div>*@
+                                <div class="form-group">
+                                    <label asp-for="TenanntCode"></label>
+                                    <input class="form-control" placeholder="TenantCode" asp-for="TenanntCode" value="@Model.TenanntCode" required>
+                                    <span asp-validation-for="TenanntCode"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="IsActive">Active</label>
+                                    <input type="checkbox" id="UserIsActive" name="UserIsActive" @if (Model.IsActive) { <text> checked="checked" </text> } />
+                                </div>
+                                @*<div class="form-group">
+                                    <label>Assign Roles</label>
+                                    @foreach (var item in Model.DDRoleList)
+                                    {
+                                        var isSelected = Model.SelectedRoles.FirstOrDefault(d => d == item.Text);
+                                        <label><input name="SelectedRoles" type="checkbox" value="@item.Text" @if (isSelected != null) { <text> checked="checked" </text> }>@item.Text</label>
+                                    }
+
+                                </div>*@
+                            <div class="form-group">
+                                @*<input type="submit" class="btn btn-primary" name="button" value="Save" onclick="return checkRoles();" />*@
+                                <input type="submit" class="btn btn-primary" name="button" value="Save" />
+                                <a href="@Url.Content("~/Users/Index")" class="btn btn-default">Back to Users</a>
+                            </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

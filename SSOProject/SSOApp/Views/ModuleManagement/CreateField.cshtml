@@ -1,0 +1,304 @@
+﻿@model SSOApp.ViewModels.FeildModelView
+
+@{
+    ViewData["Title"] = "CreateField";
+}
+
+<h1>New Field</h1>
+
+<style>
+    .error {
+        color: red;
+        visibility: hidden;
+    }
+</style>
+
+
+
+<div id="dvstatus" style="display:none">
+    <label id="lblstatus"></label>
+
+</div>
+
+
+
+
+<div class="form-group">
+    <div class="col-md-">
+        Tenant:@ViewBag.TenantName.(@ViewBag.TenantCode)
+    </div>
+
+
+</div>
+
+
+
+
+<form id="frmField" asp-action="CreateField" style="width:50%">
+
+    <div asp-validation-summary="ModelOnly"><span>Please correct the following errors</span></div>
+    @Html.HiddenFor(Model => Model.ModuleFieldDetails.ModuleDetailsID)
+    @Html.HiddenFor(Model => Model.ModuleFieldDetails.ID,new {id="ModuleFieldId" })
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">DB Field Name:</label>
+        <input class="form-control" id="DbFieldName" asp-for="@Model.ModuleFieldDetails.DBFieldName" />
+        <span asp-validation-for="@Model.ModuleFieldDetails.DBFieldName" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Field Label:</label>
+        <input class="form-control" id="FieldName" asp-for="@Model.ModuleFieldDetails.FieldLabel" />
+        <span asp-validation-for="@Model.ModuleFieldDetails.FieldLabel" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Field Type:</label>
+        <select asp-for="@Model.ModuleFieldDetails.FieldType" id="drpFieldType" class="form-control" asp-items="@ViewBag.FeildTypeList">
+            <option disabled selected value="">Select</option>
+        </select>
+
+        <span asp-validation-for="@Model.ModuleFieldDetails.FieldType" class="text-danger"></span>
+    </div>
+
+
+</form>
+<br />
+
+
+<div class="form-group">
+    <table id="tbloption" width="50px" style="table-layout:fixed" class="table table-hover">
+        <thead>
+            <tr>
+                <td>
+                    Order
+                </td>
+                <td>
+                    Value
+                </td>
+                <td>
+                    Action
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary" id="btnOption" data-toggle="modal" data-target="#modal">
+                        Add option
+                    </button>
+                </td>
+            </tr>
+        </thead>
+
+    </table>
+
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    @Html.Hidden("OptionId")
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    Option Value
+                    <input class="form-control" id="txtOption" />
+                    <span class="error">Please Enter options</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnClose" data-dismiss="modal">Close</button>
+                <button type="button" id="btnSaveOption" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="display:inline-block">
+    <input class="btn btn-primary" value="Save" id="btnSave" type="button" />
+    <a href="@Url.Action("Index","ModuleManagement")">Back To Module Feilds</a>
+</div>
+
+<script>
+    //function setGuid() {
+    //    function S4() {
+    //        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    //    }
+    //    return (S4() + S4() + "-" + S4() + "-4" + S4().substr(0, 3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
+    //}
+    var OptionsArray = [];
+    o = 1;
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+
+    function EditOption(currow)
+    {
+        //currow = $(currow).closest('tr');
+        Id = $(currow).closest('tr').find('td:eq(0)').text();
+        options = $(currow).closest('tr').find('td:eq(1)').text();
+        $('#txtOption').val(options);
+        $('#OptionId').val(options);
+        $('#modal').modal('show')
+        $('#btnSaveOption').val('Update');
+
+    }
+
+
+    function Delete(currow) {
+        //var options = $(currow).closest('tr').find('td:eq(1)').text();
+        //var Item = OptionsArray.filter(x => x.options == options)
+        //const index = OptionsArray.indexOf(Item);
+        OptionsArray.splice(currow, 1)
+
+        var selectedTr = $(currow).closest('tr').remove();
+        o--;
+        BindTable(OptionsArray);
+    }
+
+    function BindTable(OptionsArray) {
+        var tbody = $('<tbody/>')
+        $.each(OptionsArray, function (i, val) {
+            var row = $('<tr/>')
+            row.append($('<td/>').html(i+1))
+            row.append($('<td/>').html(val.options))
+            row.append($('<td/>').html('<a href="#" onclick=EditOption(this)>Edit</a>|<a href="#" onclick=Delete('+i+')>Delete</a>'))
+            tbody.append(row);
+        })
+        $('#tbloption tbody').remove();
+        $('#tbloption').append(tbody);
+               // Clear();
+    }
+    function Clear()
+    {
+        $('#txtOption').siblings('span.error').css('visibility', 'hidden')
+        $('#btnSaveOption').val('')
+        $('#OptionId').val('')
+        $('#txtOption').val('');
+        $('#modal').modal('hide');
+    }
+    $(document).ready(function () {
+        debugger;
+        
+        var uploadedList = '@Html.Raw(Json.Serialize(Model.ModuleFieldOption))'
+        var result = $.parseJSON(uploadedList);
+
+        $.each(result, function (i, val) {
+
+            OptionsArray.push({
+                PsId: o++,
+                options: val.options
+            })
+
+        })
+
+        if(OptionsArray.length) {
+            BindTable(OptionsArray)
+        }
+
+
+
+
+        $('#btnSave').click(function (event) {
+            if (!$('#frmField').valid()) {
+                $('#frmField').validate();
+            }
+            else {
+
+                 var PsModuleFieldDetails = {
+                DBFieldName: $('#DbFieldName').val(),
+                FieldLabel: $('#FieldName').val(),
+                     FieldType: $('#drpFieldType option:selected').text(),
+                     ID: $('#ModuleFieldId').val(),
+                     ModuleDetailsID: $('#ModuleFieldDetails_ModuleDetailsID').val()
+
+            }
+            var FeildModelView = {
+                ModuleId:$('#ModuleId').val(),
+                ModuleFieldDetails: PsModuleFieldDetails,
+                ModuleFieldOption: OptionsArray
+            }
+
+            $.ajax({
+                url:'@Url.Action("CreateField", "ModuleManagement")',
+                type: 'Post',
+                data: { FeildModelView: FeildModelView },
+                success: function(data)
+                {
+                    $('#dvstatus').css('display', 'block');
+                    if (data == 'Saved') {
+                        debugger;
+                        window.location = "/ModuleManagement/FieldsList";
+
+                    }
+                    else {
+                        $('#lblstatus').addClass('bg-danger').text(data)
+
+                    }
+                },
+
+            })
+
+            }
+        })
+
+        $('#btnClose').click(function () {
+            Clear();
+        })
+
+        $('#btnSaveOption').click(function () {
+
+
+            var Validation = true;
+            if ($('#txtOption').val() == '') {
+                $('#txtOption').siblings('span.error').css('visibility', 'visible')
+                Validation = false;
+            }
+            else {
+                $('#txtOption').siblings('span.error').css('visibility', 'hidden')
+            }
+
+            if (Validation) {
+
+                if ($('#btnSaveOption').val() == "Update") {
+                    psOptionsId = $('#OptionId').val()
+                    let updateOption = OptionsArray.filter(x => x.options == psOptionsId)
+                    updateOption[0].options = $('#txtOption').val();
+
+                }
+                else {
+
+                    let option = OptionsArray.filter(x => x.options == $('#txtOption').val())
+                    if (option.length > 0) {
+                        $('#txtOption').siblings('span.error').css('visibility', 'visible').text('Option already exists!!');
+                        return;
+                    }
+                    OptionsArray.push({
+                        PsId: o++,
+                        options: $('#txtOption').val()
+                    })
+                }
+                BindTable(OptionsArray);
+                Clear();
+            }
+            else {
+                return;
+            }
+
+        })
+    })
+
+
+
+
+
+</script>

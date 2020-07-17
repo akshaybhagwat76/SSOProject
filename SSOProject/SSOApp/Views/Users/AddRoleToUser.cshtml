@@ -1,0 +1,69 @@
+﻿@using SSOApp.ViewModels
+@{
+    ViewData["Title"] = "Roles To User";
+    List<RoleViewModel> roles = ViewBag.Roles as List<RoleViewModel>;
+    List<RoleViewModel> userselectedroles = ViewBag.UserRoles as List<RoleViewModel>;
+}
+
+<div class="container">
+    <div class="card-header">
+        <h1>Add Role</h1>
+    </div>
+    <div class="card-body">
+        <p>
+            @if (TempData["Success"] != null)
+            {
+                <label class="bg-success">@TempData["Success"]</label>
+                TempData["Success"] = null;
+            }
+            @if (TempData["Failed"] != null)
+            {
+                <label class="bg-danger">@TempData["Failed"]</label>
+                TempData["Failed"] = null;
+            }
+        </p>
+        <div>
+            Tenant Code : @ViewBag.TenantCode
+
+        </div>
+        <div class="card-columns">
+            <form asp-controller="RolesManagement" asp-action="SaveUserRoles" method="post">
+                <input type="hidden" name="hdnUserID" value="@ViewBag.UserID" />
+                <table width="80%">
+                    @if (roles.Count > 0)
+                    {
+                        <tr>
+                            <td>
+                                Roles
+                            </td>
+                            <td>
+                                @foreach (var item in roles)
+                                {
+                                    var selected = userselectedroles.Where(d => d.Name == item.Name).FirstOrDefault();
+                                    <label>
+                                        <input type="checkbox" name="chkRoles" value="@item.Name" @if (selected != null) { <text> checked="checked" </text> } /> @item.Name
+                                    </label><br />
+                                }
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="2">No Roles available for current tenant.</td>
+                        </tr>
+                    }
+                    <tr>
+                        <td>
+                            @if (roles.Count > 0)
+                            {
+                                <input type="submit" name="btnSubmit" value="Add" />
+                            }
+                            <a href="@Url.Content("~/RolesManagement/UserIndex/"+ViewBag.UserID)"><input type="button" name="btnCancel" value="Back" /></a>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
