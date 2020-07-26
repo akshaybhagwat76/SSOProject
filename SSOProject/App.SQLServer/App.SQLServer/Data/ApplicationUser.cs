@@ -16,6 +16,8 @@ namespace App.SQLServer.Data
         public string LastName { get; set; }
 
         public bool IsActive { get; set; }
+
+        
         [StringLength(50)]
         [Required]
         public string TenantCode { get; set; }

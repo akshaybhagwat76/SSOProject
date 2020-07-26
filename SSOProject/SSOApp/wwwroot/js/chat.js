@@ -62,3 +62,24 @@ function getUsersBytenant() {
         callUserOnline();
     })
 }
+function UpdateStatus(value, id, action) {
+    var payLoad = '';
+    if (action === "statusUpdate") {
+        payLoad = {'Id': id, 'IsActive': value, 'action': action};
+    }
+    else if (action === "onHoldUpdate") {
+        payLoad = { 'Id': id, 'IsOnHold': value, 'action': action };
+    }
+    else if (action === "onSaveEdit") {
+
+    }
+
+    $.post("/saveuserrole", payLoad, function (htmlData) {
+        if (htmlData.status == 'Saved') {
+            $(".bg-success").html("staus updated.")
+            $(".bg-success").show();
+        }
+        else 
+            $(".bg-danger").html("Error in updating.")
+    })
+}

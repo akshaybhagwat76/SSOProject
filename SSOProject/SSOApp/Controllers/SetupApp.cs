@@ -122,7 +122,10 @@ namespace SSOApp.Controllers
                     return resultjson;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+            }
             return new APIReturnedModel();
         }
     }

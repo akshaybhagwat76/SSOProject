@@ -1,0 +1,78 @@
+﻿@model IEnumerable<SSOApp.ViewModels.TenantViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+   
+        <label class="bg-success" style="display:none"></label>
+       
+        <label class="bg-danger" style="display:none"></label>
+        
+</p>
+<div style="float:right;">
+    <a href="@Url.Content("~/Tenant/Create")"><input type="button" name="btnCreate" value="Add" /></a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Code
+            </th>
+            <th>
+                Tanent Name
+            </th>
+            <th>
+                First/Last Name
+            </th>
+            <th>
+                Master Admin Account
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Hold
+            </th>
+            <th>
+                Options
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenantName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id='@item.Id' checked='@item.IsActive' onchange="UpdateStatus(this.checked,'@item.Id','statusUpdate');">
+                    <label class="custom-control-label" for='@item.Id'></label>
+                </div>
+            </td>
+            <td>
+                <input type="checkbox" checked='@item.IsOnHold' onchange="UpdateStatus(this.checked,'@item.Id','onHoldUpdate');">
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -10,27 +10,25 @@ namespace App.SQLServer.Data
 {
     public class SeedDB
     {
-
-        public static void Initialize(IServiceProvider serviceProvider)
-              {
+        public static async void Initialize(IServiceProvider serviceProvider)
+        {
             var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             context.Database.EnsureCreated();
 
-
             if (!context.FieldTypes.Any())
             {
                 var fieldType = new FieldType()
                 {
-                    ID =Guid.NewGuid(),
+                    ID = Guid.NewGuid(),
                     Name = "Text",
                 };
 
 
                 context.Entry<FieldType>(fieldType).State = EntityState.Detached;
 
-                context.FieldTypes.Add(fieldType);
+                await context.FieldTypes.AddAsync(fieldType);
 
                 var fieldType1 = new FieldType()
                 {
@@ -41,7 +39,7 @@ namespace App.SQLServer.Data
 
                 context.Entry<FieldType>(fieldType1).State = EntityState.Detached;
 
-                context.FieldTypes.Add(fieldType1);
+                await context.FieldTypes.AddAsync(fieldType1);
 
                 var fieldType2 = new FieldType()
                 {
@@ -52,7 +50,7 @@ namespace App.SQLServer.Data
 
                 context.Entry<FieldType>(fieldType2).State = EntityState.Detached;
 
-                context.FieldTypes.Add(fieldType2);
+                await context.FieldTypes.AddAsync(fieldType2);
 
                 var fieldType3 = new FieldType()
                 {
@@ -62,9 +60,9 @@ namespace App.SQLServer.Data
 
                 context.Entry<FieldType>(fieldType3).State = EntityState.Detached;
 
-                context.FieldTypes.Add(fieldType3);
+                await context.FieldTypes.AddAsync(fieldType3);
 
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
 
             if (!context.Tenants.Any())
@@ -75,45 +73,43 @@ namespace App.SQLServer.Data
                     Code = "DEI",
                     Name = "Date Experts, Inc.",
                     Email = "deiTenant@example.com",
-                    Password = "!Testing123"
-                };
-
+                    };
 
                 context.Entry<Tenant>(ten).State = EntityState.Detached;
+                await context.Tenants.AddAsync(ten);
 
-                context.Tenants.Add(ten);
                 var ten1 = new Tenant()
                 {
                     Id = new Guid("7D7B4614-C733-4A6D-A09D-608B4351B827"),
                     Code = "ABCO",
                     Name = "ABC Co.",
                     Email = "abcTenant@example.com",
-                    Password = "!Testing123"
                 };
+
                 context.Entry<Tenant>(ten1).State = EntityState.Detached;
-
-                context.Tenants.Add(ten1);
-
-                context.SaveChanges();
+                await context.Tenants.AddAsync(ten1);
+                await context.SaveChangesAsync();
             }
 
             if (!context.Roles.Any())
             {
                 var role = new IdentityRole();
                 role.Name = "Admin";
-                roleManager.CreateAsync(role);
+                await roleManager.CreateAsync(role);
             }
+
             if (!context.Users.Any())
             {
                 var user = new ApplicationUser();
                 user.UserName = "admin";
                 user.Email = "admin@test.com";
-                user.TenantCode = "ABCO";               
+                user.TenantCode = "ABCO";
                 string userPWD = "Admin123!";
-                userManager.CreateAsync(user, userPWD);
-                userManager.AddToRoleAsync(user, "Admin");
+                await userManager.CreateAsync(user, userPWD);
+                await userManager.AddToRoleAsync(user, "Admin");
+
             }
-            
+
         }
 
     }

@@ -172,7 +172,7 @@ namespace SSOApp.API.Admin
                         {
                             UserName = model.UserName,
                             Email = model.Email,
-                            TenantCode = "ABCO",
+                            TenantCode = model.TenanntCode,
                             FirstName = model.FirstName,
                             LastName = model.LastName,
                             IsActive = true

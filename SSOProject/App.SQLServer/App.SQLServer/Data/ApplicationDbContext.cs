@@ -26,7 +26,6 @@ namespace App.SQLServer.Data
         public DbSet<ModuleFieldDetails> ModuleFieldDetails { get; set; }
         public DbSet<ModuleFieldOptions> ModuleFieldOptions { get; set; }
 
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -35,7 +34,7 @@ namespace App.SQLServer.Data
             // Add your customizations after calling base.OnModelCreating(builder);
             builder.Entity<TenantRoles>()
             .HasKey(c => new { c.TenantID, c.RoleID });
-           
+
         }
     }
 }
