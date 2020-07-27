@@ -118,13 +118,13 @@ namespace SSOApp.API.Admin
                         var gettenant = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == model.TenantCode);
                         var gettenantroles = await _context.TenantClaims.FirstOrDefaultAsync(d => d.TenantID == gettenant.Id && d.ID == new Guid(model.ID));
                         if (gettenantroles == null)    //Add new tenant role
-                            _context.TenantRoles.Add(new TenantRoles { RoleID = model.ID, TenantID = gettenant.Id });
+                            await _context.TenantRoles.AddAsync(new TenantRoles { RoleID = model.ID, TenantID = gettenant.Id });
                         else
                         {
                             gettenantroles.ID = new Guid(model.ID);
                             gettenantroles.TenantID = gettenant.Id;
                         }
-                        _context.SaveChanges();
+                        await _context.SaveChangesAsync();
                         message = AccountOptions.API_Response_Saved;
                     }
                 }
@@ -164,7 +164,7 @@ namespace SSOApp.API.Admin
             {
                 var claim = await _context.TenantClaims.FirstOrDefaultAsync(x => x.ID == new Guid(model.ID));
                 _context.TenantClaims.Remove(claim);
-                var result = _context.SaveChanges();
+                var result = await _context.SaveChangesAsync();
 
                 message = AccountOptions.API_Response_Deleted;
 

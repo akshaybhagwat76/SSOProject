@@ -32,5 +32,6 @@ namespace SSOApp.Controllers.UI
         public static string API_Response_Exception = "Exception";
 
         public static string API_Response_Success = "Success";
+        public static string API_Response_Invalid_User = "Invalid User";
     }
 }

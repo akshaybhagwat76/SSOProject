@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using App.SQLServer.Data;
 using Microsoft.AspNetCore.Http;
@@ -8,6 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using SSOApp.ViewModels;
+using SSOApp.Controllers.UI;
 
 namespace SSOApp.API.Admin
 {
@@ -33,12 +36,13 @@ namespace SSOApp.API.Admin
             result.Insert(0, new SelectListItem { Text = "Select All", Value = "" });
             return result;
         }
+
         [HttpGet("gettenantbycode")]
         public async Task<Tenant> GetTenantByCode(string code)
         {
-            var result = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == code);            
+            var result = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == code);
             return result;
         }
-        
+
     }
 }
