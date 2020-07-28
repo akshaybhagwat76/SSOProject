@@ -14,7 +14,7 @@ using SSOApp.ViewModels;
 
 namespace SSOApp.Controllers.Admin
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
         public async Task<IActionResult> Index()

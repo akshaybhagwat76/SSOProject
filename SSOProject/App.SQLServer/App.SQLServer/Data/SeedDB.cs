@@ -73,6 +73,9 @@ namespace App.SQLServer.Data
                     Code = "DEI",
                     Name = "Date Experts, Inc.",
                     Email = "deiTenant@example.com",
+                    IsActive= true,
+                    IsDelete=false,
+                    IsOnHold=false
                     };
 
                 context.Entry<Tenant>(ten).State = EntityState.Detached;
@@ -84,6 +87,9 @@ namespace App.SQLServer.Data
                     Code = "ABCO",
                     Name = "ABC Co.",
                     Email = "abcTenant@example.com",
+                    IsActive = true,
+                    IsDelete = false,
+                    IsOnHold = false
                 };
 
                 context.Entry<Tenant>(ten1).State = EntityState.Detached;

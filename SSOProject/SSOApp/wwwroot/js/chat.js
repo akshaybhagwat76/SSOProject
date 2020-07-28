@@ -8,7 +8,7 @@ connection.start().then(function () {
     console.log("connected");
     callUserOnline();
 });
-connection.on("ReceiveMessage", function (user,count,msg,ids) {
+connection.on("ReceiveMessage", function (user, count, msg, ids) {
 
     $.post("/Users/GetUsersByTenant", { tcode: $("#selectTenant").val() }, function (htmlData) {
         $("#gridBody").html(htmlData);
@@ -23,8 +23,8 @@ connection.on("ReceiveMessage", function (user,count,msg,ids) {
         }
     });
 
-}); 
-connection.on("OfflineMessage", function (user,msg, count,ids) {
+});
+connection.on("OfflineMessage", function (user, msg, count, ids) {
 
     if (ids != undefined) {
         $(ids).each(function (index, item) {
@@ -38,18 +38,18 @@ connection.on("OfflineMessage", function (user,msg, count,ids) {
         });
     }
 
-}); 
+});
 
 if (document.getElementById("logout-btn") != undefined) {
     document.getElementById("logout-btn").addEventListener("click", function (event) {
 
-        var user = document.getElementById("logoutUsername").value;       
+        var user = document.getElementById("logoutUsername").value;
         connection.invoke("UserOffline", user);
     });
 }
 function callUserOnline() {
 
-    var user = document.getElementById("hdnUserNameforSignalr").value;   
+    var user = document.getElementById("hdnUserNameforSignalr").value;
     connection.invoke("CountUser", user);
 }
 
@@ -64,22 +64,37 @@ function getUsersBytenant() {
 }
 function UpdateStatus(value, id, action) {
     var payLoad = '';
-    if (action === "statusUpdate") {
-        payLoad = {'Id': id, 'IsActive': value, 'action': action};
-    }
-    else if (action === "onHoldUpdate") {
-        payLoad = { 'Id': id, 'IsOnHold': value, 'action': action };
-    }
-    else if (action === "onSaveEdit") {
-
-    }
-
-    $.post("/saveuserrole", payLoad, function (htmlData) {
-        if (htmlData.status == 'Saved') {
-            $(".bg-success").html("staus updated.")
-            $(".bg-success").show();
+    
+    if (action === "deleteUser") {
+        var response = confirm('Are you sure to delete this tenant?')
+        if (response == true) {
+            payLoad = { 'Id': id, 'IsDelete': value, 'action': action };
+            $.post("/changetenantStatus", payLoad, function (htmlData) {
+                if (htmlData.status == 'Saved') {
+                    $(".bg-success").html("Status updated.")
+                    $(".bg-success").show();
+                }
+                else
+                    $(".bg-danger").html("Error in updating.")
+            })
         }
-        else 
-            $(".bg-danger").html("Error in updating.")
-    })
+    }
+    else {
+
+        if (action === "statusUpdate") {
+            payLoad = { 'Id': id, 'IsActive': value, 'action': action };
+        }
+        else if (action === "onHoldUpdate") {
+            payLoad = { 'Id': id, 'IsOnHold': value, 'action': action };
+        }
+
+        $.post("/changetenantStatus", payLoad, function (htmlData) {
+            if (htmlData.status == 'Saved') {
+                $(".bg-success").html("Status updated.")
+                $(".bg-success").show();
+            }
+            else
+                $(".bg-danger").html("Error in updating.")
+        })
+    }
 }

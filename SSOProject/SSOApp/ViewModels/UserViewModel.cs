@@ -21,7 +21,7 @@ namespace SSOApp.ViewModels
         public string UserName { get; set; }
 
         //TODO: Uncomment tag
-       // [Required]
+        // [Required]
         public string Password { get; set; }
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
@@ -33,6 +33,8 @@ namespace SSOApp.ViewModels
         public string TenanntName { get; set; }
         public List<Tenant> Tenants { get; set; }
         public bool IsLoggedIn { get; set; }
+
+        public List<int> ConcurrentLogin { get; set; }
 
         public List<SelectListItem> DDRoleList { get; set; }
         public List<SelectListItem> DDTenantist { get; set; }

@@ -5,82 +5,95 @@
 
 <div class="container">
 
-   
-
-        <div class="login-page">
-            <div class="card-header">
-                <h1>Add User</h1>
-            </div>
-
-            <partial name="_ValidationSummary" />
-            <p>
-                @if (TempData["Success"] != null)
-                {
-                    <label class="bg-success">@TempData["Success"]</label>
-                    TempData["Success"] = null;
-                }
-                @if (TempData["Failed"] != null)
-                {
-                    <label class="bg-danger">@TempData["Failed"]</label>
-                    TempData["Failed"] = null;
-                }
-            </p>
-
-            <div class="row">
 
 
-                <div class="col-sm-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"></h3>
-                        </div>
-                        <div class="panel-body">
+    <div class="login-page">
+        <div class="card-header">
+            <h1>Add User</h1>
+        </div>
 
-                            <form asp-controller="Users" asp-action="Create" method="post">
+        <partial name="_ValidationSummary" />
+        <p>
+            @if (TempData["Success"] != null)
+            {
+                <label class="bg-success">@TempData["Success"]</label>
+                TempData["Success"] = null;
+            }
+            @if (TempData["Failed"] != null)
+            {
+                <label class="bg-danger">@TempData["Failed"]</label>
+                TempData["Failed"] = null;
+            }
+        </p>
 
-                                <fieldset>
-                                    <div class="form-group">
-                                        <label asp-for="FirstName"></label>
-                                        <input class="form-control" placeholder="FirstName" asp-for="FirstName" autofocus>
-                                        <span asp-validation-for="FirstName"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="LastName"></label>
-                                        <input class="form-control" placeholder="LastName" asp-for="LastName">
-                                        <span asp-validation-for="LastName"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="Email"></label>
-                                        <input class="form-control" placeholder="Email" asp-for="Email">
-                                        <span asp-validation-for="Email"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="UserName"></label>
-                                        <input class="form-control" placeholder="Username" asp-for="UserName">
-                                        <span asp-validation-for="UserName"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="Password"></label>
-                                        <input type="password" class="form-control" placeholder="Password" asp-for="Password" autocomplete="off">
-                                        <span asp-validation-for="Password"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="ConfirmPassword"></label>
-                                        <input type="password" class="form-control" placeholder="ConfirmPassword" asp-for="ConfirmPassword" autocomplete="off">
-                                        <span asp-validation-for="ConfirmPassword"></span>
-                                    </div>
-                                   
-                                    <div class="form-group">
-                                        <input type="submit" class="btn btn-primary" name="button" value="Add" />
-                                        <a href="@Url.Content("~/Users/Index")" class="btn btn-default">Back to Users</a>
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
+        <div class="row">
+
+
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"></h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <form asp-controller="Users" asp-action="Create" method="post">
+
+                            <fieldset>
+                                <div class="form-group">
+                                    <label asp-for="FirstName"></label>
+                                    <input class="form-control" placeholder="FirstName" asp-for="FirstName" autofocus>
+                                    <span asp-validation-for="FirstName"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="LastName"></label>
+                                    <input class="form-control" placeholder="LastName" asp-for="LastName">
+                                    <span asp-validation-for="LastName"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Email"></label>
+                                    <input class="form-control" placeholder="Email" asp-for="Email">
+                                    <span asp-validation-for="Email"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserName"></label>
+                                    <input class="form-control" placeholder="Username" asp-for="UserName">
+                                    <span asp-validation-for="UserName"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Password"></label>
+                                    <input type="password" class="form-control" placeholder="Password" asp-for="Password" autocomplete="off">
+                                    <span asp-validation-for="Password"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ConfirmPassword"></label>
+                                    <input type="password" class="form-control" placeholder="ConfirmPassword" asp-for="ConfirmPassword" autocomplete="off">
+                                    <span asp-validation-for="ConfirmPassword"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="ConcurrentLogin">Concurrent Login</label>
+                                    <select id="MovieType" name="ConcurrentLogin">
+
+                                        <option value="1">1</option>
+
+                                        <option value="2">2</option>
+
+                                        <option value="3">3</option>
+                                    </select>
+                                    <span asp-validation-for="ConfirmPassword"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary" name="button" value="Add" />
+                                    <a href="@Url.Content("~/Users/Index")" class="btn btn-default">Back to Users</a>
+                                </div>
+                            </fieldset>
+                        </form>
                     </div>
                 </div>
-
             </div>
+
         </div>
+    </div>
 
 </div>
