@@ -31,7 +31,7 @@ namespace SSOApp.API.Admin
         [HttpGet("getallusers")]
         public async Task<List<UserViewModel>> Index()
         {          
-            return await _context.Users.Include(x=>x.Tenant).Select(user =>
+            return await _context.Users.Include(x=>x.Tenant).Where(x => !x.isDeleted).Select(user =>
                 new UserViewModel
                 {
                     UserID = user.Id,
@@ -43,8 +43,7 @@ namespace SSOApp.API.Admin
                     TenanntName = user.Tenant.Name,
                     UserName = user.UserName,
                     Tenants = _context.Tenants.ToList(),
-                    LastLoggedIn = user.LastLoginTime
-                    
+                    LastLoggedIn = user.LastLoginTime                  
                 }).ToListAsync();
         }
 
@@ -158,8 +157,8 @@ namespace SSOApp.API.Admin
                     var user = await _userManager.FindByNameAsync(model.UserName);
 
                     //TODO: Update Tenenatcode
-                    //var checktenant = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == model.TenanntCode);
-                    var checktenant = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == "ABCO");
+                    var checktenant = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == model.TenanntCode);
+                   // var checktenant = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == "ABCO");
 
                     if (user != null)
                         message = AccountOptions.API_Response_Exist;
@@ -309,7 +308,8 @@ namespace SSOApp.API.Admin
             try
             {
                 ApplicationUser user = await _userManager.FindByIdAsync(model.UserID);
-                var result = await _userManager.DeleteAsync(user);
+                user.isDeleted = true;
+                var result = await _userManager.UpdateAsync(user);
                 if (result.Succeeded)
                     message = AccountOptions.API_Response_Deleted;
                 else

@@ -5,17 +5,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+    <h1>Tenant Administrator</h1>
 
 <p>
-   
-        <label class="bg-success" style="display:none"></label>
-       
-        <label class="bg-danger" style="display:none"></label>
-        
+
+    @if (TempData["Success"] != null)
+    {
+        <label class="bg-success">@TempData["Success"]</label>
+        TempData["Success"] = null;
+    }
+    @if (TempData["Failed"] != null)
+    {
+        <label class="bg-danger">@TempData["Failed"]</label>
+        TempData["Failed"] = null;
+    }
 </p>
 <div style="float:right;">
-    <a href="@Url.Content("~/Tenant/Create")"><input type="button" name="btnCreate" value="Add" /></a>
+    <a href="@Url.Content("~/Tenant/Create")"><input type="button" class="btn btn-success" name="btnCreate" value="Add" /></a>
 </div>
 <table class="table">
     <thead>
@@ -69,8 +75,9 @@
                 <input type="checkbox" checked='@item.IsOnHold' onchange="UpdateStatus(this.checked,'@item.Id','onHoldUpdate');">
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id"><input type="button" class="btn btn-success" name="btnCreate" value="Edit" /></a>
+                <input type="button" class="btn btn-danger" name="btnDelete" value="Delete" onclick="UpdateStatus(true,'@item.Id','deleteUser');" />
+                
             </td>
         </tr>
         }

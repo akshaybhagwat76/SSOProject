@@ -17,7 +17,8 @@ namespace App.SQLServer.Data
 
         public bool IsActive { get; set; }
 
-        
+        public bool isDeleted { get; set; }
+
         [StringLength(50)]
         [Required]
         public string TenantCode { get; set; }

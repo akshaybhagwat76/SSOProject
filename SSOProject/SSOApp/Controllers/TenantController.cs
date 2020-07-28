@@ -32,22 +32,24 @@ namespace SSOApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var result = await _context.Tenants.Where(x => !x.IsDelete)
+            var tenents = await _context.Tenants.Where(x => !x.IsDelete)
                 .Select(x => new TenantViewModel
                 {
                     Id = x.Id,
                     TenantName = x.Name,
-                    //FirstName = x.FirstName,
-                    //LastName = x.LastName,
-                    //UserName = x.UserName,
                     Code = x.Code,
                     Email = x.Email,
                     IsActive = x.IsActive,
                     IsOnHold = x.IsOnHold,
-                    //Password = x.Password
                 }).ToListAsync();
-
-            return View(result);
+            foreach (var tenent in tenents)
+            {
+                var user = await _userManager.FindByEmailAsync(tenent.Email);
+                tenent.FirstName = user?.FirstName;
+                tenent.LastName = user?.LastName;
+                tenent.UserName = user?.UserName;
+            }
+            return View(tenents);
         }
 
         // GET: TenantController/Create
@@ -56,75 +58,92 @@ namespace SSOApp.Controllers
             return View();
         }
 
-        // POST: TenantController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SaveTenant(Guid Id, TenantViewModel model)
         {
             try
             {
-                var tenant = new Tenant();
-                if (Id == Guid.Empty)
+                if (ModelState.IsValid)
                 {
-                    tenant = new Tenant
+                    var tenant = new Tenant();
+                    if (Id == Guid.Empty)
                     {
-                        Id = Guid.NewGuid(),
-                        Name = model.TenantName,
-                        Code = model.Code,
-                        Email = model.Email,
-                        IsActive = true,
-                        IsOnHold = false,
-                    };
-                    _context.Tenants.Add(tenant);
-                    await _context.SaveChangesAsync();
+                        var isTenantExists = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == model.Code);
+                        if (isTenantExists == null)
+                        {
 
-                    var user = new UserViewModel
-                    {
-                        UserName = model.UserName,
-                        Email = model.Email,
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-                        IsActive = true,
-                        TenanntCode = model.Code,
-                        Password= model.Password,
-                        SelectedRoles =new List<string> { "Admin"}
-                    };
+                            tenant = new Tenant
+                            {
+                                Id = Guid.NewGuid(),
+                                Name = model.TenantName,
+                                Code = model.Code,
+                                Email = model.Email,
+                                IsActive = true,
+                                IsOnHold = false,
+                                IsDelete = false
+                            };
+                            _context.Tenants.Add(tenant);
+                            await _context.SaveChangesAsync();
 
-                    using (var client = new HttpClient())
-                    {
-                        //HTTP POST
-                        client.BaseAddress = new Uri("https://localhost:44391/APIUser/saveuser");
-                        var json = JsonConvert.SerializeObject(user);
-                        var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-                        var postTask = await client.PostAsync(client.BaseAddress, stringContent);
+                            var user = new UserViewModel
+                            {
+                                UserName = model.UserName,
+                                Email = model.Email,
+                                FirstName = model.FirstName,
+                                LastName = model.LastName,
+                                IsActive = true,
+                                TenanntCode = model.Code,
+                                Password = model.Password,
+                                ConfirmPassword = model.ConfirmPassword,
+                                SelectedRoles = new List<string> { "Admin" }
+                            };
 
-                        string apiResponse = await postTask.Content.ReadAsStringAsync();
-                        var resultjson = JsonConvert.DeserializeObject<APIReturnedModel>(apiResponse);
+                            using (var client = new HttpClient())
+                            {
+                                //HTTP POST
+                                client.BaseAddress = new Uri("https://localhost:44391/APIUser/saveuser");
+                                var json = JsonConvert.SerializeObject(user);
+                                var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
+                                var postTask = await client.PostAsync(client.BaseAddress, stringContent);
 
+                                string apiResponse = await postTask.Content.ReadAsStringAsync();
+                                var resultjson = JsonConvert.DeserializeObject<APIReturnedModel>(apiResponse);
+
+                            }
+                            return RedirectToAction(nameof(Index));
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("DuplicateTenant", "Tenant code already Esists.");
+                        }
                     }
+                    else
+                    {
+                        var user = _context.Tenants.FirstOrDefault<Tenant>(x => x.Id == Id);
+                        user.Name = model.TenantName;
+                        user.Email = model.Email;
+                        user.Code = model.Code;
+                        await _context.SaveChangesAsync();
+                        var applicationUser = await _userManager.FindByEmailAsync(model.Email);
+                        if (applicationUser != null)
+                        {
+                            applicationUser.UserName = model.UserName;
+                            applicationUser.Email = model.Email;
+                            applicationUser.FirstName = model.FirstName;
+                            applicationUser.LastName = model.LastName;
+                            applicationUser.TenantCode = model.Code;
+                            await _userManager.UpdateAsync(applicationUser);
+                            await _userManager.RemovePasswordAsync(applicationUser);
+                            var result = await _userManager.AddPasswordAsync(applicationUser, model.Password);
+                        }
+                        return RedirectToAction(nameof(Index));
+                    }
+
+
+
                 }
-                else
-                {
-                    var user = _context.Tenants.FirstOrDefault<Tenant>(x => x.Id == Id);
-                    user.IsActive = model.IsActive;
-                    user.Name = model.TenantName;
-                    user.Email = model.Email;
-                    user.Code = model.Code;
-                    await _context.SaveChangesAsync();
-                    var applicationUser = await _userManager.FindByEmailAsync(model.Email);
-                    if (applicationUser != null)
-                    {
-                        applicationUser.UserName = model.UserName;
-                        applicationUser.Email = model.Email;
-                        applicationUser.FirstName = model.FirstName;
-                        applicationUser.LastName = model.LastName;
-                        applicationUser.TenantCode = model.Code;
-                        await _userManager.UpdateAsync(applicationUser);
-                    }
-                }                  
-
-               
-                return RedirectToAction(nameof(Index));
+                return View("Create");
             }
             catch (Exception ex)
             {
@@ -159,7 +178,7 @@ namespace SSOApp.Controllers
                 selectedTenant.FirstName = user?.FirstName;
                 selectedTenant.LastName = user?.LastName;
                 selectedTenant.UserName = user?.UserName;
-                
+
                 return View(selectedTenant);
             }
             catch (Exception ex)
@@ -170,21 +189,7 @@ namespace SSOApp.Controllers
 
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        [HttpPost("saveuserrole")]
+        [HttpPost("changetenantStatus")]
         public async Task<IActionResult> UpdateTanent(TenantViewModel model)
         {
             string message = string.Empty;
@@ -197,10 +202,11 @@ namespace SSOApp.Controllers
                         user.IsActive = model.IsActive;
                     else if (model.Action == "onHoldUpdate")
                         user.IsOnHold = model.IsOnHold;
-
+                    else if (model.Action == "deleteUser")
+                        user.IsDelete = model.IsDelete;
                     await _context.SaveChangesAsync();
 
-                    message = AccountOptions.API_Response_Saved;
+                    TempData["Success"] = AccountOptions.API_Response_Saved;
                 }
                 else
                 {
@@ -212,10 +218,8 @@ namespace SSOApp.Controllers
             {
                 message = AccountOptions.API_Response_Exception;
             }
-            return Ok(new
-            {
-                Status = message
-            });
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
