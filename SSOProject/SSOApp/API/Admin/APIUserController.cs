@@ -30,21 +30,21 @@ namespace SSOApp.API.Admin
 
         [HttpGet("getallusers")]
         public async Task<List<UserViewModel>> Index()
-        {          
-            return await _context.Users.Include(x=>x.Tenant).Where(x => !x.isDeleted).Select(user =>
-                new UserViewModel
-                {
-                    UserID = user.Id,
-                    Email = user.Email,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    IsActive = user.IsActive,
-                    TenanntCode = user.TenantCode,
-                    TenanntName = user.Tenant.Name,
-                    UserName = user.UserName,
-                    Tenants = _context.Tenants.ToList(),
-                    LastLoggedIn = user.LastLoginTime                  
-                }).ToListAsync();
+        {
+            return await _context.Users.Include(x => x.Tenant).Where(x => !x.isDeleted).Select(user =>
+                  new UserViewModel
+                  {
+                      UserID = user.Id,
+                      Email = user.Email,
+                      FirstName = user.FirstName,
+                      LastName = user.LastName,
+                      IsActive = user.IsActive,
+                      TenanntCode = user.TenantCode,
+                      TenanntName = user.Tenant.Name,
+                      UserName = user.UserName,
+                      Tenants = _context.Tenants.ToList(),
+                      LastLoggedIn = user.LastLoginTime
+                  }).ToListAsync();
         }
 
         [HttpGet("getuserbyid")]
@@ -58,7 +58,7 @@ namespace SSOApp.API.Admin
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 IsActive = user.IsActive,
-                TenanntCode = user.TenantCode,                
+                TenanntCode = user.TenantCode,
                 UserName = user.UserName,
                 LastLoggedIn = user.LastLoginTime,
                 SelectedRoles = await GetRolesByUser(ID)
@@ -78,16 +78,16 @@ namespace SSOApp.API.Admin
         }
 
         [HttpGet("savepassword")]
-        public async Task<bool> SavePassword(string ID,string datacurrent,string data)
+        public async Task<bool> SavePassword(string ID, string datacurrent, string data)
         {
             var getuser = await _userManager.FindByIdAsync(ID);
 
-            var result=await _userManager.ChangePasswordAsync(getuser, datacurrent, data);
+            var result = await _userManager.ChangePasswordAsync(getuser, datacurrent, data);
             if (result.Succeeded)
                 return true;
             return false;
         }
-            private async Task<List<string>> GetRolesByUser(string ID)
+        private async Task<List<string>> GetRolesByUser(string ID)
         {
             List<string> resultstring = new List<string>();
             ApplicationUser user = await _userManager.FindByIdAsync(ID);
@@ -103,21 +103,17 @@ namespace SSOApp.API.Admin
             }
             return resultstring;
         }
+
         [HttpGet("getusersbyrole")]
-        public async Task<UserToRolesViewModel> GetUsersByRole(string rid)
+        public async Task<List<ApplicationUser>> GetUsersByRole(string rid)
         {
             var result = new UserToRolesViewModel();
-            var getrole = await _roleManager.FindByIdAsync(rid);
             var getuser = await (from ur in _context.UserRoles
                                  join u in _context.Users on ur.UserId equals u.Id
                                  join r in _context.Roles on ur.RoleId equals r.Id
                                  where r.Id == rid
                                  select u).ToListAsync();
-            result.RoleName = getrole.Name;
-            result.RoleID = rid;
-            result.Tenant = await GetTenantByRole(rid);
-            result.Users = getuser;
-            return result;
+            return getuser;
         }
         private async Task<Tenant> GetTenantByRole(string rid)
         {
@@ -127,26 +123,14 @@ namespace SSOApp.API.Admin
                           where r.Id == rid
                           select t).FirstOrDefaultAsync();
         }
+
         [HttpGet("getusersbytenant")]
-        public async Task<List<UserViewModel>> GetUserByTenantCode(string code)
+        public async Task<List<ApplicationUser>> GetUserByTenantCode(string code)
         {
-            var result = await _context.Users.Where(d => d.TenantCode == code).Select(user =>
-                new UserViewModel
-                {
-                    UserID = user.Id,
-                    Email = user.Email,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    IsActive = user.IsActive,
-                    TenanntCode = user.Tenant.Code,
-                    TenanntName = user.Tenant.Name,
-                    UserName = user.UserName,
-                    Tenants = _context.Tenants.ToList(),
-                    LastLoggedIn = user.LastLoginTime
-                }).ToListAsync();
+            var result = await _context.Users.Where(d => d.TenantCode == code).ToListAsync();
             return result;
         }
-        [HttpPost("saveuser")]       
+        [HttpPost("saveuser")]
         public async Task<IActionResult> Create(UserViewModel model)
         {
             string message = string.Empty;
@@ -158,7 +142,7 @@ namespace SSOApp.API.Admin
 
                     //TODO: Update Tenenatcode
                     var checktenant = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == model.TenanntCode);
-                   // var checktenant = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == "ABCO");
+                    // var checktenant = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == "ABCO");
 
                     if (user != null)
                         message = AccountOptions.API_Response_Exist;
@@ -179,16 +163,7 @@ namespace SSOApp.API.Admin
                         var createduser = await _userManager.CreateAsync(user1, model.Password);
                         if (createduser.Succeeded)
                         {
-                            if (model.SelectedRoles.Count > 0)
-                            {
-                                await _userManager.AddToRolesAsync(user1, model.SelectedRoles);
-                            }
-                            else
-                            {
-                                await _userManager.AddToRoleAsync(user1, "Employee");
-                            }
                             message = AccountOptions.API_Response_Saved;
-
                         }
                         else
                         {
@@ -214,29 +189,16 @@ namespace SSOApp.API.Admin
                     var updateResult = await _userManager.UpdateAsync(user);
                     if (updateResult.Succeeded)
                     {
-                        var getroles = await _userManager.GetRolesAsync(user);
-                        var check = await _userManager.RemoveFromRolesAsync(user, getroles);
-                        if (check.Succeeded)
-                        {
-                            if(model.SelectedRoles!=null)
-                            {
-                                check = await _userManager.AddToRolesAsync(user, model.SelectedRoles);
-                                if (!check.Succeeded)
-                                    message = AccountOptions.API_Response_Failed;
-                                else
-                                    message = AccountOptions.API_Response_Saved;
 
-                            }
-                            else
-                            {
+                        message = AccountOptions.API_Response_Saved;
 
-                                message = AccountOptions.API_Response_Saved;
-                            }
-                        }
-                        else
-                            message = AccountOptions.API_Response_Failed;
                     }
-                } 
+                    else
+                    {
+
+                        message = AccountOptions.API_Response_Saved;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -247,6 +209,7 @@ namespace SSOApp.API.Admin
                 Status = message
             });
         }
+
         //call from Roles
         [HttpPost("saveuserrole")]
         public async Task<IActionResult> SaveUserRoles(UserToRolesViewModel model)
@@ -256,12 +219,12 @@ namespace SSOApp.API.Admin
             {
                 var role = await _roleManager.FindByIdAsync(model.RoleID);
                 var previoususers = await GetUsersByRole(model.RoleID);
-                foreach (var item in previoususers.Users)
+                foreach (var item in previoususers)
                 {
                     _context.UserRoles.Remove(new IdentityUserRole<string> { RoleId = model.RoleID, UserId = item.Id });
                     _context.SaveChanges();
                 }
-                foreach (var item in model.UsersCheckbox)
+                foreach (var item in model.SelectedUsers)
                 {
                     var getuser = await _userManager.FindByNameAsync(item);
                     _context.UserRoles.Add(new IdentityUserRole<string> { RoleId = model.RoleID, UserId = getuser.Id });
@@ -283,14 +246,15 @@ namespace SSOApp.API.Admin
         public async Task<IActionResult> SaveLastLogin(string username)
         {
             string message = string.Empty;
-            try { 
-            var getuser = await _userManager.FindByNameAsync(username);
-            getuser.LastLoginTime = DateTime.Now;
-            var result = await _userManager.UpdateAsync(getuser);
-            if(result.Succeeded)
-                message = AccountOptions.API_Response_Saved;
-            else
-                message = AccountOptions.API_Response_Failed;
+            try
+            {
+                var getuser = await _userManager.FindByNameAsync(username);
+                getuser.LastLoginTime = DateTime.Now;
+                var result = await _userManager.UpdateAsync(getuser);
+                if (result.Succeeded)
+                    message = AccountOptions.API_Response_Saved;
+                else
+                    message = AccountOptions.API_Response_Failed;
             }
             catch (Exception ex)
             {

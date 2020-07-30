@@ -4,11 +4,13 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using App.SQLServer.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using SSOApp.Controllers.Home;
 using SSOApp.Controllers.UI;
 using SSOApp.Models;
 using SSOApp.ViewModels;
@@ -16,22 +18,27 @@ using SSOApp.ViewModels;
 namespace SSOApp.Controllers.Admin
 {
     //[Authorize(Roles = "Admin")]
-    public class RolesManagementController : Controller
+    public class RolesManagementController : BaseController
     {
+        public RolesManagementController(ApplicationDbContext context) : base(context)
+        {
+
+        }
         public async Task<IActionResult> Index()
         {
-            await BindTenantDD();
+            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode})";
             var getroles = new List<RoleViewModel>();
             using (var client = new HttpClient())
             {
                 //getallroles
-                client.BaseAddress = new Uri("https://localhost:44391/APIRoles/getallroles");
+                client.BaseAddress = new Uri("https://localhost:44391/APIRoles/getallrolesbytenant?tcode=" + TenantCode);
                 var postTask = await client.GetAsync(client.BaseAddress);
                 string apiResponse = await postTask.Content.ReadAsStringAsync();
                 getroles = JsonConvert.DeserializeObject<List<RoleViewModel>>(apiResponse);
             }
             return View(getroles);
         }
+
         private async Task BindTenantDD()
         {
             using (var client = new HttpClient())
@@ -43,35 +50,14 @@ namespace SSOApp.Controllers.Admin
                 ViewBag.TenantDD = JsonConvert.DeserializeObject<List<SelectListItem>>(apiResponse);
             }
         }
-        public async Task<IActionResult> GetRolesByTenant(string tcode)
-        {
-            var getroles = new List<RoleViewModel>();
 
-            using (var client = new HttpClient())
-            {
-                //getallusers
-                if (!string.IsNullOrEmpty(tcode))
-                {
-                    //Select by code
-                    client.BaseAddress = new Uri("https://localhost:44391/APIRoles/getallrolesbytenant?tcode=" + tcode);
-                }
-                else
-                {
-                    //Select All
-                    client.BaseAddress = new Uri("https://localhost:44391/APIRoles/getallroles");
-                }
-                var postTask = await client.GetAsync(client.BaseAddress);
-                string apiResponse = await postTask.Content.ReadAsStringAsync();
-                getroles = JsonConvert.DeserializeObject<List<RoleViewModel>>(apiResponse);
-            }
-            return PartialView("_RolesGrid", getroles);
-        }
         public IActionResult Create()
         {
             var getroles = new RoleViewModel();
             return View(getroles);
         }
-        public async Task<IActionResult> Edit(string rid, string tcode = null)
+
+        public async Task<IActionResult> Edit(string rid)
         {
             var getroles = new RoleViewModel();
             if (ModelState.IsValid)
@@ -79,7 +65,7 @@ namespace SSOApp.Controllers.Admin
                 using (var client = new HttpClient())
                 {
                     //getrolebyname
-                    client.BaseAddress = new Uri("https://localhost:44391/APIRoles/getrolebyid?id=" + rid + "&tcode=" + tcode);
+                    client.BaseAddress = new Uri("https://localhost:44391/APIRoles/getrolebyid?id=" + rid + "&tcode=" + TenantCode);
                     var postTask = await client.GetAsync(client.BaseAddress);
                     string apiResponse = await postTask.Content.ReadAsStringAsync();
                     getroles = JsonConvert.DeserializeObject<RoleViewModel>(apiResponse);
@@ -89,12 +75,13 @@ namespace SSOApp.Controllers.Admin
                 ModelState.AddModelError(string.Empty, AccountOptions.InvalidRoleName);
             return View(getroles);
         }
+
         [HttpPost]
         public async Task<IActionResult> Edit(RoleViewModel model)
         {
-            var getroles = new RoleViewModel();
             if (ModelState.IsValid)
             {
+                model.TenantCode = TenantCode;
                 using (var client = new HttpClient())
                 {
                     //HTTP POST
@@ -115,6 +102,7 @@ namespace SSOApp.Controllers.Admin
             TempData["Failed"] = AccountOptions.API_Response_Failed;
             return View(model);
         }
+
         public async Task<IActionResult> Delete(string id)
         {
             using (var client = new HttpClient())
@@ -135,45 +123,46 @@ namespace SSOApp.Controllers.Admin
             }
             return RedirectToAction("Index");
         }
-        public async Task<IActionResult> UserIndex(string id, string tcode, string tname)
+
+        public async Task<IActionResult> UserIndex(string selectedUserid)
         {
-            ViewBag.UserID = id;
-            ViewBag.TenantCode = tcode;
-            ViewBag.TenantName = tname;
+            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode}) User : {FullName}";
+            UserRoleViewModel userRoleView = new UserRoleViewModel();
+
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44391/APIRoles/getallrolesbytenant?tcode=" + tcode);
+                client.BaseAddress = new Uri("https://localhost:44391/APIRoles/getallrolesbytenant?tcode=" + TenantCode);
                 var postTask = await client.GetAsync(client.BaseAddress);
                 string apiResponse = await postTask.Content.ReadAsStringAsync();
-                ViewBag.Roles = JsonConvert.DeserializeObject<List<RoleViewModel>>(apiResponse);
+                userRoleView.AvaialbleRoles = JsonConvert.DeserializeObject<List<RoleViewModel>>(apiResponse);
             }
             using (var client1 = new HttpClient())
             {
-                client1.BaseAddress = new Uri("https://localhost:44391/APIRoles/getrolesbyuser?ID=" + id);
+                client1.BaseAddress = new Uri("https://localhost:44391/APIRoles/getrolesbyuser?ID=" + selectedUserid);
                 var postTask1 = await client1.GetAsync(client1.BaseAddress);
                 var apiResponse1 = await postTask1.Content.ReadAsStringAsync();
-                var userRoles = JsonConvert.DeserializeObject<List<RoleViewModel>>(apiResponse1);
-                ViewBag.UserRoles = userRoles;
+                userRoleView.CurrentRoles = JsonConvert.DeserializeObject<List<RoleViewModel>>(apiResponse1);
+                var role = userRoleView.AvaialbleRoles.Except(userRoleView.CurrentRoles).ToList();
+                userRoleView.AvaialbleRoles = role;
             }
-            return View();
-
+            userRoleView.SelectedUserID = selectedUserid;
+            return View(userRoleView);
         }
 
         public async Task<IActionResult> SaveUserRoles(IFormCollection formCollection)
         {
-            string hdnUserID =formCollection["hdnUserId"];
-            var dd = formCollection["myData"][0].Split(",");
-            List<string> chkRoles=new List<string>();
-            chkRoles.AddRange(dd);
-            //chkRoles.AddRange();
-            //chkRoles = dd;
+            var selectedRoles = formCollection["myData"][0].Split(",");
+            var selectedUser = formCollection["selectedUser"][0];
+            List<string> chkRoles = new List<string>();
+            chkRoles.AddRange(selectedRoles);
+
             using (var client = new HttpClient())
             {
                 //HTTP POST
                 client.BaseAddress = new Uri("https://localhost:44391/APIRoles/saveuserrole");
                 var data = new UserToRolesViewModel()
                 {
-                    UserID = hdnUserID,
+                    UserID = selectedUser,
                     Roles = chkRoles
                 };
                 var json = JsonConvert.SerializeObject(data);
@@ -187,7 +176,9 @@ namespace SSOApp.Controllers.Admin
                 else
                     TempData["Failed"] = AccountOptions.API_Response_Failed;
             }
-            return RedirectToAction("UserIndex", new { id = hdnUserID });
+            return RedirectToAction("UserIndex",new { selectedUserid = selectedUser });
         }
+
+       
     }
 }

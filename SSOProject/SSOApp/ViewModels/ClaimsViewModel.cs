@@ -10,11 +10,13 @@ namespace SSOApp.ViewModels
     {
         [Required]
         public string Name { get; set; }
-        public string ID { get; set; }
+        public Guid ID { get; set; }
 
-        public string TenantName { get; set; }
-        public string TenantCode { get; set; }
+        public Guid TenantID { get; set; }
+
         public string UserFullName { get; set; }
         public string UserID { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

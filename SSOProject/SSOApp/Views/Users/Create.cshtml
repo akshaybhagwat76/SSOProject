@@ -1,6 +1,7 @@
 ﻿@model SSOApp.ViewModels.UserViewModel
 @{
     ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container">
@@ -37,7 +38,6 @@
                     <div class="panel-body">
 
                         <form asp-controller="Users" asp-action="Create" method="post">
-
                             <fieldset>
                                 <div class="form-group">
                                     <label asp-for="FirstName"></label>

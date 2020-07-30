@@ -1,18 +1,9 @@
 ﻿@model List<SSOApp.ViewModels.RoleViewModel>
 @{
     ViewData["Title"] = "Roles";
-     List<SelectListItem> tenants = ViewBag.TenantDD as List<SelectListItem>;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <script>
-    $(document).ready(function () {
-        getRolesBytenant();
-    });
-        function getRolesBytenant() {
-            $.post("@Url.Content("~/RolesManagement/GetRolesByTenant")", { tcode: $("#selectTenant").val() }, function (htmlData) {
-                $("#gridBodyRoles").html(htmlData);
-            })
-        }
-    </script>
+
 <h1>Roles Management</h1>
 <p>
     @if (TempData["Success"] != null)
@@ -27,17 +18,40 @@
     }
 </p>
 <div style="float:right;">
-    <a href="@Url.Content("~/RolesManagement/Create")"><input type="button" name="btnCreate" value="Add Role" /></a>
+    <a href="@Url.Content("~/RolesManagement/Create")"><input type="button" class="btn btn-success" name="btnCreate" value="Add Role" /></a>
 </div>
 <div>
-    Tenant :
-    <select id="selectTenant" onchange="getRolesBytenant();">
-        @foreach (var item in tenants)
-        {
-            <option value="@item.Value">@item.Text</option>
-        }
-    </select>
+    <b>@TempData["TenaneDetails"] </b>
 </div>
-<div class="panel-body" id="gridBodyRoles">
+<table width="80%" class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <td>
+                Role
+            </td>
+            <td>
+                Modules
+            </td>
+            <td>
+                Users
+            </td>
+            <td>
+            </td>
+        </tr>
+    </thead>
 
-</div>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td><a href="@Url.Content("~/Users/AddRoleToUser?roleid="+item.ID)">Users List</a></td>
+            <td><a href="@Url.Content("~/Users/AddModuleToRole?roleid="+item.ID)">Module List</a></td>
+            <td>
+                <a href="@Url.Content("~/RolesManagement/Edit?rid="+item.ID)">Edit</a>|
+                <a href="@Url.Content("~/RolesManagement/Edit?rid="+item.ID)">Claim</a>|
+                <a href="@Url.Content("~/RolesManagement/Edit?rid="+item.ID)">Claim</a>|
+                <a href="@Url.Content("~/RolesManagement/Delete/"+item.ID)" onclick="return confirm('Are you sure want to delete this role?')">Delete</a>
+            </td>
+        </tr>
+    }
+</table>

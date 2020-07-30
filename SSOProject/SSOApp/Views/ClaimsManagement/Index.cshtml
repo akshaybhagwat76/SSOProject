@@ -3,17 +3,7 @@
     ViewData["Title"] = "Roles";
     List<SelectListItem> tenants = ViewBag.TenantDD as List<SelectListItem>;
 }
-<script>
-    $(document).ready(function () {
-        getRolesBytenant();
-    });
-        function getRolesBytenant() {
-            $.post("@Url.Content("~/ClaimsManagement/GetClaimsByTenant")", { tcode: $("#selectTenant").val() }, function (htmlData) {
-                debugger;
-                $("#gridBodyRoles").html(htmlData);
-            })
-        }
-</script>
+
 <h1>Claims Management</h1>
 <p>
     @if (TempData["Success"] != null)
@@ -31,14 +21,43 @@
     <a href="@Url.Content("~/ClaimsManagement/Create")"><input type="button" name="btnCreate" value="Add Role" /></a>
 </div>
 <div>
-    Tenant :
-    <select id="selectTenant" onchange="getRolesBytenant();">
-        @foreach (var item in tenants)
-        {
-            <option value="@item.Value">@item.Text</option>
-        }
-    </select>
+    @TempData["TenaneDetails"];
 </div>
-<div class="panel-body" id="gridBodyRoles">
+<table width="80%" class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <td>
+                Claim
+            </td>
 
-</div>
+            <td>
+                Is Available
+            </td>
+            <td></td>
+        </tr>
+    </thead>
+    @if (Model?.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>
+                    <label>@(item.IsActive ? "Yes" : "No")</label>
+                </td>
+                <td>
+                    <a href="@Url.Content("~/ClaimsManagement/Edit?cid="+item.ID+"&tcode="+item.TenantID)">Edit</a>
+                    <a href="@Url.Content("~/ClaimsManagement/Delete/"+item.ID)" onclick="return confirm('Are you sure want to delete this role?')">Delete</a>
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="6">
+                No Roles Available
+            </td>
+        </tr>
+    }
+</table>

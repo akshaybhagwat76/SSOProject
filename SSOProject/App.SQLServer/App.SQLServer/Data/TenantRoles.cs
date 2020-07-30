@@ -19,13 +19,9 @@ namespace App.SQLServer.Data
         [StringLength(450)]
         [ForeignKey("Roles_Tenant")]
         public string RoleID { get; set; }
+
         public virtual IdentityRole Role { get; set; }
 
-        [Key]
-        [StringLength(450)]
-        [ForeignKey("Tenant_Module")]
-        public string ModuleID { get; set; }
-        public virtual ModuleDetails ModuleDetails { get; set; }
 
     }
 }

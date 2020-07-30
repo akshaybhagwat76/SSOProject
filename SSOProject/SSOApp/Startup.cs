@@ -47,11 +47,14 @@ namespace SSOApp
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddDefaultIdentity<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
-
-            //services.AddIdentity<ApplicationUser, IdentityRole>()
+            //services.AddDefaultIdentity<ApplicationUser>()
+            //    .AddRoles<IdentityRole>()
             //    .AddEntityFrameworkStores<ApplicationDbContext>()
             //    .AddDefaultTokenProviders().AddClaimsPrincipalFactory<ExtendedUserClaimsPrincipalFactory>();
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders().AddClaimsPrincipalFactory<ExtendedUserClaimsPrincipalFactory>();
 
             services.AddControllersWithViews();
             services.AddMvc();

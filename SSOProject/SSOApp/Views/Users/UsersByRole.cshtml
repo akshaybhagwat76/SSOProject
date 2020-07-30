@@ -1,12 +1,6 @@
-﻿@using SSOApp.ViewModels
+﻿@model SSOApp.ViewModels.RoletoUserViewModel
 @{
     ViewData["Title"] = "UsersByRole";
-    List<RoleViewModel> roles = ViewBag.Roles as List<RoleViewModel>;
-    List<RoleViewModel> userselectedroles = ViewBag.UserRoles as List<RoleViewModel>;
-      string tenant = ViewBag.TenantName;
-    string tenantcode = ViewBag.TenantCode;
-    string username = ViewBag.UserRoles.FirstOrDefault().UserFullName;
-    string userid = ViewBag.UserID;
 }
 
 <h1>Users</h1>
@@ -25,48 +19,124 @@
 </p>
 
 <div>
-    Tenant : @Model.Tenant.Name (CODE : @Model.Tenant.Code)
-    <br />
-    Role :  @Model.RoleName
+    <b>@TempData["TenaneDetails"] </b>
 </div>
 
-<div class="panel-body" id="gridBodyUsers" style="width:40%;">
-    @*<div style="float:right;">
-            <a href="@Url.Content("~/Users/AddUserToRole?roleid="+Model.RoleID+"&tcode="+Model.Tenant.Code)"><input type="button" name="btnCreate" value="Add Users" /></a>
-        </div>*@
-    <table width="80%" class="table table-hover">
-        <thead class="thead-dark">
+<form asp-controller="RolesManagement" asp-action="SaveUserRoles" id="saveUserRole" method="post">
+    <input type="hidden" id="hdnSelectedUerID" value='@Model.SelectedRoleId' />
+    <table class="table-borderless" style="width:80%">
+        <thead>
             <tr>
-                <td>
-                    Users
-                </td>
-                <td>
-                </td>
+                <th>
+                    Available Role
+                </th>
+                <th>
+                    &nbsp;
+                </th>
+                <th>
+                    Current Role
+                </th>
             </tr>
         </thead>
-        @if (Model.Users.Count > 0)
-        {
-            foreach (var item in Model.Users)
-            {
-                <tr>
-                    <td>@item.FirstName @item.LastName</td>
-                    <td>
-                        <a href="@Url.Content("~/Users/DeleteRole?rolename=" + Model.RoleName + "&userid=" + item.Id)" onclick="return confirm('Are you sure want to delete this user from this role?')">Delete</a>
-                    </td>
-                </tr>
-
-            }
-        }
-        else
-        {
+        <tbody>
             <tr>
-                <td colspan="6">
-                    No Users Assigned
+                <td valign="top">
+                    <select class="custom-select" id="avaialbleRoles" multiple size="8" style="width:40%">
+                        @foreach (var i in Model.AvaialbleUser)
+                        {
+                            <option value=@i.Id>@(i.FirstName +" "+ i.LastName)</option>
+                        }
+                    </select>
+                </td>
+                <td valign="top">
+                    <div class="subject-info-arrows text-center">
+                        <input type='button' id='btnAllRight' value='>>' class="btn btn-outline-primary" /><br />
+                        <input type='button' id='btnRight' value='  >' class="btn btn-outline-primary" /><br />
+                        <input type='button' id='btnLeft' value='<  ' class="btn btn-outline-primary" /><br />
+                        <input type='button' id='btnAllLeft' value='<<' class="btn btn-outline-primary" />
+                    </div>
+                </td>
+                <td valign="top">
+                    <select class="custom-select" id="currentRoles" multiple size="8" style="width:40%">
+                        @foreach (var i in Model.CurrentUser)
+                        {
+                            <option value=@i.Id>@(i.FirstName +" "+ i.LastName)</option>
+                        }
+                    </select>
                 </td>
             </tr>
-        }
+            <tr><td colspan="3"> <input type="submit" name="btnSubmit" id="btn-submit" value="Finished" /></td></tr>
+        </tbody>
     </table>
-    <div style="float:right;">
-        <a href="@Url.Content("~/RolesManagement/Index")"><input type="button" name="btnFinished" value="Finished" /></a>
-    </div>
-</div>
+</form>
+<script type="text/javascript">
+    $(function () {
+        $("#btn-submit").click(function () {
+
+            var selectedValues = $('#currentRoles option');
+            let a = [];
+
+            for (var i = 0; i < selectedValues.length; i++) {
+                if (selectedValues[i].value != "") {
+                    a.push(selectedValues[i].text);
+
+                }
+            }
+
+            var input = $("<input>")
+                .attr("type", "hidden")
+                .attr("name", "mydata").val(a);
+
+            var input1 = $("<input>")
+                .attr("type", "hidden")
+                .attr("name", "selectedUser").val('@Model.SelectedRoleId')
+
+            $('#saveUserRole').append(input);
+            $('#saveUserRole').append(input1);
+
+
+            return true;
+        });
+        $('#btnRight').click(function (e) {
+            var selectedOpts = $('#avaialbleRoles option:selected');
+            if (selectedOpts.length == 0) {
+                alert("Nothing to move.");
+                e.preventDefault();
+            }
+            $('#currentRoles').append($(selectedOpts).clone());
+            $(selectedOpts).remove();
+            e.preventDefault();
+        });
+        $('#btnAllRight').click(function (e) {
+            var selectedOpts = $('#avaialbleRoles option');
+            if (selectedOpts.length == 0) {
+                alert("Nothing to move.");
+                e.preventDefault();
+            }
+            $('#currentRoles').append($(selectedOpts).clone());
+            $(selectedOpts).remove();
+            e.preventDefault();
+        });
+        $('#btnLeft').click(function (e) {
+            var selectedOpts = $('#currentRoles option:selected');
+            if (selectedOpts.length == 0) {
+                alert("Nothing to move.");
+                e.preventDefault();
+            }
+            $('#avaialbleRoles').append($(selectedOpts).clone());
+            $(selectedOpts).remove();
+            e.preventDefault();
+        });
+        $('#btnAllLeft').click(function (e) {
+            var selectedOpts = $('#currentRoles option');
+            if (selectedOpts.length == 0) {
+                alert("Nothing to move.");
+                e.preventDefault();
+            }
+            $('#avaialbleRoles').append($(selectedOpts).clone());
+            $(selectedOpts).remove();
+            e.preventDefault();
+        });
+    });
+</script>
+

@@ -3,17 +3,7 @@
     ViewData["Title"] = "Roles";
     List<SelectListItem> tenants = ViewBag.TenantDD as List<SelectListItem>;
 }
-<script>
-    $(document).ready(function () {
-        getRolesBytenant();
-    });
-        function getRolesBytenant() {
-            $.post("@Url.Content("~/ModuleManagement/GetModuleByTenant")", { tcode: $("#selectTenant").val() }, function (htmlData) {
-                debugger;
-                $("#gridBodyRoles").html(htmlData);
-            })
-        }
-</script>
+
 <h1>Module Management</h1>
 <p>
     @if (TempData["Success"] != null)
@@ -27,19 +17,63 @@
         TempData["Failed"] = null;
     }
 </p>
+
 <div style="float:right;">
     <a href="@Url.Content("~/ModuleManagement/Create")"><input type="button" name="btnCreate" value="Add Module" /></a>
 </div>
 <div>
-    Tenant :
-    <select id="selectTenant" onchange="getRolesBytenant();">
-        @foreach (var item in tenants)
+    <b>@TempData["TenaneDetails"];</b>
+</div>
+
+<table width="80%" class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <td>
+                Module
+            </td>
+            <td>
+                Fields
+            </td>
+            <td>
+                Roles
+            </td>
+
+            <td>
+                View
+            </td>
+            <td>
+            </td>
+        </tr>
+    </thead>
+    @if (Model.Count > 0)
+    {
+        foreach (var item in Model)
         {
-            <option value="@item.Value">@item.Text</option>
+            <tr>
+                <td>@item.ModuleName</td>
+                <td>
+                    <a href="@Url.Content("~/ModuleManagement/FieldsList?cid="+item.ID+"&tcode="+item.Tenant.Id +"&moduleId="+item.ID)">Field List</a>
+                </td>
+                <td>
+                    <a href="@Url.Content("~/ModuleManagement/Roles?cid="+item.ID+"&tcode="+item.Tenant.Id+"&moduleId="+item.ID)">Roles List</a>
+                </td>
+                <td>
+                    <a href="@Url.Content("~/ModuleManagement/Edit?cid="+item.ID+"&tcode="+item.Tenant.Id)">View</a>
+                </td>
+
+                <td>
+                    <a href="@Url.Content("~/ModuleManagement/Edit?cid="+item.ID+"&tcode="+item.Tenant.Id)">Edit</a>
+                    <a href="@Url.Content("~/ModuleManagement/Delete/"+item.ID)" onclick="return confirm('Are you sure want to delete this module?')">Delete</a>
+                </td>
+            </tr>
         }
-    </select>
-</div>
-
-<div class="panel-body" id="gridBodyRoles">
-
-</div>
+    }
+    else
+    {
+        <tr>
+            <td colspan="6">
+                No Modules Available
+            </td>
+        </tr>
+    }
+</table>

@@ -23,32 +23,31 @@
         }
     </p>
 
-    <form asp-controller="ModuleManagement" asp-action="Edit" method="post" class="form-horizontal">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-controller="ModuleManagement" asp-action="Edit" method="post" class="form-horizontal">
+                <div asp-validation-summary="ModelOnly">
+                    <span>Please correct the following errors</span>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label asp-for="ModuleLabel" class="control-label">Module Label</label>
+                        <input asp-for="ModuleLabel" class="form-control" />
+                        <span asp-validation-for="ModuleLabel" class="text-danger"></span>
+                    </div>
 
-        <div asp-validation-summary="ModelOnly">
-            <span>Please correct the following errors</span>
-        </div>
-        <div class="form-group">
-            <label asp-for="TableName" class="control-label col-sm-2">Module Name:</label>
-            <div class="col-sm-5">
-                <input type="text" name="TableName" class="form-control" value="@Model.TableName" required />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Name" class="control-label col-sm-2">Lable Name:</label>
-            <div class="col-sm-5">
-                <input type="text" name="Name" class="form-control" value="@Model.Name" required />
-            </div>
-        </div>
+                </div>
 
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <input type="submit" name="btnSubmit" value="Save" class="btn btn-primary" />
-                <a href="@Url.Content("~/ModuleManagement/Index")"><input type="button" name="btnCancel" value="Cancel" class="btn btn-secondary" /></a>
-            </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input type="submit" name="btnSubmit" value="Save" class="btn btn-primary" />
+                        <a href="@Url.Content("~/ModuleManagement/Index")"><input type="button" name="btnCancel" value="Cancel" class="btn btn-secondary" /></a>
+                    </div>
+                </div>
+
+            </form>
+
         </div>
-
-    </form>
-
+    </div>
 
 </div>

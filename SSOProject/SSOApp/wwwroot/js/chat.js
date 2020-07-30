@@ -10,18 +10,18 @@ connection.start().then(function () {
 });
 connection.on("ReceiveMessage", function (user, count, msg, ids) {
 
-    $.post("/Users/GetUsersByTenant", { tcode: $("#selectTenant").val() }, function (htmlData) {
-        $("#gridBody").html(htmlData);
+    //$.post("/Users/GetUsersByTenant", { tcode: $("#selectTenant").val() }, function (htmlData) {
+    //    $("#gridBody").html(htmlData);
 
-        if (ids != undefined) {
-            $(ids).each(function (index, item) {
-                var udiv = "." + item.userName;
-                console.log(udiv);
-                console.log(item.count);
-                $(udiv).html("Logged In " + item.count);
-            });
-        }
-    });
+    //    if (ids != undefined) {
+    //        $(ids).each(function (index, item) {
+    //            var udiv = "." + item.userName;
+    //            console.log(udiv);
+    //            console.log(item.count);
+    //            $(udiv).html("Logged In " + item.count);
+    //        });
+    //    }
+    //});
 
 });
 connection.on("OfflineMessage", function (user, msg, count, ids) {
@@ -53,15 +53,15 @@ function callUserOnline() {
     connection.invoke("CountUser", user);
 }
 
-$(document).ready(function () {
-    getUsersBytenant();
-});
-function getUsersBytenant() {
-    $.post("/Users/GetUsersByTenant", { tcode: $("#selectTenant").val() }, function (htmlData) {
-        $("#gridBody").html(htmlData);
-        callUserOnline();
-    })
-}
+//$(document).ready(function () {
+//    getUsersBytenant();
+//});
+//function getUsersBytenant() {
+//    $.post("/Users/GetUsersByTenant", { tcode: $("#selectTenant").val() }, function (htmlData) {
+//        $("#gridBody").html(htmlData);
+//        callUserOnline();
+//    })
+//}
 function UpdateStatus(value, id, action) {
     var payLoad = '';
     
