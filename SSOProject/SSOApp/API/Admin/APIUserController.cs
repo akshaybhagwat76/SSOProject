@@ -142,7 +142,6 @@ namespace SSOApp.API.Admin
 
                     //TODO: Update Tenenatcode
                     var checktenant = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == model.TenanntCode);
-                    // var checktenant = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == "ABCO");
 
                     if (user != null)
                         message = AccountOptions.API_Response_Exist;

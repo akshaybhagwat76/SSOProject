@@ -88,6 +88,12 @@ function UpdateStatus(value, id, action) {
             payLoad = { 'Id': id, 'IsOnHold': value, 'action': action };
         }
 
+        }
+        else if (action === "onHoldUpdate") {
+            payLoad = { 'Id': id, 'IsOnHold': value, 'action': action };
+        }
+
+
         $.post("/changetenantStatus", payLoad, function (htmlData) {
             if (htmlData.status == 'Saved') {
                 $(".bg-success").html("Status updated.")
