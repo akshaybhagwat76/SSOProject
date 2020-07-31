@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,4 +24,25 @@ namespace App.SQLServer.Data
         public virtual Tenant Tenant { get; set; }
 
     }
+
+    [Table("AspNetRoleModuleClaim")]
+    public class RoleModuleClaim
+    {
+        [Key]
+        [ForeignKey("Tenant_Role")]
+        public Guid RoleID { get; set; }
+
+        [Key]
+        [ForeignKey("Role_Module")]
+        public Guid ModuleID { get; set; }
+
+        [Key]
+        [ForeignKey("Module_Claim")]
+        public Guid ClaimID { get; set; }
+
+        public virtual ModuleDetails Module { get; set; }
+
+
+    }
+
 }

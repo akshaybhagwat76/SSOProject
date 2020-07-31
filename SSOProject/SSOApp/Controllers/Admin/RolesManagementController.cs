@@ -22,7 +22,6 @@ namespace SSOApp.Controllers.Admin
     {
         public RolesManagementController(ApplicationDbContext context) : base(context)
         {
-
         }
         public async Task<IActionResult> Index()
         {
@@ -39,26 +38,16 @@ namespace SSOApp.Controllers.Admin
             return View(getroles);
         }
 
-        private async Task BindTenantDD()
-        {
-            using (var client = new HttpClient())
-            {
-                //getallusers
-                client.BaseAddress = new Uri("https://localhost:44391/APITenant/getddtenant");
-                var postTask = await client.GetAsync(client.BaseAddress);
-                string apiResponse = await postTask.Content.ReadAsStringAsync();
-                ViewBag.TenantDD = JsonConvert.DeserializeObject<List<SelectListItem>>(apiResponse);
-            }
-        }
-
         public IActionResult Create()
         {
+            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode})";
             var getroles = new RoleViewModel();
             return View(getroles);
         }
 
         public async Task<IActionResult> Edit(string rid)
         {
+            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode})";
             var getroles = new RoleViewModel();
             if (ModelState.IsValid)
             {
@@ -126,6 +115,7 @@ namespace SSOApp.Controllers.Admin
 
         public async Task<IActionResult> UserIndex(string selectedUserid)
         {
+            
             TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode}) User : {FullName}";
             UserRoleViewModel userRoleView = new UserRoleViewModel();
 

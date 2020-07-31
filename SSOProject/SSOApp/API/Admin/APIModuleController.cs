@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SSOApp.Controllers.UI;
 using SSOApp.ViewModels;
 
@@ -177,21 +178,7 @@ namespace SSOApp.API.Admin
                         else
                             message = AccountOptions.API_Response_Exist;
                     }
-                    if (message == AccountOptions.API_Response_Saved || message == string.Empty)
-                    {
-                        //Save to tenantrole                        
-                        //var gettenant = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == model.TenantCode);
-                        //var gettenantroles = await _context.TenantClaims.FirstOrDefaultAsync(d => d.TenantID == gettenant.Id && d.ID == new Guid(model.ID));
-                        //if (gettenantroles == null)    //Add new tenant role
-                        //  _context.TenantRoles.Add(new TenantRoles { RoleID = model.ID, TenantID = gettenant.Id });
-                        //else
-                        {
-                            //  gettenantroles.ID = new Guid(model.ID);
-                            //gettenantroles.TenantID = gettenant.Id;
-                        }
-                        //_context.SaveChanges();
-                        message = AccountOptions.API_Response_Saved;
-                    }
+
                 }
                 else
                 {
@@ -299,6 +286,62 @@ namespace SSOApp.API.Admin
             {
                 Status = message
             });
+        }
+
+        [HttpPost("saverolesmodule")]
+        public async Task<IActionResult> SaveRoleModules(AssignmentSaveViewModule model)
+        {
+            string message = string.Empty;
+            try
+            {
+                //Save to tenantrole                        
+                var moduleList = _context.ModuleRoles.Where(x => x.RoleID == model.SelectedValue).ToList();
+                if (moduleList != null && moduleList.Count > 0)
+                    _context.ModuleRoles.RemoveRange(moduleList);
+                foreach (var role in model.ListofAssignment)
+                {
+                    var roleModule = new RoleModules { RoleID = role , ModuleID = new Guid(model.SelectedValue) };
+                    await _context.ModuleRoles.AddAsync(roleModule);
+                    await _context.SaveChangesAsync();
+                }
+                message = AccountOptions.API_Response_Saved;
+            }
+            catch(Exception ex)
+            {
+                message = ex.Message;
+            }
+            return Ok(new
+            {
+                Status = message
+            }); ;
+        }
+
+        [HttpPost("savemoduleroles")]
+        public async Task<IActionResult> SaveModuleRoles(AssignmentSaveViewModule model)
+        {
+            string message = string.Empty;
+            try
+            {
+                //Save to tenantrole                        
+                var moduleList = _context.ModuleRoles.Where(x => x.ModuleID ==  new Guid(model.SelectedValue)).ToList();
+                if (moduleList != null && moduleList.Count > 0)
+                    _context.ModuleRoles.RemoveRange(moduleList);
+                foreach (var module in model.ListofAssignment)
+                {
+                    var roleModule = new RoleModules { RoleID = module, ModuleID = new Guid(model.SelectedValue) };
+                    await _context.ModuleRoles.AddAsync(roleModule);
+                    await _context.SaveChangesAsync();
+                }
+                message = AccountOptions.API_Response_Saved;
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+            }
+            return Ok(new
+            {
+                Status = message
+            }); ;
         }
 
         //getFeildListByFeildId
@@ -454,7 +497,7 @@ namespace SSOApp.API.Admin
         //}
 
         [HttpGet("getallmodulesbytenant")]
-        public async Task<List<ModuleViewModel>> RolesbyTenant(string tenantCode)
+        public async Task<List<ModuleViewModel>> ModulebyTenant(string tenantCode)
         {
             var result = await _context.ModuleDetails.Where(x => x.Tenant.Id == new Guid(tenantCode)).Include("Tenant")
                .Select(p => new ModuleViewModel
@@ -466,6 +509,31 @@ namespace SSOApp.API.Admin
 
             return result;
         }
+
+        [HttpGet("getallmodulesbyrole")]
+        public async Task<List<ModuleViewModel>> ModuleByRole(string roleId)
+        {
+            var moduleList = await (from mr in _context.ModuleRoles
+                                    join md in _context.ModuleDetails on mr.ModuleID equals md.ID
+                                    where mr.RoleID == roleId
+                                    select new ModuleViewModel
+                                    {
+                                        ID = md.ID,
+                                        ModuleName = md.ModuleName
+                                    }).ToListAsync();
+            return moduleList;
+        }
+
+        
+        //[HttpGet("getmoduleclaimbyrole")]
+        //public async Task<List<ModuleViewModel>> ModuleClaimByRole(string roleId)
+        //{
+        //   //var details = from module in _context.ModuleDetails
+        //   //              join RoleModuleClaim
+
+        //   // return moduleList;
+        //}
+
 
         //[HttpPost("saveTenantRole")]
         //public async Task<IActionResult> SaveTenantRole(TenantRoleModel model)

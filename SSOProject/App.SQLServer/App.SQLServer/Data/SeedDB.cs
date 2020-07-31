@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace App.SQLServer.Data
 {
-    public class SeedDB 
+    public class SeedDB
     {
         public static async void Initialize(IServiceProvider serviceProvider)
         {
@@ -67,23 +67,9 @@ namespace App.SQLServer.Data
 
             if (!context.Tenants.Any())
             {
-                var ten = new Tenant()
-                {
-                    Id = new Guid("7D7B4614-C733-4A6D-A09D-608B4351B852"),
-                    Code = "DEI",
-                    Name = "Date Experts, Inc.",
-                    Email = "deiTenant@example.com",
-                    IsActive= true,
-                    IsDelete=false,
-                    IsOnHold=false
-                    };
-
-                context.Entry<Tenant>(ten).State = EntityState.Detached;
-                await context.Tenants.AddAsync(ten);
-
                 var ten1 = new Tenant()
                 {
-                    Id = new Guid("7D7B4614-C733-4A6D-A09D-608B4351B827"),
+                    Id = Guid.NewGuid(),
                     Code = "ABCO",
                     Name = "ABC Co.",
                     Email = "abcTenant@example.com",
@@ -107,8 +93,10 @@ namespace App.SQLServer.Data
             if (!context.Users.Any())
             {
                 var user = new ApplicationUser();
+                user.FirstName = "Super";
+                user.LastName = "Admin";
                 user.UserName = "admin";
-                user.Email = "admin@test.com";
+                user.Email = "abcTenant@example.com";
                 user.TenantCode = "ABCO";
                 string userPWD = "Admin123!";
                 await userManager.CreateAsync(user, userPWD);

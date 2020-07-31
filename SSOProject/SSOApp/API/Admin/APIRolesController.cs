@@ -73,9 +73,24 @@ namespace SSOApp.API.Admin
                                 select new RoleViewModel
                                 {
                                     ID = r.Id,
+                                    Name = r.Name
+                                }).ToListAsync();
+
+            return result;
+        }
+
+        [HttpGet("getallrolesbymodule")]
+        public async Task<List<RoleViewModel>> RolesbyModule(string moduleId)
+        {
+            var result = await (from d in _context.ModuleRoles
+                                join r in _context.Roles on d.RoleID equals r.Id
+                                //join t in _context.Tenants on d.TenantID equals t.Id
+                                where d.ModuleID == new Guid(moduleId)
+                                select new RoleViewModel
+                                {
+                                    ID = r.Id,
                                     Name = r.Name,
-                                    TenantCode = t.Code,
-                                    TenantName = t.Name
+                                    
                                 }).ToListAsync();
 
             return result;

@@ -41,6 +41,10 @@ namespace SSOApp.Controllers.UI
             var model = new SecureAPIReturnedModel();
             //Secure API Calls Initiate Logsin and get back data.
             var getuser = await _userManager.FindByNameAsync(User.Identity.Name);
+            if(getuser.TenantCode=="ABCO")
+            {
+                return RedirectToAction("Index", "Tenant");
+            }
             model = await SetupApp.SecureAPIGetUser("Admin", getuser.Id);
             ViewBag.Roles = await _userManager.GetRolesAsync(getuser);            
          
