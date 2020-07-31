@@ -27,23 +27,22 @@
     {
         foreach (var item in Model)
         {
-            if (Context.User.Identity.Name != item.UserName)
-            {
-                <tr>
-                    <td>@item.FirstName</td>
-                    <td>@item.LastName</td>
-                    <td><div class="@item.UserName">No</div></td>
 
-                    <td>@(item.LastLoggedIn.HasValue ? item.LastLoggedIn.Value.ToString("dd/MM/yyyy hh:mm") : string.Empty)</td>
-                    <td>@(item.IsActive ? "Yes" : "No")</td>
-                    <td>
-                        <a href="@Url.Content("~/Users/ChangeUserPassword/" + item.UserID)">Password</a> |
-                        <a href="@Url.Content("~/RolesManagement/UserIndex?id=" + item.UserID + "&tcode="+item.TenanntCode +"&tname="+item.TenanntName)">Roles</a> |
-                        <a href="@Url.Content("~/Users/Edit/" + item.UserID)">Edit</a> |
-                        <a href="@Url.Content("~/Users/Delete/" + item.UserID)" onclick="return confirm('Are you sure want to delete this user?')">Delete</a>
-                    </td>
-                </tr>
-            }
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td><div class="@item.UserName">No</div></td>
+
+                <td>@(item.LastLoggedIn.HasValue ? item.LastLoggedIn.Value.ToString("dd/MM/yyyy hh:mm") : string.Empty)</td>
+                <td>@(item.IsActive ? "Yes" : "No")</td>
+                <td>
+                    <a href="@Url.Content("~/Users/ChangeUserPassword/" + item.UserID)">Password</a> |
+                    <a href="@Url.Content("~/RolesManagement/UserIndex?id=" + item.UserID + "&tcode="+item.TenanntCode +"&tname="+item.TenanntName)">Roles</a> |
+                    <a href="@Url.Content("~/Users/Edit/" + item.UserID)">Edit</a> |
+                    <a href="@Url.Content("~/Users/Delete/" + item.UserID)" onclick="return confirm('Are you sure want to delete this user?')">Delete</a>
+                </td>
+            </tr>
+
         }
     }
     else

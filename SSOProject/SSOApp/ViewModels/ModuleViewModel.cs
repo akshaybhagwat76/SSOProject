@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.SQLServer.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,14 +10,16 @@ namespace SSOApp.ViewModels
     public class ModuleViewModel
     {
         [Required]
-        public string Name { get; set; }
+        public string ModuleName { get; set; }
 
-        public string TableName { get; set; }
-        public string ID { get; set; }
+        public string ModuleLabel { get; set; }
 
-        public string TenantName { get; set; }
-        public string TenantCode { get; set; }
+        public Guid ID { get; set; }
+
+        public Tenant Tenant { get; set; }
+
         public string UserFullName { get; set; }
+
         public string UserID { get; set; }
     }
 }

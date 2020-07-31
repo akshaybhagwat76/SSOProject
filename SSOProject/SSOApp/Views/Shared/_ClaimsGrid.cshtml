@@ -18,7 +18,7 @@
             <tr>
                 <td>@item.Name</td>
                   <td>
-                    <a href="@Url.Content("~/ClaimsManagement/Edit?cid="+item.ID+"&tcode="+item.TenantCode)">Edit</a>
+                    <a href="@Url.Content("~/ClaimsManagement/Edit?cid="+item.ID+"&tcode="+item.TenantID)">Edit</a>
                     <a href="@Url.Content("~/ClaimsManagement/Delete/"+item.ID)" onclick="return confirm('Are you sure want to delete this role?')">Delete</a>
                 </td>
             </tr>

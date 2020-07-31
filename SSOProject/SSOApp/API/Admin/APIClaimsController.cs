@@ -24,42 +24,18 @@ namespace SSOApp.API.Admin
         }
 
         [HttpGet("getallclaims")]
-        public async Task<List<ClaimsViewModel>> Index()
+        public async Task<List<ClaimsViewModel>> Index(string tenantId)
         {
-            var result = new List<ClaimsViewModel>();
-            var getclaims = await _context.TenantClaims.ToListAsync();
-            foreach (var item in getclaims)
+            var getclaims = await _context.TenantClaims.Where(x => x.TenantID == new Guid(tenantId)).Select(x => new ClaimsViewModel
             {
-                result.Add(new ClaimsViewModel
-                {
-                    Name = item.ClaimValue,
-                    ID = item.ID.ToString(),
-                });
-            }
-            return result;
+                ID = x.ID,
+                Name = x.ClaimName,
+                IsActive = x.IsAvailable
+            }).ToListAsync();
+
+            return getclaims;
         }
 
-        private async Task<bool> IsTenantCodeAvailable(string code)
-        {
-            var getcode = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == code);
-            if (getcode != null)
-                return true;
-
-            return false;
-        }
-
-        private async Task<string> CheckExistingClaim(string cName)
-        {
-            var checkalreadyexist = await _context.TenantClaims.AnyAsync(x => x.ClaimValue == cName);
-            if (checkalreadyexist)
-            {
-                return AccountOptions.API_Response_Exist;
-            }
-            else
-            {
-                return string.Empty;
-            }
-        }
 
         [HttpPost("saveclaim")]
         public async Task<IActionResult> SaveClaim(ClaimsViewModel model)
@@ -67,70 +43,41 @@ namespace SSOApp.API.Admin
             string message = string.Empty;
             try
             {
-                bool checkcode = await IsTenantCodeAvailable(model.TenantCode);
-                if (checkcode)
+                if (model.ID != Guid.Empty)
                 {
-                    if (!string.IsNullOrEmpty(model.ID))
+                    //Update
+                    var getclaimbyid = await _context.TenantClaims.SingleOrDefaultAsync(d => d.ID == model.ID && d.TenantID == model.TenantID);
+                    if (model.Name != getclaimbyid.ClaimName)
                     {
-                        //Update
-                        var getclaimbyid = await _context.TenantClaims.SingleOrDefaultAsync(d => d.ID == new Guid(model.ID));
-                        if (getclaimbyid.ClaimValue != model.Name)
+                        if (await _context.TenantClaims.AnyAsync(x => x.ClaimName == model.Name))
                         {
-                            //Check role exists
-                            var checkalreadyexist = await CheckExistingClaim(model.Name);
-                            if (!string.IsNullOrEmpty(checkalreadyexist))
-                            {
-                                //exists
-                                message = AccountOptions.API_Response_Exist;
-                            }
-                            else
-                            {
-                                //Does not exist    //Update role                                
-                                getclaimbyid.ClaimValue = model.Name;
-                                await _context.SaveChangesAsync();
-                                message = AccountOptions.API_Response_Saved;
-                            }
+                            message = AccountOptions.API_Response_Exist;
                         }
-                    }
-                    else
-                    {
-                        //Add
-                        if (string.IsNullOrEmpty(await CheckExistingClaim(model.Name)))
+                        else
                         {
-                            //Doesnot exist     //Add new
-                            var claim = new TenantClaims();
-                            claim.ClaimValue
-                                = model.Name;
-                            //TODO: 
-                            claim.TenantID = new Guid("7D7B4614-C733-4A6D-A09D-608B4351B827");
-                            await _context.TenantClaims.AddAsync(claim);
+                            getclaimbyid.ClaimName = model.Name;
+                            getclaimbyid.IsAvailable = true;
                             await _context.SaveChangesAsync();
-                            var getrole = await _context.TenantClaims.SingleOrDefaultAsync(d => d.ClaimValue == model.Name);
-                            model.ID = getrole.ID.ToString();
                             message = AccountOptions.API_Response_Saved;
                         }
-                        else
-                            message = AccountOptions.API_Response_Exist;
-                    }
-                    if (message == AccountOptions.API_Response_Saved || message == string.Empty)
-                    {
-                        //Save to tenantrole                        
-                        var gettenant = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == model.TenantCode);
-                        var gettenantroles = await _context.TenantClaims.FirstOrDefaultAsync(d => d.TenantID == gettenant.Id && d.ID == new Guid(model.ID));
-                        if (gettenantroles == null)    //Add new tenant role
-                            await _context.TenantRoles.AddAsync(new TenantRoles { RoleID = model.ID, TenantID = gettenant.Id });
-                        else
-                        {
-                            gettenantroles.ID = new Guid(model.ID);
-                            gettenantroles.TenantID = gettenant.Id;
-                        }
-                        await _context.SaveChangesAsync();
-                        message = AccountOptions.API_Response_Saved;
                     }
                 }
                 else
                 {
-                    message = AccountOptions.InvalidTenantErrorMessage;
+                    //Add
+                    if (!await _context.TenantClaims.AnyAsync(x => x.ClaimName == model.Name))
+                    {
+                        //Doesnot exist     //Add new
+                        var claim = new TenantClaims();
+                        claim.ClaimName = model.Name;
+                        claim.TenantID = model.TenantID;
+                        claim.IsAvailable = true;
+                        await _context.TenantClaims.AddAsync(claim);
+                        await _context.SaveChangesAsync();
+                        message = AccountOptions.API_Response_Saved;
+                    }
+                    else
+                        message = AccountOptions.API_Response_Exist;
                 }
             }
             catch (Exception ex)
@@ -146,15 +93,14 @@ namespace SSOApp.API.Admin
         [HttpGet("getclaimbyid")]
         public async Task<ClaimsViewModel> GetRole(string ID, string tcode)
         {
-            return await _context.TenantClaims.Where(d => d.ID == new Guid(ID)).Select(role =>
+            return await _context.TenantClaims.Where(d => d.ID == new Guid(ID)).Select(x =>
                    new ClaimsViewModel
                    {
-                       Name = role.ClaimValue,
-                       ID = role.ID.ToString(),
-                       TenantCode = tcode
+                       Name = x.ClaimName,
+                       ID = x.ID,
+                       TenantID = new Guid(tcode)
                    }).SingleOrDefaultAsync();
         }
-
 
         [HttpPost("deleteclaim")]
         public async Task<IActionResult> DeleteClaim(ClaimsViewModel model)
@@ -162,7 +108,7 @@ namespace SSOApp.API.Admin
             string message = string.Empty;
             try
             {
-                var claim = await _context.TenantClaims.FirstOrDefaultAsync(x => x.ID == new Guid(model.ID));
+                var claim = await _context.TenantClaims.FirstOrDefaultAsync(x => x.ID == model.ID);
                 _context.TenantClaims.Remove(claim);
                 var result = await _context.SaveChangesAsync();
 
@@ -182,23 +128,17 @@ namespace SSOApp.API.Admin
         [HttpGet("getallclaimssbytenant")]
         public async Task<List<ClaimsViewModel>> RolesbyTenant(string tcode)
         {
-            return await ClaimsbyTenantList(tcode);
-        }
-
-        private async Task<List<ClaimsViewModel>> ClaimsbyTenantList(string tcode)
-        {
-            var result = await (from d in _context.TenantClaims
-                                join t in _context.Tenants on d.TenantID equals t.Id
-                                where t.Code == tcode
-                                select new ClaimsViewModel
-                                {
-                                    ID = d.ID.ToString(),
-                                    Name = d.ClaimValue,
-                                    TenantCode = t.Code,
-                                    TenantName = t.Name
-                                }).ToListAsync();
+            var result = await _context.TenantClaims.Where(x => x.TenantID == new Guid(tcode))
+                .Select(y => new ClaimsViewModel
+                {
+                    ID = y.ID,
+                    Name = y.ClaimName,
+                    IsActive = y.IsAvailable,
+                    TenantID = y.TenantID
+                }).ToListAsync();
 
             return result;
         }
+
     }
 }

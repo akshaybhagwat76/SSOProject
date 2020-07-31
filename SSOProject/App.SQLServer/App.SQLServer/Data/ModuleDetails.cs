@@ -14,11 +14,13 @@ namespace App.SQLServer.Data
         [Key]
         public Guid ID { get; set; }
         
-        public string LableName { get; set; }
+        public string ModuleName { get; set; }
 
-        public string TableName { get; set; }
+        public string ModuleLabel { get; set; }
 
         public Guid TenantId { get; set; }
+
+        public virtual Tenant Tenant { get; set; }
 
     }
 }

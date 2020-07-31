@@ -63,7 +63,7 @@ namespace SSOApp.API.Admin
         {
             return await RolesbyTenantList(tcode);
         }
-       
+
         private async Task<List<RoleViewModel>> RolesbyTenantList(string tcode)
         {
             var result = await (from d in _context.TenantRoles
@@ -134,67 +134,52 @@ namespace SSOApp.API.Admin
             string message = string.Empty;
             try
             {
-                bool checkcode = await IsTenantCodeAvailable(model.TenantCode);
-                if (checkcode)
+
+                if (!string.IsNullOrEmpty(model.ID))
                 {
-                    if (!string.IsNullOrEmpty(model.ID))
+                    //Update
+                    var getrolebyid = await _context.Roles.SingleOrDefaultAsync(d => d.Id == model.ID);
+                    if (getrolebyid.Name != model.Name)
                     {
-                        //Update
-                        var getrolebyid = await _context.Roles.SingleOrDefaultAsync(d => d.Id == model.ID);
-                        if (getrolebyid.Name != model.Name)
-                        {
-                            //Check role exists
-                            var checkalreadyexist = await CheckExistingRole(model.Name);
-                            if (!string.IsNullOrEmpty(checkalreadyexist))
-                            {
-                                //exists
-                                message = AccountOptions.API_Response_Exist;
-                            }
-                            else
-                            {
-                                //Does not exist    //Update role                                
-                                getrolebyid.Name = model.Name;
-                                getrolebyid.NormalizedName = model.Name.ToUpper();
-                                await _context.SaveChangesAsync();
-                                message = AccountOptions.API_Response_Saved;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        //Add
+                        //Check role exists
                         if (string.IsNullOrEmpty(await CheckExistingRole(model.Name)))
                         {
-                            //Doesnot exist     //Add new
-                            var role = new IdentityRole();
-                            role.Name = model.Name;
-                            await _roleManager.CreateAsync(role);
-                            var getrole = await _context.Roles.SingleOrDefaultAsync(d => d.Name == model.Name);
-                            model.ID = getrole.Id;
+                            getrolebyid.Name = model.Name;
+                            getrolebyid.NormalizedName = model.Name.ToUpper();
+                            await _context.SaveChangesAsync();
                             message = AccountOptions.API_Response_Saved;
                         }
-                        else
-                            message = AccountOptions.API_Response_Exist;
-                    }
-                    if (message == AccountOptions.API_Response_Saved || message == string.Empty)
-                    {
-                        //Save to tenantrole                        
-                        var gettenant = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == model.TenantCode);
-                        var gettenantroles = await _context.TenantRoles.FirstOrDefaultAsync(d => d.TenantID == gettenant.Id && d.RoleID==model.ID);
-                        if (gettenantroles == null)    //Add new tenant role
-                            _context.TenantRoles.Add(new TenantRoles { RoleID = model.ID, TenantID = gettenant.Id });
-                        else
-                        {
-                            gettenantroles.RoleID = model.ID;
-                            gettenantroles.TenantID = gettenant.Id;
-                        }
-                        _context.SaveChanges();
-                        message = AccountOptions.API_Response_Saved;
                     }
                 }
                 else
                 {
-                    message = AccountOptions.InvalidTenantErrorMessage;
+                    //Add
+                    if (string.IsNullOrEmpty(await CheckExistingRole(model.Name)))
+                    {
+                        var role = new IdentityRole();
+                        role.Name = model.Name;
+                        await _roleManager.CreateAsync(role);
+                        message = AccountOptions.API_Response_Saved;
+                    }
+                }
+
+
+                if (message == AccountOptions.API_Response_Saved || message == string.Empty)
+                {
+                    var getrole = await _context.Roles.SingleOrDefaultAsync(d => d.Name == model.Name);
+                    model.ID = getrole.Id;
+                    //Save to tenantrole                        
+                    var gettenant = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == model.TenantCode);
+                    var gettenantroles = await _context.TenantRoles.FirstOrDefaultAsync(d => d.TenantID == gettenant.Id && d.RoleID == model.ID);
+                    if (gettenantroles == null)    //Add new tenant role
+                        _context.TenantRoles.Add(new TenantRoles { RoleID = model.ID, TenantID = gettenant.Id });
+                    else
+                    {
+                        gettenantroles.RoleID = model.ID;
+                        gettenantroles.TenantID = gettenant.Id;
+                    }
+                    _context.SaveChanges();
+                    message = AccountOptions.API_Response_Saved;
                 }
             }
             catch (Exception ex)
@@ -236,6 +221,43 @@ namespace SSOApp.API.Admin
                 Status = message
             });
         }
+
+        [HttpPost("saveroletouser")]
+        public async Task<IActionResult> SaveRolesToUser(UserToRolesViewModel model)
+        {
+            string message = string.Empty;
+            try
+            {
+                var roleName = await _context.Roles.FirstOrDefaultAsync(x => x.Id == model.RoleID);
+                var previousroleUser = await _context.UserRoles.Where(x => x.RoleId == model.RoleID).ToListAsync();
+                _context.UserRoles.RemoveRange(previousroleUser);
+                await _context.SaveChangesAsync();
+                foreach (var role in model.SelectedUsers)
+                {
+                    var user = await _userManager.FindByIdAsync(role);
+                    await _userManager.AddToRoleAsync(user, roleName.Name);
+                    message = AccountOptions.API_Response_Saved;
+                }
+
+
+                //if (result.Succeeded)
+                //    message = AccountOptions.API_Response_Saved;
+                //else
+                //    message = AccountOptions.API_Response_Failed;
+
+
+                //else
+                //    message = AccountOptions.API_Response_Failed;
+            }
+            catch (Exception ex)
+            {
+                message = AccountOptions.API_Response_Exception;
+            }
+            return Ok(new
+            {
+                Status = message
+            });
+        }
         private async Task<string> CheckExistingRole(string rName)
         {
             var checkalreadyexist = await _roleManager.RoleExistsAsync(rName);
@@ -253,13 +275,13 @@ namespace SSOApp.API.Admin
         {
             string message = string.Empty;
             try
-            {                
-                IdentityRole role = await _roleManager.FindByIdAsync(model.ID);
-                var result = await _roleManager.DeleteAsync(role);
-                if (result.Succeeded)
-                    message = AccountOptions.API_Response_Deleted;
-                else
-                    message = AccountOptions.API_Response_Failed;
+            {
+                var tenantRole = await _context.TenantRoles.FirstOrDefaultAsync(x => x.RoleID == model.ID);
+                _context.TenantRoles.RemoveRange(tenantRole);
+                await _context.SaveChangesAsync();
+
+                message = AccountOptions.API_Response_Deleted;
+
             }
             catch (Exception ex)
             {
@@ -270,6 +292,7 @@ namespace SSOApp.API.Admin
                 Status = message
             });
         }
+
         [HttpPost("deletuserfromerole")]
         public async Task<IActionResult> DeleteUserFromRole(UserToRolesViewModel model)
         {
@@ -293,21 +316,5 @@ namespace SSOApp.API.Admin
             });
         }
 
-        [HttpGet("getddroles")]
-        public async Task<List<SelectListItem>> GetDDRoles()
-        {
-            List<SelectListItem> result = new List<SelectListItem>();
-            result = await _roleManager.Roles.Select(d => new SelectListItem { Text = d.Name, Value = d.Id }).ToListAsync();
-            return result;
-        }
-
-        private async Task<bool> IsTenantCodeAvailable(string code)
-        {
-            var getcode = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == code);
-            if (getcode != null)
-                return true;
-
-            return false;
-        }
     }
 }

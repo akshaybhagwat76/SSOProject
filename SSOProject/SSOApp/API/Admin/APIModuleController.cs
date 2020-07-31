@@ -40,7 +40,7 @@ namespace SSOApp.API.Admin
 
         private async Task<string> CheckExistingClaim(string cName)
         {
-            var checkalreadyexist = await _context.TenantClaims.AnyAsync(x => x.ClaimValue == cName);
+            var checkalreadyexist = await _context.TenantClaims.AnyAsync(x => x.ClaimName == cName);
             if (checkalreadyexist)
             {
                 return AccountOptions.API_Response_Exist;
@@ -60,17 +60,28 @@ namespace SSOApp.API.Admin
             {
                 result.Add(new ModuleViewModel
                 {
-                    Name = item.LableName,
-                    TableName = item.TableName,
-                    ID = item.ID.ToString(),
+                    ModuleName = item.ModuleName,
+                    ModuleLabel = item.ModuleLabel,
+                    ID = item.ID,
                 });
             }
             return result;
         }
 
+        [HttpGet("getmodulebyid")]
+        public async Task<ModuleViewModel> GetModuleByID(string moduleId, string tenantId)
+        {
+            var result = new ModuleViewModel();
+            var getclaims = await _context.ModuleDetails.FirstOrDefaultAsync(x => x.ID == new Guid(moduleId) && x.TenantId == new Guid(tenantId));
+            result.ModuleName = getclaims.ModuleName;
+            result.ModuleLabel = getclaims.ModuleLabel;
+            result.ID = getclaims.ID;
+            return result;
+        }
+
         private async Task<bool> IsTenantCodeAvailable(string code)
         {
-            var t =  _context.Tenants.ToList();
+            var t = _context.Tenants.ToList();
             var getcode = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == code);
             if (getcode != null)
                 return true;
@@ -80,7 +91,7 @@ namespace SSOApp.API.Admin
 
         private async Task<string> CheckExistingModule(string cName)
         {
-            var checkalreadyexist = await _context.ModuleDetails.AnyAsync(x => x.LableName == cName);
+            var checkalreadyexist = await _context.ModuleDetails.AnyAsync(x => x.ModuleName == cName);
             if (checkalreadyexist)
             {
                 return AccountOptions.API_Response_Exist;
@@ -91,18 +102,18 @@ namespace SSOApp.API.Admin
             }
         }
 
-        //private async Task<string> CheckExistingFieldModule(string cName)
-        //{
-        //    var checkalreadyexist = await _context.ModuleFieldDetails.AnyAsync(x => x.FieldName == cName);
-        //    if (checkalreadyexist)
-        //    {
-        //        return AccountOptions.API_Response_Exist;
-        //    }
-        //    else
-        //    {
-        //        return string.Empty;
-        //    }
-        //}
+        ////private async Task<string> CheckExistingFieldModule(string cName)
+        ////{
+        ////    var checkalreadyexist = await _context.ModuleFieldDetails.AnyAsync(x => x.FieldName == cName);
+        ////    if (checkalreadyexist)
+        ////    {
+        ////        return AccountOptions.API_Response_Exist;
+        ////    }
+        ////    else
+        ////    {
+        ////        return string.Empty;
+        ////    }
+        ////}
 
         [HttpPost("savemodule")]
         public async Task<IActionResult> SaveModule(ModuleViewModel model)
@@ -110,50 +121,48 @@ namespace SSOApp.API.Admin
             string message = string.Empty;
             try
             {
-                bool checkcode = await IsTenantCodeAvailable(model.TenantCode);
+                bool checkcode = await IsTenantCodeAvailable(model.Tenant.Code);
                 if (checkcode)
                 {
-                    if (!string.IsNullOrEmpty(model.ID))
+                    if (model.ID != Guid.Empty)
                     {
                         //Update
-                        var getclaimbyid = await _context.ModuleDetails.SingleOrDefaultAsync(d => d.ID == new Guid(model.ID));
-                        if (getclaimbyid.LableName != model.Name)
-                        {
-                            //Check role exists
-                            var checkalreadyexist = await CheckExistingModule(model.Name);
-                            if (!string.IsNullOrEmpty(checkalreadyexist))
-                            {
-                                //exists
-                                message = AccountOptions.API_Response_Exist;
-                            }
-                            else
-                            {
-                                //Does not exist    //Update role                                
-                                getclaimbyid.LableName = model.Name;
-                                await _context.SaveChangesAsync();
-                                message = AccountOptions.API_Response_Saved;
-                            }
-                        }
+                        //var getclaimbyid = await _context.ModuleDetails.SingleOrDefaultAsync(d => d.ID == new Guid(model.ID));
+                        //if (getclaimbyid.ModuleName != model.Name)
+                        //{
+                        //    //Check role exists
+                        //    var checkalreadyexist = await CheckExistingModule(model.Name);
+                        //    if (!string.IsNullOrEmpty(checkalreadyexist))
+                        //    {
+                        //        //exists
+                        //        message = AccountOptions.API_Response_Exist;
+                        //    }
+                        //    else
+                        //    {
+                        //        //Does not exist    //Update role                                
+                        //        getclaimbyid.ModuleName = model.Name;
+                        //        await _context.SaveChangesAsync();
+                        //        message = AccountOptions.API_Response_Saved;
+                        //    }
+                        //}
                     }
                     else
                     {
                         //Add
-                        if (string.IsNullOrEmpty(await CheckExistingModule(model.Name)))
+                        if (string.IsNullOrEmpty(await CheckExistingModule(model.ModuleName)))
                         {
-                            //Doesnot exist     //Add new
-                            var PstenantId =  _context.Tenants.Where(d => d.Code == model.TenantCode).Select(d=>d.Id).FirstOrDefault();
-                            var claim = new ModuleDetails();
-                            claim.LableName
-                                = model.Name;
-                            claim.TableName = model.TableName;
-                            claim.TenantId =PstenantId;
-                            //TODO: 
-                            claim.ID = Guid.NewGuid();
+                            var module = new ModuleDetails
+                            {
+                                ModuleName = model.ModuleName,
+                                ModuleLabel = model.ModuleLabel,
+                                TenantId = model.Tenant.Id,
+                                ID = Guid.NewGuid()
+                            };
+
                             try
                             {
-
-                                CreateTable(model.TableName);
-                                await _context.ModuleDetails.AddAsync(claim);
+                                CreateTable(model.ModuleLabel);
+                                await _context.ModuleDetails.AddAsync(module);
                             }
                             catch (Exception ex)
                             {
@@ -161,8 +170,8 @@ namespace SSOApp.API.Admin
                             }
 
                             await _context.SaveChangesAsync();
-                            var getrole = await _context.ModuleDetails.SingleOrDefaultAsync(d => d.LableName == model.Name);
-                            model.ID = getrole.ID.ToString();
+                            //var getrole = await _context.ModuleDetails.SingleOrDefaultAsync(d => d.ModuleName == model.ModuleName);
+                            //model.ID = getrole.ID.ToString();
                             message = AccountOptions.API_Response_Saved;
                         }
                         else
@@ -215,7 +224,7 @@ namespace SSOApp.API.Admin
                     if (model.ModuleFieldDetails != null)
                     {
                         var ModuleFieldDetails = await _context.ModuleFieldDetails.SingleOrDefaultAsync(d => d.ID == model.ModuleFieldDetails.ID);// && d.ModeuleDetailId== PsModuleId);
-                        
+
                         if (ModuleFieldDetails != null)
                         {
 
@@ -227,14 +236,14 @@ namespace SSOApp.API.Admin
                             _context.ModuleFieldDetails.Update(ModuleFieldDetails);
                             await _context.SaveChangesAsync();
 
-                            var ModuleFieldOptions =_context.ModuleFieldOptions.Where(d => d.ModuleFieldDetailsID == model.ModuleFieldDetails.ID).ToList();
-                            if (ModuleFieldOptions.Count>0)
+                            var ModuleFieldOptions = _context.ModuleFieldOptions.Where(d => d.ModuleFieldDetailsID == model.ModuleFieldDetails.ID).ToList();
+                            if (ModuleFieldOptions.Count > 0)
                             {
                                 _context.ModuleFieldOptions.RemoveRange(ModuleFieldOptions);
                                 await _context.SaveChangesAsync();
 
                             }
-                            if(model.ModuleFieldOption!=null)
+                            if (model.ModuleFieldOption != null)
                             {
                                 model.ModuleFieldOption.ForEach(z => z.ModuleFieldDetailsID = model.ModuleFieldDetails.ID);
                                 _context.ModuleFieldOptions.AddRange(model.ModuleFieldOption);
@@ -249,7 +258,7 @@ namespace SSOApp.API.Admin
                             //checkk if exist   
                             if (_context.ModuleFieldDetails.Any(x => x.DBFieldName == model.ModuleFieldDetails.DBFieldName))
                             {
-                                message = "DBFieldName Already"+ AccountOptions.API_Response_Exist;
+                                message = "DBFieldName Already" + AccountOptions.API_Response_Exist;
                             }
                             else if (_context.ModuleFieldDetails.Any(x => x.FieldLabel == model.ModuleFieldDetails.FieldLabel))
                             {
@@ -261,7 +270,7 @@ namespace SSOApp.API.Admin
                                 //model.ModuleFieldDetails.ModuleDetailsID= PsModuleId;
                                 model.ModuleFieldDetails.TenantCode = model.TenantCode;
                                 _context.ModuleFieldDetails.Add(model.ModuleFieldDetails);
-                                 await _context.SaveChangesAsync();
+                                await _context.SaveChangesAsync();
 
                                 //save [ModuleFieldOptions]
                                 if (model.ModuleFieldOption != null)
@@ -293,41 +302,41 @@ namespace SSOApp.API.Admin
         }
 
         //getFeildListByFeildId
-        [HttpGet("getFeildListByFeildId")]
-         public async Task<FeildModelView> GetFeildListByFeildId(string FeildId)
-         {
-            var psFieldGuid = new Guid(FeildId);
-            try
-            {
-                FieldViewModel =  (from MFD in _context.ModuleFieldDetails
-                                    //join l in _context.ModuleFieldOptions on MFD.ID equals l.FieldId into p
-                                    //from MFO in p.DefaultIfEmpty()
-                                    where MFD.ID==psFieldGuid
-                                     select new FeildModelView
-                                    {
-                                         ModuleFieldDetails = new ModuleFieldDetails
-                                        {
-                                            ID = MFD.ID,
-                                            DBFieldName = MFD.DBFieldName,
-                                            FieldType = MFD.FieldType,
-                                            TenantCode = MFD.TenantCode,
-                                            visible = MFD.visible,
-                                            FieldLabel = MFD.FieldLabel,
-                                            ModuleDetailsID=MFD.ModuleDetailsID
-                                         }
-                                        ,
-                                        ModuleFieldOption = _context.ModuleFieldOptions.Where(m=>m.ModuleFieldDetailsID==psFieldGuid).ToList()
+        //[HttpGet("getFeildListByFeildId")]
+        //public async Task<FeildModelView> GetFeildListByFeildId(string FeildId)
+        //{
+        //    var psFieldGuid = new Guid(FeildId);
+        //    try
+        //    {
+        //        FieldViewModel = (from MFD in _context.ModuleFieldDetails
+        //                              //join l in _context.ModuleFieldOptions on MFD.ID equals l.FieldId into p
+        //                              //from MFO in p.DefaultIfEmpty()
+        //                          where MFD.ID == psFieldGuid
+        //                          select new FeildModelView
+        //                          {
+        //                              ModuleFieldDetails = new ModuleFieldDetails
+        //                              {
+        //                                  ID = MFD.ID,
+        //                                  DBFieldName = MFD.DBFieldName,
+        //                                  FieldType = MFD.FieldType,
+        //                                  TenantCode = MFD.TenantCode,
+        //                                  visible = MFD.visible,
+        //                                  FieldLabel = MFD.FieldLabel,
+        //                                  ModuleDetailsID = MFD.ModuleDetailsID
+        //                              }
+        //                             ,
+        //                              ModuleFieldOption = _context.ModuleFieldOptions.Where(m => m.ModuleFieldDetailsID == psFieldGuid).ToList()
 
-                                    }).FirstOrDefault();
+        //                          }).FirstOrDefault();
 
-            }
-            catch(Exception ex)
-            {
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-            }
+        //    }
 
-            return FieldViewModel;
-        }
+        //    return FieldViewModel;
+        //}
 
         private void CreateTable(string tableName)
         {
@@ -351,41 +360,41 @@ namespace SSOApp.API.Admin
             }
         }
 
-        [HttpGet("getclaimbyid")]
-        public async Task<ModuleViewModel> GetRole(string ID, string tcode)
-        {
-            return await _context.TenantClaims.Where(d => d.ID == new Guid(ID)).Select(role =>
-                   new ModuleViewModel
-                   {
-                       Name = role.ClaimValue,
-                       ID = role.ID.ToString(),
-                       TenantCode = tcode
-                   }).SingleOrDefaultAsync();
-        }
+        //[HttpGet("getclaimbyid")]
+        //public async Task<ModuleViewModel> GetRole(string ID, string tcode)
+        //{
+        //    return await _context.TenantClaims.Where(d => d.ID == new Guid(ID)).Select(role =>
+        //           new ModuleViewModel
+        //           {
+        //               Name = role.ClaimValue,
+        //               ID = role.ID.ToString(),
+        //               TenantCode = tcode
+        //           }).SingleOrDefaultAsync();
+        //}
 
 
-        [HttpGet("getclaimbyid")]
-        public async Task<ModuleViewModel> GetFields(string ID, string tcode)
-        {
-            return await _context.TenantClaims.Where(d => d.ID == new Guid(ID)).Select(role =>
-                   new ModuleViewModel
-                   {
-                       Name = role.ClaimValue,
-                       ID = role.ID.ToString(),
-                       TenantCode = tcode
-                   }).SingleOrDefaultAsync();
-        }
+        //[HttpGet("getclaimbyid")]
+        //public async Task<ModuleViewModel> GetFields(string ID, string tcode)
+        //{
+        //    return await _context.TenantClaims.Where(d => d.ID == new Guid(ID)).Select(role =>
+        //           new ModuleViewModel
+        //           {
+        //               Name = role.ClaimValue,
+        //               ID = role.ID.ToString(),
+        //               TenantCode = tcode
+        //           }).SingleOrDefaultAsync();
+        //}
 
-        public DbConnection GetConnection()
-        {
-            string conString = _context.Database.GetDbConnection().ConnectionString;
-            SqlConnection con = new SqlConnection(conString);
-            return con;
-        }
+        //public DbConnection GetConnection()
+        //{
+        //    string conString = _context.Database.GetDbConnection().ConnectionString;
+        //    SqlConnection con = new SqlConnection(conString);
+        //    return con;
+        //}
 
 
         [HttpGet("getmodulefieldlistbyid")]
-        public async Task<List<ModuleFieldDetails>> GetFieldsList(string ID, string tcode,string moduleId)
+        public async Task<List<ModuleFieldDetails>> GetFieldsList(string ID, string tcode, string moduleId)
         {
             //var psmoduleID = new Guid(moduleId);
             var TenantName = _context.Tenants.Where(x => x.Code == tcode).Select(x => x.Name).FirstOrDefault();
@@ -408,91 +417,83 @@ namespace SSOApp.API.Admin
             //return await _context.ModuleFieldDetails.ToListAsync(); //feildModelView;
         }
 
-        private List<FieldViewModel> PrintSchemaPlain(DataTable schemaTable)
-        {
-            List<FieldViewModel> fields = new List<FieldViewModel>();
-            foreach (DataRow row in schemaTable.Rows)
-            {
-            //    FieldViewModel field = new FieldViewModel();
-            //    field.Name = row.Field<string>("ColumnName");
-            //    field.Type = row.Field<Type>("DataType").ToString();
-            //    fields.Add(field);
-            }
+        //private List<FieldViewModel> PrintSchemaPlain(DataTable schemaTable)
+        //{
+        //    List<FieldViewModel> fields = new List<FieldViewModel>();
+        //    foreach (DataRow row in schemaTable.Rows)
+        //    {
+        //    //    FieldViewModel field = new FieldViewModel();
+        //    //    field.Name = row.Field<string>("ColumnName");
+        //    //    field.Type = row.Field<Type>("DataType").ToString();
+        //    //    fields.Add(field);
+        //    }
 
-            return fields;
-        }
-        [HttpPost("deleteclaim")]
-        public async Task<IActionResult> DeleteClaim(ModuleViewModel model)
-        {
-            string message = string.Empty;
-            try
-            {
-                var claim = await _context.TenantClaims.FirstOrDefaultAsync(x => x.ID == new Guid(model.ID));
-                _context.TenantClaims.Remove(claim);
-                var result = _context.SaveChanges();
+        //    return fields;
+        //}
+        //[HttpPost("deleteclaim")]
+        //public async Task<IActionResult> DeleteClaim(ModuleViewModel model)
+        //{
+        //    string message = string.Empty;
+        //    try
+        //    {
+        //        var claim = await _context.TenantClaims.FirstOrDefaultAsync(x => x.ID == new Guid(model.ID));
+        //        _context.TenantClaims.Remove(claim);
+        //        var result = _context.SaveChanges();
 
-                message = AccountOptions.API_Response_Deleted;
+        //        message = AccountOptions.API_Response_Deleted;
 
-            }
-            catch (Exception ex)
-            {
-                message = AccountOptions.API_Response_Exception;
-            }
-            return Ok(new
-            {
-                Status = message
-            });
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        message = AccountOptions.API_Response_Exception;
+        //    }
+        //    return Ok(new
+        //    {
+        //        Status = message
+        //    });
+        //}
 
         [HttpGet("getallmodulesbytenant")]
-        public async Task<List<ModuleViewModel>> RolesbyTenant(string tcode)
+        public async Task<List<ModuleViewModel>> RolesbyTenant(string tenantCode)
         {
-            return await ClaimsbyTenantList(tcode);
-        }
-
-        private async Task<List<ModuleViewModel>> ClaimsbyTenantList(string tcode)
-        {
-            var result = await (from d in _context.ModuleDetails
-                                join t in _context.Tenants on d.TenantId equals t.Id
-                                where t.Code == tcode
-                                select new ModuleViewModel
-                                {
-                                    ID = d.ID.ToString(),
-                                    Name = d.LableName,
-                                    TenantCode = t.Code,
-                                    TenantName = t.Name
-                                }).ToListAsync();
+            var result = await _context.ModuleDetails.Where(x => x.Tenant.Id == new Guid(tenantCode)).Include("Tenant")
+               .Select(p => new ModuleViewModel
+               {
+                   ID = p.ID,
+                   ModuleName = p.ModuleName,
+                   Tenant = p.Tenant
+               }).ToListAsync();
 
             return result;
         }
 
-        [HttpPost("saveTenantRole")]
-        public async Task<IActionResult> SaveTenantRole(TenantRoleModel model)
-        {
-            List<TenantRoles> _TenantRoles = new List<TenantRoles>();
+        //[HttpPost("saveTenantRole")]
+        //public async Task<IActionResult> SaveTenantRole(TenantRoleModel model)
+        //{
+        //    List<TenantRoles> _TenantRoles = new List<TenantRoles>();
 
-            foreach(var items in model.SelectedRoleID)
-            {
-                _TenantRoles.Add(new TenantRoles { TenantID = model.TennantId, ModuleID = model.ModuleId.ToString(), RoleID = items });
-            }
+        //    foreach(var items in model.SelectedRoleID)
+        //    {
+        //        _TenantRoles.Add(new TenantRoles { TenantID = model.TennantId,  RoleID = items });
+        //    }
 
-            string message = string.Empty;
-            try
-            {
-                _context.TenantRoles.AddRange(_TenantRoles);
-                var result =await _context.SaveChangesAsync();
-                message = AccountOptions.API_Response_Saved;
+        //    string message = string.Empty;
+        //    try
+        //    {
+        //        _context.TenantRoles.AddRange(_TenantRoles);
+        //        var result =await _context.SaveChangesAsync();
+        //        message = AccountOptions.API_Response_Saved;
 
-            }
-            catch (Exception ex)
-            {
-                message = AccountOptions.API_Response_Exception;
-            }
-            return Ok(new
-            {
-                Status = message
-            });
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        message = AccountOptions.API_Response_Exception;
+        //    }
+        //    return Ok(new
+        //    {
+        //        Status = message
+        //    });
+        //}
 
     }
 }

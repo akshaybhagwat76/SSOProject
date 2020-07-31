@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace App.SQLServer.Data
 {
-    public class SeedDB
+    public class SeedDB 
     {
         public static async void Initialize(IServiceProvider serviceProvider)
         {

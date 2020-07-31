@@ -1,69 +1,143 @@
-﻿@using SSOApp.ViewModels
+﻿@model SSOApp.ViewModels.RoletoUserViewModel
 @{
     ViewData["Title"] = "Roles To User";
-    List<RoleViewModel> roles = ViewBag.Roles as List<RoleViewModel>;
-    List<RoleViewModel> userselectedroles = ViewBag.UserRoles as List<RoleViewModel>;
+   
 }
 
-<div class="container">
-    <div class="card-header">
-        <h1>Add Role</h1>
-    </div>
-    <div class="card-body">
-        <p>
-            @if (TempData["Success"] != null)
-            {
-                <label class="bg-success">@TempData["Success"]</label>
-                TempData["Success"] = null;
-            }
-            @if (TempData["Failed"] != null)
-            {
-                <label class="bg-danger">@TempData["Failed"]</label>
-                TempData["Failed"] = null;
-            }
-        </p>
-        <div>
-            Tenant Code : @ViewBag.TenantCode
+    <div class="container">
+        <div class="card-header">
+            <h1>Add Role</h1>
+        </div>
+        <div class="card-body">
+            <p>
+                @if (TempData["Success"] != null)
+                {
+                    <label class="bg-success">@TempData["Success"]</label>
+                    TempData["Success"] = null;
+                }
+                @if (TempData["Failed"] != null)
+                {
+                    <label class="bg-danger">@TempData["Failed"]</label>
+                    TempData["Failed"] = null;
+                }
+            </p>
 
         </div>
-        <div class="card-columns">
-            <form asp-controller="RolesManagement" asp-action="SaveUserRoles" method="post">
-                <input type="hidden" name="hdnUserID" value="@ViewBag.UserID" />
-                <table width="80%">
-                    @if (roles.Count > 0)
-                    {
-                        <tr>
-                            <td>
-                                Roles
-                            </td>
-                            <td>
-                                @foreach (var item in roles)
-                                {
-                                    var selected = userselectedroles.Where(d => d.Name == item.Name).FirstOrDefault();
-                                    <label>
-                                        <input type="checkbox" name="chkRoles" value="@item.Name" @if (selected != null) { <text> checked="checked" </text> } /> @item.Name
-                                    </label><br />
-                                }
-                            </td>
-                        </tr>
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="2">No Roles available for current tenant.</td>
-                        </tr>
-                    }
+
+        <form asp-controller="Users" asp-action="SaveRolesForUser" id="saveUserRole" method="post">
+            <table class="table-borderless" style="width:80%">
+                <thead>
                     <tr>
-                        <td>
-                            @if (roles.Count > 0)
-                            {
-                                <input type="submit" name="btnSubmit" value="Add" />
-                            }
-                            <a href="@Url.Content("~/RolesManagement/UserIndex/"+ViewBag.UserID)"><input type="button" name="btnCancel" value="Back" /></a>
+                        <th>
+                            Available Users
+                        </th>
+                        <th>
+                            &nbsp;
+                        </th>
+                        <th>
+                            Current Users
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td valign="top">
+                            <select class="custom-select" id="avaialbleRoles" multiple size="8" style="width:40%">
+                                @foreach (var i in Model.AvaialbleUser)
+                                {
+                                    <option value=@i.Id>@(i.FirstName +" "+ i.LastName)</option>
+                                }
+                            </select>
+                        </td>
+                        <td valign="top">
+                            <div class="subject-info-arrows text-center">
+                                <input type='button' id='btnAllRight' value='>>' class="btn btn-outline-primary" /><br />
+                                <input type='button' id='btnRight' value='  >' class="btn btn-outline-primary" /><br />
+                                <input type='button' id='btnLeft' value='<  ' class="btn btn-outline-primary" /><br />
+                                <input type='button' id='btnAllLeft' value='<<' class="btn btn-outline-primary" />
+                            </div>
+                        </td>
+                        <td valign="top">
+                            <select class="custom-select" id="currentRoles" multiple size="8" style="width:40%">
+                                @foreach (var i in Model.CurrentUser)
+                                {
+                                    <option value=@i.Id>@(i.FirstName +" "+ i.LastName)</option>
+                                }
+                            </select>
                         </td>
                     </tr>
-                </table>
-            </form>
-        </div>
+                    <tr><td colspan="3"> <input type="submit" name="btnSubmit" id="btn-submit" value="Finished" /></td></tr>
+                </tbody>
+            </table>
+        </form>
+        <script type="text/javascript">
+    $(function () {
+        $("#btn-submit").click(function () {
+
+            var selectedValues = $('#currentRoles option');
+            let a = [];
+
+            for (var i = 0; i < selectedValues.length; i++) {
+                if (selectedValues[i].value != "") {
+                    a.push(selectedValues[i].value);
+
+                }
+            }
+            alert(a);
+            var input = $("<input>")
+                .attr("type", "hidden")
+                .attr("name", "selectedUsers").val(a);
+
+            var input1 = $("<input>")
+                .attr("type", "hidden")
+                .attr("name", "selectedRole").val('@Model.SelectedRoleId')
+
+            $('#saveUserRole').append(input);
+            $('#saveUserRole').append(input1);
+
+
+            return true;
+        });
+        $('#btnRight').click(function (e) {
+            var selectedOpts = $('#avaialbleRoles option:selected');
+            if (selectedOpts.length == 0) {
+                alert("Nothing to move.");
+                e.preventDefault();
+            }
+            $('#currentRoles').append($(selectedOpts).clone());
+            $(selectedOpts).remove();
+            e.preventDefault();
+        });
+        $('#btnAllRight').click(function (e) {
+            var selectedOpts = $('#avaialbleRoles option');
+            if (selectedOpts.length == 0) {
+                alert("Nothing to move.");
+                e.preventDefault();
+            }
+            $('#currentRoles').append($(selectedOpts).clone());
+            $(selectedOpts).remove();
+            e.preventDefault();
+        });
+        $('#btnLeft').click(function (e) {
+            var selectedOpts = $('#currentRoles option:selected');
+            if (selectedOpts.length == 0) {
+                alert("Nothing to move.");
+                e.preventDefault();
+            }
+            $('#avaialbleRoles').append($(selectedOpts).clone());
+            $(selectedOpts).remove();
+            e.preventDefault();
+        });
+        $('#btnAllLeft').click(function (e) {
+            var selectedOpts = $('#currentRoles option');
+            if (selectedOpts.length == 0) {
+                alert("Nothing to move.");
+                e.preventDefault();
+            }
+            $('#avaialbleRoles').append($(selectedOpts).clone());
+            $(selectedOpts).remove();
+            e.preventDefault();
+        });
+    });
+        </script>
     </div>
-</div>

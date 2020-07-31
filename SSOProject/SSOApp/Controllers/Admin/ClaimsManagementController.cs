@@ -4,68 +4,38 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using App.SQLServer.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using SSOApp.Controllers.Home;
 using SSOApp.Controllers.UI;
 using SSOApp.Models;
 using SSOApp.ViewModels;
 
 namespace SSOApp.Controllers.Admin
 {
-    public class ClaimsManagementController : Controller
+    public class ClaimsManagementController : BaseController
     {
+        public readonly ApplicationDbContext _myContext;
+        public ClaimsManagementController(ApplicationDbContext context) : base(context)
+        {
+            _myContext = context;
+        }
+
         public async Task<IActionResult> Index()
         {
-            await BindTenantDD();
+            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode})";
             var getroles = new List<ClaimsViewModel>();
             using (var client = new HttpClient())
             {
                 //getallroles
-                client.BaseAddress = new Uri("https://localhost:44391/APIClaims/getallclaims");
+                client.BaseAddress = new Uri("https://localhost:44391/APIClaims/getallclaimssbytenant?tcode=" + TenantId);
                 var postTask = await client.GetAsync(client.BaseAddress);
                 string apiResponse = await postTask.Content.ReadAsStringAsync();
                 getroles = JsonConvert.DeserializeObject<List<ClaimsViewModel>>(apiResponse);
             }
             return View(getroles);
-        }
-
-        private async Task BindTenantDD()
-        {
-            using (var client = new HttpClient())
-            {
-                //getallusers
-                client.BaseAddress = new Uri("https://localhost:44391/APITenant/getddtenant");
-                var postTask = await client.GetAsync(client.BaseAddress);
-                string apiResponse = await postTask.Content.ReadAsStringAsync();
-                ViewBag.TenantDD = JsonConvert.DeserializeObject<List<SelectListItem>>(apiResponse);
-            }
-        }
-
-        public async Task<IActionResult> GetClaimsByTenant(string tcode)
-        {
-            //TODO: removoe tcode
-            tcode = "ABCO";
-            var getroles = new List<ClaimsViewModel>();
-
-            using (var client = new HttpClient())
-            {
-                //getallusers
-                if (!string.IsNullOrEmpty(tcode))
-                {
-                    //Select by code
-                    client.BaseAddress = new Uri("https://localhost:44391/APIClaims/getallclaimssbytenant?tcode=" + tcode);
-                }
-                else
-                {
-                    //Select All
-                    client.BaseAddress = new Uri("https://localhost:44391/APIClaims/getallclaims");
-                }
-                var postTask = await client.GetAsync(client.BaseAddress);
-                string apiResponse = await postTask.Content.ReadAsStringAsync();
-                getroles = JsonConvert.DeserializeObject<List<ClaimsViewModel>>(apiResponse);
-            }
-            return PartialView("_ClaimsGrid", getroles);
         }
 
         public IActionResult Create()
@@ -95,7 +65,7 @@ namespace SSOApp.Controllers.Admin
         [HttpPost]
         public async Task<IActionResult> Edit(ClaimsViewModel model)
         {
-            model.TenantCode = "ABCO";
+            model.TenantID = new Guid(TenantId);
             var getroles = new RoleViewModel();
             if (ModelState.IsValid)
             {
@@ -112,11 +82,9 @@ namespace SSOApp.Controllers.Admin
 
                         string apiResponse = await postTask.Content.ReadAsStringAsync();
                         var resultjson = JsonConvert.DeserializeObject<APIReturnedModel>(apiResponse);
-                        if (resultjson.status == AccountOptions.API_Response_Saved)
-                        {
-                            TempData["Success"] = AccountOptions.API_Response_Saved;
-                            return RedirectToAction("Index");
-                        }
+                        TempData["Success"] = AccountOptions.API_Response_Saved;
+                        return RedirectToAction("Index");
+
                     }
                     catch (Exception ex)
                     {
@@ -134,7 +102,7 @@ namespace SSOApp.Controllers.Admin
             {
                 //HTTP POST
                 client.BaseAddress = new Uri("https://localhost:44391/APIClaims/deleteclaim");
-                ClaimsViewModel model = new ClaimsViewModel { Name = "NotRequired", ID = id };
+                ClaimsViewModel model = new ClaimsViewModel { Name = "NotRequired", ID = new Guid(id) };
                 var json = JsonConvert.SerializeObject(model);
                 var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
                 var postTask = await client.PostAsync(client.BaseAddress, stringContent);

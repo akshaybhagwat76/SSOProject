@@ -29,9 +29,6 @@ namespace SSOApp.ViewModels
         public SelectList RolesSelectedList { get; set; }
         public string[] SelectedRoleID { get; set; }
         public string[] UnSelectedRoleID { get; set; }
-
-
-
-
     }
+    
 }

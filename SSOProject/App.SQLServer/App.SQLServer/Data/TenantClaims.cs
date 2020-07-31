@@ -14,10 +14,9 @@ namespace App.SQLServer.Data
         public Guid ID { get; set; }
         [Required]
         public Guid TenantID { get; set; }
+        
         [StringLength(500)]
-        public string ClaimType { get; set; }
-        [StringLength(500)]
-        public string ClaimValue { get; set; }
+        public string ClaimName { get; set; }
 
         public bool IsAvailable { get; set; }
     }
