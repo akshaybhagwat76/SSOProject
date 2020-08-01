@@ -44,7 +44,7 @@ namespace App.SQLServer.Data
                 var fieldType2 = new FieldType()
                 {
                     ID = Guid.NewGuid(),
-                    Name = "UserLoopUp",
+                    Name = "UserLookUp",
                 };
 
 
@@ -55,7 +55,7 @@ namespace App.SQLServer.Data
                 var fieldType3 = new FieldType()
                 {
                     ID = Guid.NewGuid(),
-                    Name = "Drop Down",
+                    Name = "DropDown",
                 };
 
                 context.Entry<FieldType>(fieldType3).State = EntityState.Detached;

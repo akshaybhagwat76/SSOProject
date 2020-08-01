@@ -41,10 +41,10 @@ namespace App.SQLServer.Data
 
 
             builder.Entity<RoleModules>()
-                .HasKey(x => new { x.ModuleID, x.RoleID });
+                .HasKey(x => new { x.TenantId, x.ModuleID, x.RoleID });
 
             builder.Entity<RoleModuleClaim>()
-                 .HasKey(x => new { x.RoleID, x.ModuleID, x.ClaimID });
+                 .HasKey(x => new {x.TenantId, x.RoleID, x.ModuleID, x.ClaimID });
 
         }
     }

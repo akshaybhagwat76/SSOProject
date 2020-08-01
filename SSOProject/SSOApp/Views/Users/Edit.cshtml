@@ -5,7 +5,7 @@
 }
 <script>
     function checkRoles() {
-        
+
         var chk_arr = document.getElementsByName("SelectedRoles");
         var chklength = chk_arr.length;
         alert(chklength);
@@ -38,7 +38,7 @@
         </p>
 
         <div class="row">
-
+            <div><b> @TempData["TenaneDetails"];</b></div>
 
             <div class="col-sm-6">
                 <div class="panel panel-default">
@@ -71,9 +71,9 @@
                                     <span asp-validation-for="UserName"></span>
                                 </div>
                                 @*<h3>Change Password</h3>
-                                <input type="hidden" name="Password" value="xxxx" />
-                                <input type="hidden" name="ConfirmPassword" value="xxxx" />
-                                Click <a href="@Url.Content("~/Users/ChangePassword/"+Model.UserID)">here</a> to go to change password page.*@
+                                    <input type="hidden" name="Password" value="xxxx" />
+                                    <input type="hidden" name="ConfirmPassword" value="xxxx" />
+                                    Click <a href="@Url.Content("~/Users/ChangePassword/"+Model.UserID)">here</a> to go to change password page.*@
                                 @*<div class="form-group">
                                         <label asp-for="Password"></label>
                                         <input type="password" class="form-control" placeholder="Password" asp-for="Password" autocomplete="off">
@@ -85,28 +85,28 @@
                                         <span asp-validation-for="ConfirmPassword"></span>
                                     </div>*@
                                 @*<div class="form-group">
-                                    <label asp-for="TenanntCode"></label>
-                                    <input class="form-control" placeholder="TenantCode" asp-for="TenanntCode" value="@Model.TenanntCode" required>
-                                    <span asp-validation-for="TenanntCode"></span>
-                                </div>*@
+                                        <label asp-for="TenanntCode"></label>
+                                        <input class="form-control" placeholder="TenantCode" asp-for="TenanntCode" value="@Model.TenanntCode" required>
+                                        <span asp-validation-for="TenanntCode"></span>
+                                    </div>*@
                                 <div class="form-group">
                                     <label asp-for="IsActive">Active</label>
                                     <input type="checkbox" id="UserIsActive" name="UserIsActive" @if (Model.IsActive) { <text> checked="checked" </text> } />
                                 </div>
                                 @*<div class="form-group">
-                                    <label>Assign Roles</label>
-                                    @foreach (var item in Model.DDRoleList)
-                                    {
-                                        var isSelected = Model.SelectedRoles.FirstOrDefault(d => d == item.Text);
-                                        <label><input name="SelectedRoles" type="checkbox" value="@item.Text" @if (isSelected != null) { <text> checked="checked" </text> }>@item.Text</label>
-                                    }
+                                        <label>Assign Roles</label>
+                                        @foreach (var item in Model.DDRoleList)
+                                        {
+                                            var isSelected = Model.SelectedRoles.FirstOrDefault(d => d == item.Text);
+                                            <label><input name="SelectedRoles" type="checkbox" value="@item.Text" @if (isSelected != null) { <text> checked="checked" </text> }>@item.Text</label>
+                                        }
 
-                                </div>*@
-                            <div class="form-group">
-                                @*<input type="submit" class="btn btn-primary" name="button" value="Save" onclick="return checkRoles();" />*@
-                                <input type="submit" class="btn btn-primary" name="button" value="Save" />
-                                <a href="@Url.Content("~/Users/Index")" class="btn btn-default">Back to Users</a>
-                            </div>
+                                    </div>*@
+                                <div class="form-group">
+                                    @*<input type="submit" class="btn btn-primary" name="button" value="Save" onclick="return checkRoles();" />*@
+                                    <input type="submit" class="btn btn-primary" name="button" value="Save" />
+                                    <a href="@Url.Content("~/Users/Index")" class="btn btn-default">Back to Users</a>
+                                </div>
                             </fieldset>
                         </form>
                     </div>

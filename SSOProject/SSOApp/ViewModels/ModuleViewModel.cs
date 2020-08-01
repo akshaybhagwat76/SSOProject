@@ -12,6 +12,8 @@ namespace SSOApp.ViewModels
         [Required]
         public string ModuleName { get; set; }
 
+        [Required]
+        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage ="Field should not have space.")]
         public string ModuleLabel { get; set; }
 
         public Guid ID { get; set; }
@@ -21,5 +23,7 @@ namespace SSOApp.ViewModels
         public string UserFullName { get; set; }
 
         public string UserID { get; set; }
+
+        public List<TenantClaims> ModuleClaim { get; set; }
     }
 }

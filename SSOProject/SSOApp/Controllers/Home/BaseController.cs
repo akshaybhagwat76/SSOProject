@@ -9,17 +9,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SSOApp.Controllers.Home
 {
+    [ViewComponent(Name = "Module")]
     public class BaseController : Controller
     {
         public readonly ApplicationDbContext _context;
 
-       
+
         public BaseController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-       public ClaimsPrincipleExtended CurrentUser
+        public ClaimsPrincipleExtended CurrentUser
         {
             get
             {
@@ -42,11 +43,11 @@ namespace SSOApp.Controllers.Home
             }
         }
 
-        public string TenantId
+        public Guid TenantId
         {
             get
             {
-                return CurrentUser.Claims.FirstOrDefault(c => c.Type == "TenantID")?.Value;
+                return new Guid(CurrentUser.Claims.FirstOrDefault(c => c.Type == "TenantID")?.Value);
             }
         }
 
@@ -70,6 +71,14 @@ namespace SSOApp.Controllers.Home
             get
             {
                 return CurrentUser.Claims.FirstOrDefault(c => c.Type == "FullName")?.Value;
+            }
+        }
+
+        public string RoleId
+        {
+            get
+            {
+                return CurrentUser.Claims.FirstOrDefault(c => c.Type == "RoleId")?.Value;
             }
         }
 

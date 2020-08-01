@@ -1,0 +1,10 @@
+﻿
+@model SSOApp.ViewModels.AssignmentViewModule
+    <div>
+        <div>
+            <b>@TempData["TenaneDetails"]</b>
+        </div>
+        <form asp-controller="@Model.Controller" asp-action="@Model.Action" id="saveUserRole" method="post">
+            @Html.Partial("_Assignment", Model)
+        </form>
+    </div>

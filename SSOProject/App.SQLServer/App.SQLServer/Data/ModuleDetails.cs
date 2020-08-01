@@ -14,7 +14,7 @@ namespace App.SQLServer.Data
     {
         [Key]
         public Guid ID { get; set; }
-        
+
         public string ModuleName { get; set; }
 
         public string ModuleLabel { get; set; }
@@ -28,6 +28,8 @@ namespace App.SQLServer.Data
     [Table("AspNetRoleModuleClaim")]
     public class RoleModuleClaim
     {
+        public Guid TenantId { get; set; }
+
         [Key]
         [ForeignKey("Tenant_Role")]
         public Guid RoleID { get; set; }
@@ -41,7 +43,6 @@ namespace App.SQLServer.Data
         public Guid ClaimID { get; set; }
 
         public virtual ModuleDetails Module { get; set; }
-
 
     }
 

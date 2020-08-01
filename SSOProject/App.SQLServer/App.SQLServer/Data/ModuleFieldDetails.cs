@@ -16,6 +16,7 @@ namespace App.SQLServer.Data
         public Guid ID { get; set; }
 
         [Required(ErrorMessage = "Please Enter DBFeild ")]
+        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "Field should not have space.")]
         public string DBFieldName { get; set; }
 
         [Required(ErrorMessage = "Please Enter Feild Name")]
@@ -23,6 +24,7 @@ namespace App.SQLServer.Data
 
         [Required(ErrorMessage = "Please Select Feild Type")]
         public string FieldType { get; set; }
+
         public string TenantCode { get; set; }
 
         public bool visible { get; set; } = true;

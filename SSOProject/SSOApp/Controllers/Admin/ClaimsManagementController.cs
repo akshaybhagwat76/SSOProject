@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using App.SQLServer.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
@@ -65,7 +67,7 @@ namespace SSOApp.Controllers.Admin
         [HttpPost]
         public async Task<IActionResult> Edit(ClaimsViewModel model)
         {
-            model.TenantID = new Guid(TenantId);
+            model.TenantID = TenantId;
             var getroles = new RoleViewModel();
             if (ModelState.IsValid)
             {
@@ -115,6 +117,64 @@ namespace SSOApp.Controllers.Admin
                     TempData["Failed"] = AccountOptions.API_Response_Failed;
             }
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> GetModuleClaim(string roleid)
+        {
+            var role = _context.Roles.FirstOrDefault(x => x.Id == roleid);
+            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode}) Role: {role.Name}";
+            //Get All Module
+            var moduleList = new List<ModuleViewModel>();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44391/APIClaims/getmoduleclaimbyrole?roleId=" + roleid + "&tenantId=" + TenantId);
+                var postTask = await client.GetAsync(client.BaseAddress);
+                string apiResponse = await postTask.Content.ReadAsStringAsync();
+                moduleList = JsonConvert.DeserializeObject<List<ModuleViewModel>>(apiResponse);
+            }
+            TempData["Roleid"] = roleid;
+            return View("ModuleClaim", moduleList);
+        }
+
+        public async Task<IActionResult> SaveModuleClaim(IFormCollection formData)
+        {
+            var selectedClaim = formData["selctedClaim"][0].Split(",");
+            var selectedRole = formData["roleID"][0];
+            var lstModuleClaim = new List<RoleModuleClaim>();
+            foreach (var item in selectedClaim)
+            {
+                RoleModuleClaim saveModuleClaimViewModel = new RoleModuleClaim
+                {
+                    TenantId = TenantId,
+                    RoleID = new Guid(selectedRole),
+                    ModuleID = new Guid(item.Split("_")[0]),
+                    ClaimID = new Guid(item.Split("_")[1])
+                };
+                lstModuleClaim.Add(saveModuleClaimViewModel);
+            }
+
+            using (var client = new HttpClient())
+            {
+                //HTTP POST
+                try
+                {
+
+                    client.BaseAddress = new Uri("https://localhost:44391/APIClaims/SaveModuleClaim");
+                    var json = JsonConvert.SerializeObject(lstModuleClaim);
+                    var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
+                    var postTask = await client.PostAsync(client.BaseAddress, stringContent);
+
+                    string apiResponse = await postTask.Content.ReadAsStringAsync();
+                    var resultjson = JsonConvert.DeserializeObject<APIReturnedModel>(apiResponse);
+                    TempData["Success"] = resultjson.status;
+                }
+                catch (Exception ex)
+                {
+                    TempData["Failed"] = "Error Occured";
+                }
+            }
+
+            return RedirectToAction("GetModuleClaim", new { roleid = selectedRole });
         }
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using SSOApp.Controllers.Home;
 using SSOApp.Controllers.UI;
@@ -115,8 +116,9 @@ namespace SSOApp.Controllers.Admin
 
         public async Task<IActionResult> UserIndex(string selectedUserid)
         {
+            var selectedUser = await _context.Users.FirstOrDefaultAsync(x => x.Id == selectedUserid);
+            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode}) User: {selectedUser.FirstName} {selectedUser.LastName}";
             
-            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode}) User : {FullName}";
             UserRoleViewModel userRoleView = new UserRoleViewModel();
 
             using (var client = new HttpClient())
@@ -139,6 +141,7 @@ namespace SSOApp.Controllers.Admin
             return View(userRoleView);
         }
 
+        [HttpPost]
         public async Task<IActionResult> SaveUserRoles(IFormCollection formCollection)
         {
             var selectedRoles = formCollection["myData"][0].Split(",");
