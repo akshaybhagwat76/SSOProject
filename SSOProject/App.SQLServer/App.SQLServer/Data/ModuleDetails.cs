@@ -28,6 +28,7 @@ namespace App.SQLServer.Data
     [Table("AspNetRoleModuleClaim")]
     public class RoleModuleClaim
     {
+
         public Guid TenantId { get; set; }
 
         [Key]
