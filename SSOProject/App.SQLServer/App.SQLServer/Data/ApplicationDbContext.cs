@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace App.SQLServer.Data
@@ -21,6 +22,9 @@ namespace App.SQLServer.Data
         public DbSet<TenantClaims> TenantClaims { get; set; }
         public DbSet<TenantRoles> TenantRoles { get; set; }
 
+        public DbSet<RoleModules> ModuleRoles { get; set; }
+
+        public DbSet<RoleModuleClaim> RoleModuleClaim { get; set; }
 
         //ModuleFieldOption
         public DbSet<ModuleFieldDetails> ModuleFieldDetails { get; set; }
@@ -34,6 +38,13 @@ namespace App.SQLServer.Data
             // Add your customizations after calling base.OnModelCreating(builder);
             builder.Entity<TenantRoles>()
             .HasKey(c => new { c.TenantID, c.RoleID });
+
+
+            builder.Entity<RoleModules>()
+                .HasKey(x => new { x.ModuleID, x.RoleID });
+
+            builder.Entity<RoleModuleClaim>()
+                 .HasKey(x => new { x.RoleID, x.ModuleID, x.ClaimID });
 
         }
     }

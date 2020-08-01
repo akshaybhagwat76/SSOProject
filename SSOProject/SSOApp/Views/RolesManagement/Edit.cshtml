@@ -19,7 +19,7 @@
             TempData["Failed"] = null;
         }
     </p>
-
+    <div><b> @TempData["TenaneDetails"];</b></div>
     <form asp-controller="RolesManagement" asp-action="Edit" method="post" class="form-horizontal">
         <input type="hidden" name="ID" value="@Model.ID" />
         <div asp-validation-summary="ModelOnly">

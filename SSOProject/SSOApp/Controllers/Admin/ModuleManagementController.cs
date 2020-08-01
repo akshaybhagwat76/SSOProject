@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using App.SQLServer.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -41,6 +43,12 @@ namespace SSOApp.Controllers.Admin
         public async Task<IActionResult> Index()
         {
             TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode})";
+            var moduleList = await ModuleListByTenant();
+            return View(moduleList);
+        }
+
+        private async Task<List<ModuleViewModel>> ModuleListByTenant()
+        {
             var moduleList = new List<ModuleViewModel>();
             using (var client = new HttpClient())
             {
@@ -49,56 +57,50 @@ namespace SSOApp.Controllers.Admin
                 string apiResponse = await postTask.Content.ReadAsStringAsync();
                 moduleList = JsonConvert.DeserializeObject<List<ModuleViewModel>>(apiResponse);
             }
-
-            return View(moduleList);
-
+            return moduleList;
         }
 
-        //private async Task BindTenantDD()
-        //{
-        //    using (var client = new HttpClient())
-        //    {
-        //        //getallusers
-        //        client.BaseAddress = new Uri("https://localhost:44391/APITenant/getddtenant");
-        //        var postTask = await client.GetAsync(client.BaseAddress);
-        //        string apiResponse = await postTask.Content.ReadAsStringAsync();
-        //        ViewBag.TenantDD = JsonConvert.DeserializeObject<List<SelectListItem>>(apiResponse);
-        //    }
-        //}
+        private async Task<List<RoleViewModel>> RoleListByTenant()
+        {
+            var getroles = new List<RoleViewModel>();
+            using (var client = new HttpClient())
+            {
+                //getallroles
+                client.BaseAddress = new Uri("https://localhost:44391/APIRoles/getallrolesbytenant?tcode=" + TenantCode);
+                var postTask = await client.GetAsync(client.BaseAddress);
+                string apiResponse = await postTask.Content.ReadAsStringAsync();
+                getroles = JsonConvert.DeserializeObject<List<RoleViewModel>>(apiResponse);
+            }
+            return getroles;
+        }
 
-        //public async Task<IActionResult> GetModuleByTenant(string tcode)
-        //{
-        //    //TODO: removoe tcode
-        //    tcode = "ABCO";
-        //    var getroles = new List<ModuleViewModel>();
+        private async Task<List<RoleViewModel>> RoleListByModule(string moduleId)
+        {
+            var getroles = new List<RoleViewModel>();
+            using (var client = new HttpClient())
+            {
+                //getallroles
+                client.BaseAddress = new Uri("https://localhost:44391/APIRoles/getallrolesbymodule?moduleId=" + moduleId);
+                var postTask = await client.GetAsync(client.BaseAddress);
+                string apiResponse = await postTask.Content.ReadAsStringAsync();
+                getroles = JsonConvert.DeserializeObject<List<RoleViewModel>>(apiResponse);
+            }
+            return getroles;
+        }
 
-        //    using (var client = new HttpClient())
-        //    {
-        //        //getallusers
-        //        if (!string.IsNullOrEmpty(tcode))
-        //        {
-        //            //Select by code
-        //            client.BaseAddress = new Uri("https://localhost:44391/APIModules/getallmodulesbytenant?tcode=" + tcode);
-        //        }
-        //        else
-        //        {
-        //            //Select All
-        //            client.BaseAddress = new Uri("https://localhost:44391/APIModules/getallmodules");
-        //        }
-        //        try
-        //        {
-        //            var postTask = await client.GetAsync(client.BaseAddress);
-        //            string apiResponse = await postTask.Content.ReadAsStringAsync();
-        //            getroles = JsonConvert.DeserializeObject<List<ModuleViewModel>>(apiResponse);
 
-        //        }
-        //        catch (Exception ex)
-        //        {
-
-        //        }
-        //    }
-        //    return PartialView("_ModuleGrid", getroles);
-        //}
+        private async Task<List<ModuleViewModel>> ModuleListByRole(string roleId)
+        {
+            var moduleList = new List<ModuleViewModel>();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44391/APIModules/getallmodulesbyrole?roleId=" + roleId);
+                var postTask = await client.GetAsync(client.BaseAddress);
+                string apiResponse = await postTask.Content.ReadAsStringAsync();
+                moduleList = JsonConvert.DeserializeObject<List<ModuleViewModel>>(apiResponse);
+            }
+            return moduleList;
+        }
 
         public IActionResult Create()
         {
@@ -147,6 +149,7 @@ namespace SSOApp.Controllers.Admin
         }
 
 
+
         //FieldCreate
         public IActionResult CreateField(string moduleid)
         {
@@ -161,6 +164,7 @@ namespace SSOApp.Controllers.Admin
         [HttpPost]
         public async Task<IActionResult> CreateField(FeildModelView feildModelView)
         {
+
             ViewBag.TenantName = CurrentUser.TenantName;
             ViewBag.TenantCode = CurrentUser.TenantCode;
             if (ModelState.IsValid)
@@ -355,5 +359,121 @@ namespace SSOApp.Controllers.Admin
         //    return View(TenantRoleViewModel);
         //}
 
+        [HttpGet]
+        public async Task<IActionResult> AddModuleToRole(string roleid)
+        {
+            var roleName = await _context.Roles.FirstOrDefaultAsync(x => x.Id == roleid);
+            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode}) Role: {roleName}";
+
+            var model = new AssignmentViewModule
+            {
+                AvailableValues = new List<ListItemValue>(),
+                CurrentValues = new List<ListItemValue>()
+            };
+            var moduleListByTenant = await ModuleListByTenant();
+            var moduleListByRole = await ModuleListByRole(roleid);
+            var finalMOduleByTenant = moduleListByTenant.Except(moduleListByRole);
+            
+            foreach (var module in moduleListByRole)
+            {
+                model.CurrentValues.Add(new ListItemValue { DisplayText = module.ModuleName, DisplayValue = module.ID.ToString() });
+            }
+
+            foreach (var module in finalMOduleByTenant)
+            {
+                model.AvailableValues.Add(new ListItemValue { DisplayText = module.ModuleName, DisplayValue = module.ID.ToString() });
+            }
+
+            model.Controller = "ModuleManagement";
+            model.Action = "AddModuleToRole";
+            model.Entity = "Module";
+            model.SelectedValue = roleid;
+            return View("View", model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddModuleToRole(IFormCollection formData)
+        {
+            //
+            var selectedUsers = formData["selectedValue"][0].Split(",");
+            var selectedRole = formData["selectedforItem"][0];
+
+            var assignmentViewModel = new AssignmentSaveViewModule
+            {
+                ListofAssignment = new List<string>()
+            };
+            assignmentViewModel.ListofAssignment.AddRange(selectedUsers);
+            assignmentViewModel.SelectedValue = selectedRole;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44391/APIModules/saverolesmodule");                
+                var json = JsonConvert.SerializeObject(assignmentViewModel);
+                var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
+                //HTTP POST                        
+                var postTask = await client.PostAsync(client.BaseAddress, stringContent);
+                var result = postTask.Content;
+            }
+            return RedirectToAction("AddModuleToRole", new { roleid = selectedRole });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddRoleToModule(string moduleid, string tenantcode)
+        {
+            var moduleName = await _context.ModuleDetails.FirstOrDefaultAsync(x => x.ID == new Guid(moduleid));
+            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode}) Role: {moduleName.ModuleName}";
+
+            var model = new AssignmentViewModule
+            {
+                AvailableValues = new List<ListItemValue>(),
+                CurrentValues = new List<ListItemValue>()
+            };
+
+            var roleListByTenant = await RoleListByTenant();
+            var roleListByModule = await RoleListByModule(moduleid);
+            var finalMOduleByTenant = roleListByTenant.Except(roleListByModule);
+
+            foreach (var module in finalMOduleByTenant)
+            {
+                model.AvailableValues.Add(new ListItemValue { DisplayText = module.Name, DisplayValue = module.ID.ToString() });
+            }
+
+            foreach (var module in roleListByModule)
+            {
+                model.CurrentValues.Add(new ListItemValue { DisplayText = module.Name, DisplayValue = module.ID.ToString() });
+            }
+
+            model.Controller = "ModuleManagement";
+            model.Action = "AddRoleToModule";
+            model.Entity = "Module";
+            model.SelectedValue = moduleid;
+            return View("View", model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddRoleToModule(IFormCollection formData)
+        {
+            //
+            var selectedRole = formData["selectedValue"][0].Split(",");
+            var selectedModule = formData["selectedforItem"][0];
+
+            var assignmentViewModel = new AssignmentSaveViewModule
+            {
+                ListofAssignment = new List<string>()
+            };
+            assignmentViewModel.ListofAssignment.AddRange(selectedRole);
+            assignmentViewModel.SelectedValue = selectedModule;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44391/APIModules/saverolesmodule");
+                var json = JsonConvert.SerializeObject(assignmentViewModel);
+                var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
+                //HTTP POST                        
+                var postTask = await client.PostAsync(client.BaseAddress, stringContent);
+                var result = postTask.Content;
+            }
+            return RedirectToAction("AddModuleToRole", new { roleid = selectedRole });
+        }
     }
 }

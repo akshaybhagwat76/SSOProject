@@ -44,11 +44,11 @@
     {
         <tr>
             <td>@item.Name</td>
+            <td><a href="@Url.Content("~/ModuleManagement/AddModuleToRole?roleid="+item.ID)">Module List</a></td>
             <td><a href="@Url.Content("~/Users/AddRoleToUser?roleid="+item.ID)">Users List</a></td>
-            <td><a href="@Url.Content("~/Users/AddModuleToRole?roleid="+item.ID)">Module List</a></td>
+
             <td>
                 <a href="@Url.Content("~/RolesManagement/Edit?rid="+item.ID)">Edit</a>|
-                <a href="@Url.Content("~/RolesManagement/Edit?rid="+item.ID)">Claim</a>|
                 <a href="@Url.Content("~/RolesManagement/Edit?rid="+item.ID)">Claim</a>|
                 <a href="@Url.Content("~/RolesManagement/Delete/"+item.ID)" onclick="return confirm('Are you sure want to delete this role?')">Delete</a>
             </td>

@@ -30,5 +30,17 @@ namespace SSOApp.ViewModels
         public string[] SelectedRoleID { get; set; }
         public string[] UnSelectedRoleID { get; set; }
     }
+
+    public class RoleModuleClaimViewModel
+    {
+        public Guid Role { get; set; }
+
+        public string Name { get; set; }
+        
+        public string ID { get; set; }
+
+        public List<ClaimsViewModel> Claims { get; set; }
+
+    }
     
 }
