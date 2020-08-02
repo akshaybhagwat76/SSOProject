@@ -16,46 +16,50 @@ using IdentityServer4.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using App.SQLServer.Data;
 using SSOApp.Models;
+using Microsoft.EntityFrameworkCore;
+using SSOApp.ViewModels;
 
 namespace SSOApp.Controllers.UI
 {
     [SecurityHeaders]
     [Authorize]
-    
+
     public class HomeController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<HomeController> _logger;
         private readonly IIdentityServerInteractionService _interaction;
         private readonly IWebHostEnvironment _environment;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(IIdentityServerInteractionService interaction, IWebHostEnvironment environment, ILogger<HomeController> logger, UserManager<ApplicationUser> userManager)
+        public HomeController(IIdentityServerInteractionService interaction, IWebHostEnvironment environment, ILogger<HomeController> logger, UserManager<ApplicationUser> userManager, ApplicationDbContext context)
         {
             _interaction = interaction;
             _environment = environment;
             _logger = logger;
             _userManager = userManager;
+            _context = context;
         }
-        
+
         public async Task<IActionResult> Index()
         {
             var model = new SecureAPIReturnedModel();
             //Secure API Calls Initiate Logsin and get back data.
             var getuser = await _userManager.FindByNameAsync(User.Identity.Name);
-            if(getuser.TenantCode=="ABCO")
+            if (getuser.TenantCode == "ABCO")
             {
                 return RedirectToAction("Index", "Tenant");
             }
             model = await SetupApp.SecureAPIGetUser("Admin", getuser.Id);
-            ViewBag.Roles = await _userManager.GetRolesAsync(getuser);            
-         
+            ViewBag.Roles = await _userManager.GetRolesAsync(getuser);
+
             return View(model);
         }
 
         /// <summary>
         /// Shows the error page
         /// </summary>
-        
+
         public async Task<IActionResult> Error(string errorId)
         {
             var vm = new ErrorViewModel();
@@ -78,6 +82,6 @@ namespace SSOApp.Controllers.UI
         public IActionResult Privacy()
         {
             return View();
-        }      
+        }
     }
 }

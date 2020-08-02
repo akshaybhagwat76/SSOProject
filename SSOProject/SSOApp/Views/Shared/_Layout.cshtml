@@ -1,12 +1,13 @@
 ﻿@using IdentityServer4.Extensions
+@using SSOApp.Controllers.Home
 @using App.SQLServer.Data;
-@model dynamic
 @{
     string name = null;
+
     if (!true.Equals(ViewData["signed-out"]))
     {
         name = Context.User?.GetDisplayName();
-    }
+    };
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -22,58 +23,9 @@
 </head>
 <body>
     <header>
-        @foreach(var m in Model)
-        {
-           <p>@m.ModuleName</p>
-        }
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class=container>
-                <a class="navbar-brand" href="#">SSOApp</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @name
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                @if (Context.User.IsInRole("Admin"))
-                                {
-                                    <a class="dropdown-item" asp-action="Edit" asp-controller="Users" asp-route-id="0040746f-ad4e-468a-9793-15cf5ad2e293">Update Profile</a>
-                                    <a class="dropdown-item" asp-action="ChangePassword" asp-controller="Users" asp-route-id="0040746f-ad4e-468a-9793-15cf5ad2e293">Change Password</a>
-                                }
-                                <a class="dropdown-item" asp-action="Logout" asp-controller="Account">Logout</a>
-                            </div>
-
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-
-
-                        @if (Context.User.IsInRole("Admin"))
-                        {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Setup
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" asp-action="Index" asp-controller="ModuleManagement">Module Management</a>
-                                    <a class="dropdown-item" asp-action="Index" asp-controller="Users">User Management</a>
-                                    <a class="dropdown-item" asp-action="Index" asp-controller="RolesManagement">Role Management</a>
-                                    <a class="dropdown-item" asp-action="Index" asp-controller="ClaimsManagement">Claims Management</a>
-                                </div>
-                            </li>
-                        }
-                    </ul>
-                </div>
-            </div>
+        <nav class="navbar navbar-expand-md navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            @await Component.InvokeAsync("NavigationMenu")
+           
         </nav>
     </header>
     <div class="container">
