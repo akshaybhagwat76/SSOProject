@@ -1,0 +1,78 @@
+﻿@model IEnumerable<SSOApp.ViewModels.ModuleViewModel>
+@{
+    ViewData["Title"] = "Modules by Role";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<p>
+    <b>@TempData["TenaneDetails"]</b>
+</p>
+<p>
+    @if (TempData["Success"] != null)
+    {
+        <label class="bg-success">@TempData["Success"]</label>
+        TempData["Success"] = null;
+    }
+    @if (TempData["Failed"] != null)
+    {
+        <label class="bg-danger">@TempData["Failed"]</label>
+        TempData["Failed"] = null;
+    }
+</p>
+<form asp-controller="ClaimsManagement" asp-action="SaveModuleClaim" id="saveModuleClaim" method="post">
+    <table class="table">
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td colspan="2">
+                        <b>@Html.DisplayFor(modelItem => item.ModuleName)</b>
+                    </td>
+                </tr>
+                @foreach (var claim in item.ModuleClaim)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => claim.ClaimName)
+                        </td>
+                        <td>
+                            <input type="checkbox" id="@(item.ID.ToString()+'_'+@claim.ID)" checked='@claim.IsAvailable'>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+    <input type="submit" name="btnSubmit" id="btn-submit" value="Finished" />
+</form>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<script type="text/javascript">
+        $(function () {
+            let a = [];
+            $("#btn-submit").click(function () {
+                $('input[type=checkbox]').each(function () {
+                    if ($(this).is(':checked')) {
+                        a.push($(this).attr("id"));
+                    }
+                });
+
+
+            var input = $("<input>")
+                .attr("type", "hidden")
+                .attr("name", "selctedClaim").val(a);
+
+            var roleId = $("<input>")
+                .attr("type", "hidden")
+                .attr("name", "roleID").val('@TempData["Roleid"]');
+
+            $('#saveModuleClaim').append(input);
+            $('#saveModuleClaim').append(roleId);
+                return true;
+            });
+        });
+
+</script>

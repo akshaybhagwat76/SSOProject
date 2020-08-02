@@ -1,0 +1,124 @@
+﻿@model SSOApp.ViewModels.AssignmentViewModule
+
+
+<table class="table-borderless" style="width:80%">
+    <thead>
+        <tr>
+            <th>
+                Available @Model.Entity
+            </th>
+            <th>
+                &nbsp;
+            </th>
+            <th>
+                Current @Model.Entity
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td valign="top">
+                <select class="custom-select" id="avaialbleRoles" multiple size="8" style="width:40%">
+                    @foreach (var i in Model.AvailableValues)
+                    {
+                        <option value=@i.DisplayValue>@i.DisplayText</option>
+                    }
+                </select>
+            </td>
+            <td valign="top">
+                <div class="subject-info-arrows text-center">
+                    <input type='button' id='btnAllRight' value='>>' class="btn btn-outline-primary" /><br />
+                    <input type='button' id='btnRight' value='  >' class="btn btn-outline-primary" /><br />
+                    <input type='button' id='btnLeft' value='<  ' class="btn btn-outline-primary" /><br />
+                    <input type='button' id='btnAllLeft' value='<<' class="btn btn-outline-primary" />
+                </div>
+            </td>
+            <td valign="top">
+                <select class="custom-select" id="currentRoles" multiple size="8" style="width:40%">
+                    @foreach (var i in Model.CurrentValues)
+                    {
+                        <option value=@i.DisplayValue>@i.DisplayText</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr><td colspan="3"> <input type="submit" name="btnSubmit" id="btn-submit" value="Finished" /></td></tr>
+    </tbody>
+</table>
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btn-submit").click(function () {
+
+            var selectedValues = $('#currentRoles option');
+            let a = [];
+
+            for (var i = 0; i < selectedValues.length; i++) {
+                if (selectedValues[i].value != "") {
+                    a.push(selectedValues[i].value);
+
+                }
+            }
+            
+            var input = $("<input>")
+                .attr("type", "hidden")
+                .attr("name", "selectedValue").val(a);
+
+            var input1 = $("<input>")
+                .attr("type", "hidden")
+                .attr("name", "selectedforItem").val('@Model.SelectedValue')
+
+            $('#saveUserRole').append(input);
+            $('#saveUserRole').append(input1);
+
+
+            return true;
+        });
+        $('#btnRight').click(function (e) {
+            
+            var selectedOpts = $('#avaialbleRoles option:selected');
+            if (selectedOpts.length == 0) {
+                alert("Nothing to move.");
+                e.preventDefault();
+            }
+            $('#currentRoles').append($(selectedOpts).clone());
+            $(selectedOpts).remove();
+            e.preventDefault();
+        });
+        $('#btnAllRight').click(function (e) {
+            var selectedOpts = $('#avaialbleRoles option');
+            if (selectedOpts.length == 0) {
+                alert("Nothing to move.");
+                e.preventDefault();
+            }
+            $('#currentRoles').append($(selectedOpts).clone());
+            $(selectedOpts).remove();
+            e.preventDefault();
+        });
+        $('#btnLeft').click(function (e) {
+            var selectedOpts = $('#currentRoles option:selected');
+            if (selectedOpts.length == 0) {
+                alert("Nothing to move.");
+                e.preventDefault();
+            }
+            $('#avaialbleRoles').append($(selectedOpts).clone());
+            $(selectedOpts).remove();
+            e.preventDefault();
+        });
+        $('#btnAllLeft').click(function (e) {
+            var selectedOpts = $('#currentRoles option');
+            if (selectedOpts.length == 0) {
+                alert("Nothing to move.");
+                e.preventDefault();
+            }
+            $('#avaialbleRoles').append($(selectedOpts).clone());
+            $(selectedOpts).remove();
+            e.preventDefault();
+        });
+    });
+</script>

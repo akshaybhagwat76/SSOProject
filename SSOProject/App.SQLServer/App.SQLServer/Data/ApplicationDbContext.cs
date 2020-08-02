@@ -36,15 +36,16 @@ namespace App.SQLServer.Data
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
-            builder.Entity<TenantRoles>()
+           builder.Entity<TenantRoles>()
             .HasKey(c => new { c.TenantID, c.RoleID });
 
 
             builder.Entity<RoleModules>()
-                .HasKey(x => new { x.ModuleID, x.RoleID });
+                .HasKey(x => new { x.TenantId, x.ModuleID, x.RoleID });
 
             builder.Entity<RoleModuleClaim>()
-                 .HasKey(x => new { x.RoleID, x.ModuleID, x.ClaimID });
+                 .HasKey(x => new {x.TenantId, x.RoleID, x.ModuleID, x.ClaimID });
+
 
         }
     }

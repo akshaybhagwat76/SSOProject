@@ -21,6 +21,7 @@ namespace SSOApp.Controllers.UI
 {
     [SecurityHeaders]
     [Authorize]
+    
     public class HomeController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

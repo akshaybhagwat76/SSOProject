@@ -1,4 +1,4 @@
-﻿@model List<SSOApp.ViewModels.RoleViewModel>
+@model List<SSOApp.ViewModels.RoleViewModel>
 @{
     ViewData["Title"] = "Roles";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -49,7 +49,7 @@
 
             <td>
                 <a href="@Url.Content("~/RolesManagement/Edit?rid="+item.ID)">Edit</a>|
-                <a href="@Url.Content("~/RolesManagement/Edit?rid="+item.ID)">Claim</a>|
+                <a href="@Url.Content("~/ClaimsManagement/GetModuleClaim?roleid="+item.ID)">Claim</a>|
                 <a href="@Url.Content("~/RolesManagement/Delete/"+item.ID)" onclick="return confirm('Are you sure want to delete this role?')">Delete</a>
             </td>
         </tr>

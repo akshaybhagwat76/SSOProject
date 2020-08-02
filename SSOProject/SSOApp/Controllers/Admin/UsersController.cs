@@ -22,12 +22,12 @@ namespace SSOApp.Controllers.Admin
     //[Authorize(Roles = "Admin")]
     public class UsersController : BaseController
     {
-        
-        public UsersController(ApplicationDbContext context):base(context)
+
+        public UsersController(ApplicationDbContext context) : base(context)
         {
-           
+
         }
-       
+
         public async Task<IActionResult> Index()
         {
             TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode})";
@@ -51,9 +51,10 @@ namespace SSOApp.Controllers.Admin
 
         public IActionResult Create()
         {
-           return View();
+            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode})";
+            return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(UserViewModel model)
@@ -114,9 +115,11 @@ namespace SSOApp.Controllers.Admin
             }
             return RedirectToAction("UserIndex", "RolesManagement", new { id = userid });
         }
-       
+
         public async Task<IActionResult> Edit(string id)
         {
+            var selectedUser = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode}) User: {selectedUser.FirstName} {selectedUser.LastName}";
             var getuser = new UserViewModel();
 
             using (var client = new HttpClient())
@@ -244,13 +247,14 @@ namespace SSOApp.Controllers.Admin
                 else
                     TempData["Failed"] = AccountOptions.API_Response_Failed;
             }
-            return RedirectToAction("AddRoleToUser", new { selectedRole = selectedRole,  });
+            return RedirectToAction("AddRoleToUser", new { selectedRole = selectedRole, });
         }
 
         public async Task<IActionResult> ChangePassword(string id)
         {
             var getuser = new UserViewModel();
-
+            var selectedUser = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode}) User: {selectedUser.FirstName} {selectedUser.LastName}";
             using (var client = new HttpClient())
             {
                 //getrolebyname
@@ -264,8 +268,9 @@ namespace SSOApp.Controllers.Admin
 
         public async Task<IActionResult> ChangeUserPassword(string id)
         {
+            var selectedUser = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
             var getuser = new UserPasswordViewModel();
-
+            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode}) User: {selectedUser.FirstName} {selectedUser.LastName}";
             using (var client = new HttpClient())
             {
                 //getrolebyname

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -94,7 +94,7 @@ namespace SSOApp.Controllers.Admin
             var moduleList = new List<ModuleViewModel>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44391/APIModules/getallmodulesbyrole?roleId=" + roleId);
+                client.BaseAddress = new Uri("https://localhost:44391/APIModules/getallmodulesbyrole?roleId=" + roleId + "&tenantCode=" + TenantId);
                 var postTask = await client.GetAsync(client.BaseAddress);
                 string apiResponse = await postTask.Content.ReadAsStringAsync();
                 moduleList = JsonConvert.DeserializeObject<List<ModuleViewModel>>(apiResponse);
@@ -203,35 +203,35 @@ namespace SSOApp.Controllers.Admin
             }
             //TempData["Failed"] = AccountOptions.API_Response_Failed;
             //return View("CreateField", AccountOptions.API_Response_Failed);
-            return Json(AccountOptions.API_Response_Failed);
+            return RedirectToAction("CreateField", new { moduleid = feildModelView.ModuleId });
         }
 
 
-        //public async Task<IActionResult> EditField(string Fieldid)
-        //{
-        //    ViewBag.TenantName = CurrentUser.TenantName;
-        //    ViewBag.TenantCode = CurrentUser.TenantCode;
+        public async Task<IActionResult> EditField(string Fieldid)
+        {
+            ViewBag.TenantName = CurrentUser.TenantName;
+            ViewBag.TenantCode = CurrentUser.TenantCode;
 
-        //    var keyValueContent = FieldViewModel.ToKeyValue();
-        //    var formUrlEncodedContent = new FormUrlEncodedContent(keyValueContent);
-        //    var urlEncodedString = formUrlEncodedContent.ReadAsStringAsync();
-        //    ViewBag.FeildTypeList = new SelectList(_context.FieldTypes.AsNoTracking(), "Name", "Name");
+            var keyValueContent = FieldViewModel.ToKeyValue();
+            var formUrlEncodedContent = new FormUrlEncodedContent(keyValueContent);
+            var urlEncodedString = formUrlEncodedContent.ReadAsStringAsync();
+            ViewBag.FeildTypeList = new SelectList(_context.FieldTypes.AsNoTracking(), "Name", "Name");
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        using (var client = new HttpClient())
-        //        {
-        //            client.BaseAddress = new Uri("https://localhost:44391/APIModules/getFeildListByFeildId?FeildId=" + Fieldid);
-        //            var postTask = await client.GetAsync(client.BaseAddress);
-        //            string apiResponse = await postTask.Content.ReadAsStringAsync();
-        //            FieldViewModel = JsonConvert.DeserializeObject<FeildModelView>(apiResponse);
-        //        }
-        //    }
-        //    else
-        //        ModelState.AddModelError(string.Empty, AccountOptions.InvalidRoleName);
-        //    return View("CreateField", FieldViewModel);
+            if (ModelState.IsValid)
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("https://localhost:44391/APIModules/getFeildListByFeildId?FeildId=" + Fieldid);
+                    var postTask = await client.GetAsync(client.BaseAddress);
+                    string apiResponse = await postTask.Content.ReadAsStringAsync();
+                    FieldViewModel = JsonConvert.DeserializeObject<FeildModelView>(apiResponse);
+                }
+            }
+            else
+                ModelState.AddModelError(string.Empty, AccountOptions.InvalidRoleName);
+            return View("CreateField", FieldViewModel);
 
-        //}
+        }
 
 
         [HttpPost]
@@ -256,7 +256,7 @@ namespace SSOApp.Controllers.Admin
                         if (resultjson.status == AccountOptions.API_Response_Saved)
                         {
                             TempData["Success"] = AccountOptions.API_Response_Saved;
-                            return RedirectToAction("Index");
+                            return View("CreateField", new { cid = model.ID });
                         }
                     }
                     catch (Exception ex)
@@ -268,96 +268,6 @@ namespace SSOApp.Controllers.Admin
             TempData["Failed"] = AccountOptions.API_Response_Failed;
             return View(model);
         }
-
-        //public async Task<IActionResult> Delete(string id)
-        //{
-        //    using (var client = new HttpClient())
-        //    {
-        //        //HTTP POST
-        //        client.BaseAddress = new Uri("https://localhost:44391/APIModule/deletemodule");
-        //        ClaimsViewModel model = new ClaimsViewModel { Name = "NotRequired", ID = id };
-        //        var json = JsonConvert.SerializeObject(model);
-        //        var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-        //        var postTask = await client.PostAsync(client.BaseAddress, stringContent);
-
-        //        string apiResponse = await postTask.Content.ReadAsStringAsync();
-        //        var resultjson = JsonConvert.DeserializeObject<APIReturnedModel>(apiResponse);
-        //        if (resultjson.status == AccountOptions.API_Response_Deleted)
-        //            TempData["Success"] = AccountOptions.API_Response_Deleted;
-        //        else
-        //            TempData["Failed"] = AccountOptions.API_Response_Failed;
-        //    }
-        //    return RedirectToAction("Index");
-        //}
-
-        //public async Task<IActionResult> Roles(string cid, string tcode, string moduleId)
-        //{
-        //    var PstenantId = _context.Tenants.Where(m => m.Code == tcode).Select(m => m.Id).FirstOrDefault();
-        //    var PsmoduleId = new Guid(moduleId);
-        //    var RolesUnSelectedList = (from r in _context.Roles
-        //                               select new
-        //                               {
-        //                                   Id = r.Id,
-        //                                   Name = r.Name
-        //                               }
-        //                                             ).ToList();
-
-        //    TenantRoleViewModel.RolesUnSelectedList = new SelectList(RolesUnSelectedList, "Id", "Name");
-
-
-
-        //    var psmoduleId = new Guid(moduleId);
-        //    var list = (from m in _context.TenantRoles
-        //                join r in _context.Roles on m.RoleID equals r.Id
-        //                where (m.TenantID == PstenantId)
-        //                select new
-        //                {
-        //                    Id = m.RoleID,
-        //                    Name = r.Name
-        //                }
-        //                                             ).ToList();
-
-        //    TenantRoleViewModel.RolesSelectedList = new SelectList(list, "Id", "Name");
-        //    TenantRoleViewModel.TennantId = PstenantId;
-        //    TenantRoleViewModel.ModuleId = psmoduleId;
-        //    return View(TenantRoleViewModel);
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> Roles(TenantRoleModel TenantRoleModel)
-        //{
-        //    using (var client = new HttpClient())
-        //    {
-        //        //HTTP POST
-        //        try
-        //        {
-
-        //            client.BaseAddress = new Uri("https://localhost:44391/APIModules/saveTenantRole");
-        //            var json = JsonConvert.SerializeObject(TenantRoleModel);
-        //            var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-        //            var postTask = await client.PostAsync(client.BaseAddress, stringContent);
-
-        //            string apiResponse = await postTask.Content.ReadAsStringAsync();
-        //            var resultjson = JsonConvert.DeserializeObject<APIReturnedModel>(apiResponse);
-        //            if (resultjson.status == AccountOptions.API_Response_Saved)
-        //            {
-        //                TempData["Success"] = AccountOptions.API_Response_Saved;
-        //                return Json(resultjson.status);
-        //            }
-        //            else
-        //            {
-        //                ViewBag.Success = resultjson.status;
-        //                return Json(resultjson.status);
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-
-        //        }
-        //    }
-
-        //    return View(TenantRoleViewModel);
-        //}
 
         [HttpGet]
         public async Task<IActionResult> AddModuleToRole(string roleid)
@@ -373,7 +283,7 @@ namespace SSOApp.Controllers.Admin
             var moduleListByTenant = await ModuleListByTenant();
             var moduleListByRole = await ModuleListByRole(roleid);
             var finalMOduleByTenant = moduleListByTenant.Except(moduleListByRole);
-            
+
             foreach (var module in moduleListByRole)
             {
                 model.CurrentValues.Add(new ListItemValue { DisplayText = module.ModuleName, DisplayValue = module.ID.ToString() });
@@ -404,10 +314,10 @@ namespace SSOApp.Controllers.Admin
             };
             assignmentViewModel.ListofAssignment.AddRange(selectedUsers);
             assignmentViewModel.SelectedValue = selectedRole;
-
+            assignmentViewModel.TenantId = TenantId;
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44391/APIModules/saverolesmodule");                
+                client.BaseAddress = new Uri("https://localhost:44391/APIModules/savemodulebyroles");
                 var json = JsonConvert.SerializeObject(assignmentViewModel);
                 var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
                 //HTTP POST                        
@@ -418,10 +328,10 @@ namespace SSOApp.Controllers.Admin
         }
 
         [HttpGet]
-        public async Task<IActionResult> AddRoleToModule(string moduleid, string tenantcode)
+        public async Task<IActionResult> AddRoleToModule(string moduleid)
         {
             var moduleName = await _context.ModuleDetails.FirstOrDefaultAsync(x => x.ID == new Guid(moduleid));
-            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode}) Role: {moduleName.ModuleName}";
+            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode}) Module: {moduleName.ModuleName}";
 
             var model = new AssignmentViewModule
             {
@@ -445,7 +355,7 @@ namespace SSOApp.Controllers.Admin
 
             model.Controller = "ModuleManagement";
             model.Action = "AddRoleToModule";
-            model.Entity = "Module";
+            model.Entity = "Roles";
             model.SelectedValue = moduleid;
             return View("View", model);
         }
@@ -463,17 +373,17 @@ namespace SSOApp.Controllers.Admin
             };
             assignmentViewModel.ListofAssignment.AddRange(selectedRole);
             assignmentViewModel.SelectedValue = selectedModule;
-
+            assignmentViewModel.TenantId = TenantId;
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44391/APIModules/saverolesmodule");
+                client.BaseAddress = new Uri("https://localhost:44391/APIModules/saverolesbymodule");
                 var json = JsonConvert.SerializeObject(assignmentViewModel);
                 var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
                 //HTTP POST                        
                 var postTask = await client.PostAsync(client.BaseAddress, stringContent);
                 var result = postTask.Content;
             }
-            return RedirectToAction("AddModuleToRole", new { roleid = selectedRole });
+            return RedirectToAction("AddRoleToModule", new { moduleid = selectedModule });
         }
     }
 }

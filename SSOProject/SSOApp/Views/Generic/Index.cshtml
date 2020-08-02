@@ -1,0 +1,84 @@
+﻿@model SSOApp.Controllers.GenericFormViewModel
+<style>
+    /* Style the input field */
+    #myInput {
+        padding: 20px;
+        margin-top: -6px;
+        border: 0;
+        border-radius: 0;
+        background: #f1f1f1;
+    }
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $(".dropdown-menu li").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+<div class="row">
+    <div class="col-md-4">
+
+        <div asp-validation-summary="ModelOnly">
+            <span>Please correct the following errors</span>
+        </div>
+        <div>
+            @foreach (var m in Model.Fields)
+            {
+                if (m.FieldType == "Text")
+                {
+                    <div class="form-group">
+                        <label class="control-label">@m.FieldLabel</label>
+                        <input type="text" id="@m.DBFieldName" class="form-control" />
+                        <span asp-validation-for=@m.DBFieldName class="text-danger"></span>
+                    </div>
+                }
+                else if (m.FieldType == "Date")
+                {
+                    <div class="form-group">
+                        <label class="control-label">@m.FieldLabel</label>
+                        <input type="date" id="@m.DBFieldName" class="form-control" />
+                        <span asp-validation-for=@m.DBFieldName class="text-danger"></span>
+                    </div>
+                }
+                else if (m.FieldType == "DropDown")
+                {
+                    <div class="form-group">
+                        <label class="control-label">@m.FieldLabel</label>
+                        <select id="@m.DBFieldName" class="form-control">
+                            <option>Select One</option>
+                            @foreach (var option in Model.Options.Where(x => x.ModuleFieldDetailsID == m.ID))
+                            {
+                                <option>@option.Options</option>
+                            }
+                        </select>
+                        <span asp-validation-for=@m.DBFieldName class="text-danger"></span>
+                    </div>
+                }
+                else if (m.FieldType == "UserLookUp")
+                {
+                    <div class="form-group">
+                        <label class="control-label">@m.FieldLabel</label>
+                        <div class="dropdown">
+                            <button class="btn border dropdown-toggle" type="button" data-toggle="dropdown">Click for open list and search item </button>
+                            <ul class="dropdown-menu">
+                                <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                                @foreach (var option in Model.Options.Where(x => x.ModuleFieldDetailsID == m.ID))
+                                {
+                                    <li><a href="#">@option.Options</a></li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
