@@ -1,0 +1,135 @@
+﻿@model SSOApp.Controllers.GenericFormViewModel
+<style>
+    /* Style the input field */
+    #myInput {
+        padding: 20px;
+        margin-top: -6px;
+        border: 0;
+        border-radius: 0;
+        background: #f1f1f1;
+    }
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $(".dropdown-menu li").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+        $("#btn-submit").click(function () {
+            let controlNameValueCollection = [];
+            $('.form-control').each(
+                function (index) {
+                    var input = $(this);
+                    var inputValue = input.val().toString().split(",").join("^");
+                    controlNameValueCollection.push(input.attr('id') + '#' + inputValue);
+                }
+            );
+
+
+            var input = $("<input>")
+                .attr("type", "hidden")
+                .attr("name", "formInput").val(controlNameValueCollection);
+
+            var inputModuleName = $("<input>")
+                .attr("type", "hidden")
+                .attr("name", "moduleName").val('@Model.ModuleLabel');
+
+            var inputModuleId = $("<input>")
+                .attr("type", "hidden")
+                .attr("name", "moduleId").val('@Model.ModuleId');
+
+            //alert(JSON.stringify(input));
+            $('#SaveForm').append(input);
+            $('#SaveForm').append(inputModuleId);
+            $('#SaveForm').append(inputModuleName);
+            //alert(controlNameValueCollection);
+            return true;
+        });
+    });
+</script>
+<div class="row">
+    <div class="col-md-4">
+
+        <h3>@Model.ModuleName</h3>
+
+        <div>
+            <b> @TempData["TenaneDetails"]</b>
+            <hr />
+        </div>
+        <div asp-validation-summary="ModelOnly">
+            <span>Please correct the following errors</span>
+        </div>
+        <div>
+            <form id="SaveForm" class="form-horizontal" asp-action="Save" asp-controller="Generic">
+
+                @foreach (var m in Model.Fields)
+                {
+                    if (m.FieldType == "Text")
+                    {
+                        <div class="form-group">
+                            <label class="control-label">@m.FieldLabel</label>
+                            <input type="text" id="@(m.DBFieldName+'#'+m.FieldType)" class="form-control" value='@(m.FieldValue)' />
+                            <span asp-validation-for=@m.DBFieldName class="text-danger"></span>
+                        </div>
+                    }
+                    else if (m.FieldType == "Date")
+                    {
+                        <div class="form-group">
+                            <label class="control-label">@m.FieldLabel</label>
+                            <input type="date" id="@(m.DBFieldName+'#'+m.FieldType)" class="form-control" value="@Convert.ToDateTime(m.FieldValue).Date" />
+                            <span asp-validation-for=@m.DBFieldName class="text-danger"></span>
+                        </div>
+                    }
+                    else if (m.FieldType == "DropDown")
+                    {
+                        <div class="form-group">
+                            <label class="control-label">@m.FieldLabel</label>
+                            <select id="@(m.DBFieldName+'#'+m.FieldType)" class="form-control">
+                                <option>Select One</option>
+                                @foreach (var option in Model.Options.Where(x => x.ModuleFieldDetailsID == m.ID))
+                                {
+                                    @if (option.Options == m.FieldValue)
+                                    {
+                                        <option selected>@option.Options</option>
+                                    }
+                                    else
+                                    {
+                                        <option>@option.Options</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for=@m.DBFieldName class="text-danger"></span>
+                        </div>
+
+                    }
+                    else if (m.FieldType == "UserLookUp")
+                    {
+                        <div class="form-group">
+                            <label class="control-label">@m.FieldLabel</label>
+                            <select id="@(m.DBFieldName+'#'+m.FieldType)" multiple class="form-control">
+                                @foreach (var option in Model.Options.Where(x => x.ModuleFieldDetailsID == m.ID))
+                                {
+                                    @if (option.Options == m.FieldValue)
+                                    {
+                                        <option selected>@option.Options</option>
+                                    }
+                                    else
+                                    {
+                                        <option>@option.Options</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for=@m.DBFieldName class="text-danger"></span>
+                        </div>
+                    }
+                }
+                <input id="btn-submit" type="submit" />
+            </form>
+        </div>
+    </div>
+</div>

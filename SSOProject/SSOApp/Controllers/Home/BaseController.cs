@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 using App.SQLServer.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SSOApp.ViewModels;
 
 namespace SSOApp.Controllers.Home
 {
-    [ViewComponent(Name = "Module")]
+
     public class BaseController : Controller
     {
         public readonly ApplicationDbContext _context;
