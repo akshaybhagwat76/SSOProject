@@ -1,39 +1,29 @@
-﻿@model SSOApp.ViewModels.ClaimsViewModel
+﻿@model SSOApp.Proxy.Response<SSOApp.ViewModels.ClaimsViewModel>
 @{
-    ViewData["Title"] = "Roles";
+    ViewData["Title"] = Model.PageTitle;
 }
 
 <div class="container">
     <div class="card-header">
         <h1>Add Claim</h1>
     </div>
-
-
-    <p>
-        @if (TempData["Success"] != null)
-        {
-            <label class="bg-success">@TempData["Success"]</label>
-            TempData["Success"] = null;
-        }
-        @if (TempData["Failed"] != null)
-        {
-            <label class="bg-danger">@TempData["Failed"]</label>
-            TempData["Failed"] = null;
-        }
-    </p>
-
+    <br />
+    <div>
+        <b>@Model.PageSubheading</b>
+    </div>
+    <br />
     <form asp-controller="ClaimsManagement" asp-action="Edit" method="post" class="form-horizontal">
 
         <div asp-validation-summary="ModelOnly">
             <span>Please correct the following errors</span>
         </div>
         <div class="form-group">
-            <label asp-for="Name" class="control-label col-sm-2">Role Name:</label>
+            <label asp-for="@Model.Body.Name" class="control-label col-sm-2">Claim Name:</label>
             <div class="col-sm-5">
-                <input type="text" name="Name" class="form-control" value="@Model.Name" required />
+                <input type="text" name="Name" class="form-control" value="@Model.Body.Name" required />
             </div>
         </div>
-   
+
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <input type="submit" name="btnSubmit" value="Save" class="btn btn-primary" />

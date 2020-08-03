@@ -6,6 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="API\Admin\APIClaimsController.cs" />
+    <Compile Remove="API\Admin\APIRolesController.cs" />
+    <Compile Remove="API\Admin\APIUserController.cs" />
+    <Compile Remove="ViewModels\RoleViewModel.cs" />
+    <Compile Remove="ViewModels\UserToRolesViewModel.cs" />
+    <Compile Remove="ViewModels\UserViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="IdentityModel" Version="4.1.0" />
     <PackageReference Include="IdentityServer4" Version="3.0.2" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />

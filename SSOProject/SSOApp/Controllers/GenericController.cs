@@ -9,13 +9,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using SSOApp.Proxy;
 using SSOApp.ViewModels;
 
 namespace SSOApp.Controllers
 {
     public class GenericController : Home.BaseController
     {
-        public GenericController(ApplicationDbContext context) : base(context)
+        public GenericController(ApplicationDbContext context, IAPIClientProxy clientProxy) : base(context, clientProxy)
         {
         }
 
@@ -61,6 +62,7 @@ namespace SSOApp.Controllers
             x.TenantId == TenantId && x.RoleID.ToString() == RoleId).ToList();
             var genericFormViewModel = new GenericFormViewModel
             {
+                SelectedRowId = recId,
                 ModuleId = module.ID.ToString(),
                 ModuleLabel = module.ModuleLabel,
                 ModuleName = module.ModuleName,
@@ -95,18 +97,40 @@ namespace SSOApp.Controllers
             StringBuilder columnValue = new StringBuilder();
             var tableName = inputData["moduleName"][0];
             var moduleId = inputData["moduleId"][0];
+            var selectedRowId = inputData["selectedRowId"][0];
+
             foreach (var m in formData)
             {
                 var values = m.Split("#");
                 columnName.Append($"{values[0]},");
                 columnValue.Append($"'{values[2].ToString().Replace('^', ',')}',");
             }
-            var StrQuery = $"Insert into {tableName} ({columnName.ToString().Substring(0, columnName.Length - 1)}) Values ({columnValue.ToString().Substring(0, columnValue.Length - 1)})";
-            InsertData(StrQuery);
+            string StrQuery = string.Empty;
+            if (string.IsNullOrEmpty(selectedRowId))
+                StrQuery = $"Insert into {tableName} ({columnName.ToString().Substring(0, columnName.Length - 1)}) Values ({columnValue.ToString().Substring(0, columnValue.Length - 1)})";
+            else
+            {
+                var field = string.Empty;
+                foreach (var str in formData)
+                {
+                    var values = str.Split("#");
+                    field += values[0] + "='" + values[2].Replace('^',',') + "',";
+                }
+                StrQuery = $"Update {tableName} Set {field.Substring(0, field.Length - 1)}  where ID = {selectedRowId}";
+            }
+
+            UpdateDatainDB(StrQuery);
             return RedirectToAction("Index", new { moduleId = moduleId });
 
         }
 
+        public IActionResult Delete(string moduleId, string recID)
+        {
+            var module = _context.ModuleDetails.FirstOrDefault(x => x.ID == new Guid(moduleId));
+            string query = $"Delete from {module.ModuleLabel} where ID = {recID}";
+            UpdateDatainDB(query);
+            return RedirectToAction("Index", new { moduleId = moduleId });
+        }
         public DataSet GetAllModuleItem(string moduleID, string moduleName, string recID = null)
         {
             string conString = _context.Database.GetDbConnection().ConnectionString;
@@ -133,7 +157,7 @@ namespace SSOApp.Controllers
             }
         }
 
-        public void InsertData(string query)
+        public void UpdateDatainDB(string query)
         {
             string conString = _context.Database.GetDbConnection().ConnectionString;
             SqlConnection con = new SqlConnection(conString);
@@ -156,6 +180,8 @@ namespace SSOApp.Controllers
 
     public class GenericFormViewModel
     {
+        public string SelectedRowId { get; set; }
+
         public string ModuleId { get; set; }
 
         public string ModuleName { get; set; }

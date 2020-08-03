@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 using SSOApp.Controllers.Home;
 using SSOApp.Controllers.UI;
 using SSOApp.Models;
+using SSOApp.Proxy;
 using SSOApp.ViewModels;
 
 namespace SSOApp.Controllers.Admin
@@ -22,75 +23,66 @@ namespace SSOApp.Controllers.Admin
     //[Authorize(Roles = "Admin")]
     public class UsersController : BaseController
     {
-
-        public UsersController(ApplicationDbContext context) : base(context)
+        public UsersController(ApplicationDbContext context, IAPIClientProxy clientProxy) : base(context, clientProxy)
         {
 
         }
 
         public async Task<IActionResult> Index()
         {
-            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode})";
-            TempData["LoggedinUserId"] = UserId;
-            var getusers = await _context.Users.Include(x => x.Tenant).Where(x => !x.isDeleted && x.TenantCode == TenantCode).Select(user =>
-                  new UserViewModel
-                  {
-                      UserID = user.Id,
-                      Email = user.Email,
-                      FirstName = user.FirstName,
-                      LastName = user.LastName,
-                      IsActive = user.IsActive,
-                      TenanntCode = user.TenantCode,
-                      TenanntName = user.Tenant.Name,
-                      UserName = user.UserName,
-                      Tenants = _context.Tenants.ToList(),
-                      LastLoggedIn = user.LastLoginTime
-                  }).ToListAsync();
-            return View(getusers);
+            var response = new Response<List<UserViewModel>>();
+            response.PageSubheading = $"Tenant: {TenantName} (Code: {TenantCode})";
+            response.PageTitle = "Role";
+            var clientResponse = await _client.Send($"APIUser/getusersbytenant?code={TenantCode}", HttpMethod.Get);
+            if (clientResponse.IsSuccessStatusCode)
+            {
+                response.Status = clientResponse.StatusCode;
+                response.Body = JsonConvert.DeserializeObject<List<UserViewModel>>(await clientResponse.Content.ReadAsStringAsync());
+                response.Message = TempData["MessageDetails"] == null ? "" : Convert.ToString(TempData["MessageDetails"]);
+                response.ActionResponseCode = TempData["MessageCode"] == null ? "" : Convert.ToString(TempData["MessageCode"]);
+            }
+            return View(response);
+
         }
 
         public IActionResult Create()
         {
-            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode})";
-            return View();
+            var response = new Response<UserViewModel>();
+            response.PageSubheading = $"Tenant: {TenantName} (Code: {TenantCode})";
+            response.PageTitle = "Add User";
+            response.Body = new UserViewModel();
+            return View(response);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(UserViewModel model)
+        public async Task<IActionResult> SaveUser(SSOApp.Proxy.Response<SSOApp.ViewModels.UserViewModel> model)
         {
-            var result = await Save(model);
-            if (result.Saved)
+            model.Body.TenanntCode = TenantCode;
+            var response = new Response<string>();
+            if (ModelState.IsValid)
             {
-                TempData["Success"] = AccountOptions.API_Response_Saved;
-                return RedirectToAction("Index");
-            }
-            TempData["Failed"] = AccountOptions.API_Response_Failed;
-            return View(result);
-        }
-        public async Task<IActionResult> GetUsersByTenant(string tcode)
-        {
-            var getusers = new List<UserViewModel>();
 
-            using (var client = new HttpClient())
-            {
-                //getallusers
-                if (!string.IsNullOrEmpty(tcode))
+                var clientResponse = await _client.Send($"APIUser/saveuser", HttpMethod.Post, JsonConvert.SerializeObject(model.Body));
+                var clientResponseMessage = JsonConvert.DeserializeObject<dynamic>(await clientResponse.Content.ReadAsStringAsync());
+                if (clientResponse.IsSuccessStatusCode)
                 {
-                    //Select by code
-                    client.BaseAddress = new Uri("https://localhost:44391/APIUser/getusersbytenant?code=" + tcode);
+                    response.Status = clientResponse.StatusCode;
+                    response.ActionResponseCode = clientResponseMessage.MessageCode;
+                    response.Message = clientResponseMessage.MessageDetails;
                 }
                 else
                 {
-                    //Select All
-                    client.BaseAddress = new Uri("https://localhost:44391/APIUser/getallusers");
+                    response.Message = clientResponseMessage.MessageDetails;
                 }
-                var postTask = await client.GetAsync(client.BaseAddress);
-                string apiResponse = await postTask.Content.ReadAsStringAsync();
-                getusers = JsonConvert.DeserializeObject<List<UserViewModel>>(apiResponse);
+                TempData["MessageCode"] = response.ActionResponseCode;
+                TempData["MessageDetails"] = response.Message;
+                return RedirectToAction("Index");
             }
-            return PartialView("_UserGrid", getusers);
+
+            return View("Create", model);
         }
+
         public async Task<IActionResult> DeleteRole(string rolename, string userid)
         {
             using (var client = new HttpClient())
@@ -118,82 +110,40 @@ namespace SSOApp.Controllers.Admin
 
         public async Task<IActionResult> Edit(string id)
         {
-            var selectedUser = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
-            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode}) User: {selectedUser.FirstName} {selectedUser.LastName}";
-            var getuser = new UserViewModel();
-
-            using (var client = new HttpClient())
+            var response = new Response<UserViewModel>();
+            response.PageSubheading = $"Tenant: {TenantName} (Code: {TenantCode})";
+            response.PageTitle = "Edit User";
+            var clientResponse = await _client.Send($"APIUser/getuserbyid?ID={id}", HttpMethod.Get);
+            if (clientResponse.IsSuccessStatusCode)
             {
-                //getrolebyname
-                client.BaseAddress = new Uri("https://localhost:44391/APIUser/getuserbyid?ID=" + id);
-                var postTask = await client.GetAsync(client.BaseAddress);
-                string apiResponse = await postTask.Content.ReadAsStringAsync();
-                getuser = JsonConvert.DeserializeObject<UserViewModel>(apiResponse);
+                response.Status = clientResponse.StatusCode;
+                response.Body = JsonConvert.DeserializeObject<UserViewModel>(await clientResponse.Content.ReadAsStringAsync());
             }
-            return View(getuser);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(UserViewModel model, string UserIsActive)
-        {
-            model.IsActive = UserIsActive == "on" ? true : false;
-            var result = await Save(model);
-            if (result.Saved)
+            else
             {
-                TempData["Success"] = AccountOptions.API_Response_Saved;
-                return RedirectToAction("Index");
-            }
-            TempData["Failed"] = AccountOptions.API_Response_Failed;
-            return View(result);
-        }
-
-        public async Task<UserViewModel> Save(UserViewModel model)
-        {
-            var getusers = new UserViewModel();
-            if (ModelState.IsValid || Request.Path.Value.Contains("Edit"))
-            {
-                model.TenanntCode = TenantCode;
-                model.TenanntName = TenantName;
-                using (var client = new HttpClient())
-                {
-                    //HTTP POST
-                    client.BaseAddress = new Uri("https://localhost:44391/APIUser/saveuser");
-                    var json = JsonConvert.SerializeObject(model);
-                    var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-                    var postTask = await client.PostAsync(client.BaseAddress, stringContent);
-
-                    string apiResponse = await postTask.Content.ReadAsStringAsync();
-                    var resultjson = JsonConvert.DeserializeObject<APIReturnedModel>(apiResponse);
-                    if (resultjson.status == AccountOptions.API_Response_Saved)
-                    {
-                        model.Saved = true;
-                        return model;
-                    }
-                }
+                response.Message = "Error Occured, please try after some time.";
             }
 
-            model.Saved = false;
-            return model;
+            return View(response);
         }
 
         public async Task<IActionResult> Delete(string id)
         {
-            using (var client = new HttpClient())
+
+            var response = new Response<UserViewModel>();
+            response.PageSubheading = $"Tenant: {TenantName} (Code: {TenantCode})";
+            response.PageTitle = "Edit User";
+            DeleteUserModel model = new DeleteUserModel { UserID = id };
+            var clientResponse = await _client.Send($"APIUser/deleteuser", HttpMethod.Post, JsonConvert.SerializeObject(model));
+            var clientResponseMessage = JsonConvert.DeserializeObject<dynamic>(await clientResponse.Content.ReadAsStringAsync());
+            if (clientResponse.IsSuccessStatusCode)
             {
-                //HTTP POST
-                client.BaseAddress = new Uri("https://localhost:44391/APIUser/deleteuser");
-                DeleteUserModel model = new DeleteUserModel { UserID = id };
-
-                var json = JsonConvert.SerializeObject(model);
-                var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-                var postTask = await client.PostAsync(client.BaseAddress, stringContent);
-
-                string apiResponse = await postTask.Content.ReadAsStringAsync();
-                var resultjson = JsonConvert.DeserializeObject<APIReturnedModel>(apiResponse);
-                if (resultjson.status == AccountOptions.API_Response_Deleted)
-                    TempData["Success"] = AccountOptions.API_Response_Deleted;
-                else
-                    TempData["Failed"] = AccountOptions.API_Response_Failed;
+                response.Status = clientResponse.StatusCode;
+                response.Body = JsonConvert.DeserializeObject<UserViewModel>(await clientResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                response.Message = "Error Occured, please try after some time.";
             }
             return RedirectToAction("Index");
         }
@@ -286,6 +236,7 @@ namespace SSOApp.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangeUserPassword(UserPasswordViewModel model)
         {
+
 
             using (var client = new HttpClient())
             {

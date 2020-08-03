@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using App.SQLServer.Data;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SSOApp.ViewModels;
+using SSOApp.Proxy;
 
 namespace SSOApp.Controllers.Home
 {
@@ -15,11 +11,13 @@ namespace SSOApp.Controllers.Home
     public class BaseController : Controller
     {
         public readonly ApplicationDbContext _context;
+        public readonly IAPIClientProxy _client;
 
 
-        public BaseController(ApplicationDbContext context)
+        public BaseController(ApplicationDbContext context, IAPIClientProxy clientProxy)
         {
             _context = context;
+            _client = clientProxy;
         }
 
         public ClaimsPrincipleExtended CurrentUser

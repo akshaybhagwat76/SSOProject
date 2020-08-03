@@ -43,10 +43,15 @@
                 .attr("type", "hidden")
                 .attr("name", "moduleId").val('@Model.ModuleId');
 
+            var selectedRowId = $("<input>")
+                .attr("type", "hidden")
+                .attr("name", "selectedRowId").val('@Model.SelectedRowId');
+
             //alert(JSON.stringify(input));
             $('#SaveForm').append(input);
             $('#SaveForm').append(inputModuleId);
             $('#SaveForm').append(inputModuleName);
+            $('#SaveForm').append(selectedRowId);
             //alert(controlNameValueCollection);
             return true;
         });

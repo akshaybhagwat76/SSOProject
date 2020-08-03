@@ -9,113 +9,115 @@ using App.SQLServer.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 using SSOApp.Controllers.Home;
 using SSOApp.Controllers.UI;
 using SSOApp.Models;
+using SSOApp.Proxy;
 using SSOApp.ViewModels;
 
 namespace SSOApp.Controllers.Admin
 {
     public class ClaimsManagementController : BaseController
     {
-        public readonly ApplicationDbContext _myContext;
-        public ClaimsManagementController(ApplicationDbContext context) : base(context)
+
+        public ClaimsManagementController(ApplicationDbContext context, IAPIClientProxy clientProxy) : base(context, clientProxy)
         {
-            _myContext = context;
+
         }
 
         public async Task<IActionResult> Index()
         {
-            TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode})";
-            var getroles = new List<ClaimsViewModel>();
-            using (var client = new HttpClient())
-            {
-                //getallroles
-                client.BaseAddress = new Uri("https://localhost:44391/APIClaims/getallclaimssbytenant?tcode=" + TenantId);
-                var postTask = await client.GetAsync(client.BaseAddress);
-                string apiResponse = await postTask.Content.ReadAsStringAsync();
-                getroles = JsonConvert.DeserializeObject<List<ClaimsViewModel>>(apiResponse);
+            var response = new Response<List<ClaimsViewModel>>();
+            response.PageSubheading = $"Tenant: {TenantName} (Code: {TenantCode})";
+            response.PageTitle = "Claim";
+            var clientResponse = await _client.Send($"APIClaims/getallclaimssbytenant?tcode={TenantId}", HttpMethod.Get);
+            if (clientResponse.IsSuccessStatusCode)
+            {                
+                response.Status = clientResponse.StatusCode;
+                response.Body = JsonConvert.DeserializeObject<List<ClaimsViewModel>>(await clientResponse.Content.ReadAsStringAsync());
+                response.Message = TempData["MessageDetails"] == null ? "" : Convert.ToString(TempData["MessageDetails"]);
+                response.ActionResponseCode= TempData["MessageCode"] == null ? "" : Convert.ToString(TempData["MessageCode"]);
             }
-            return View(getroles);
+            return View(response);
         }
 
         public IActionResult Create()
-        {
-            var getclaims = new ClaimsViewModel();
-            return View(getclaims);
+        {           
+            var response = new Response<ClaimsViewModel>();
+            response.PageSubheading = $"Tenant: {TenantName} (Code: {TenantCode})";
+            response.PageTitle = "Add Claim";
+            response.Body = new ClaimsViewModel();
+            return View(response);
         }
 
         public async Task<IActionResult> Edit(string cid, string tcode = null)
         {
-            var getroles = new ClaimsViewModel();
-            if (ModelState.IsValid)
+            var response = new Response<ClaimsViewModel>();
+            response.PageSubheading = $"Tenant: {TenantName} (Code: {TenantCode})";
+            response.PageTitle = "Edit Claim";
+            var clientResponse = await _client.Send($"APIClaims/getclaimbyid?id={cid}&tcode={tcode}", HttpMethod.Get);
+            if (clientResponse.IsSuccessStatusCode)
             {
-                using (var client = new HttpClient())
-                {
-                    //getrolebyname
-                    client.BaseAddress = new Uri("https://localhost:44391/APIClaims/getclaimbyid?id=" + cid + "&tcode=" + tcode);
-                    var postTask = await client.GetAsync(client.BaseAddress);
-                    string apiResponse = await postTask.Content.ReadAsStringAsync();
-                    getroles = JsonConvert.DeserializeObject<ClaimsViewModel>(apiResponse);
-                }
+                response.Status = clientResponse.StatusCode;
+                response.Body = JsonConvert.DeserializeObject<ClaimsViewModel>(await clientResponse.Content.ReadAsStringAsync());
             }
             else
-                ModelState.AddModelError(string.Empty, AccountOptions.InvalidRoleName);
-            return View(getroles);
+            {
+                response.Message = "Error Occured, please try after some time.";
+            }
+
+            return View(response);
         }
+       
         [HttpPost]
         public async Task<IActionResult> Edit(ClaimsViewModel model)
         {
             model.TenantID = TenantId;
             var getroles = new RoleViewModel();
+            var response = new Response<string>();
             if (ModelState.IsValid)
             {
-                using (var client = new HttpClient())
+                var clientResponse = await _client.Send($"APIClaims/saveclaim", HttpMethod.Post, JsonConvert.SerializeObject(model));
+                var clientResponseMessage = JsonConvert.DeserializeObject<dynamic>(await clientResponse.Content.ReadAsStringAsync());
+                if (clientResponse.IsSuccessStatusCode)
                 {
-                    //HTTP POST
-                    try
-                    {
-
-                        client.BaseAddress = new Uri("https://localhost:44391/APIClaims/saveclaim");
-                        var json = JsonConvert.SerializeObject(model);
-                        var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-                        var postTask = await client.PostAsync(client.BaseAddress, stringContent);
-
-                        string apiResponse = await postTask.Content.ReadAsStringAsync();
-                        var resultjson = JsonConvert.DeserializeObject<APIReturnedModel>(apiResponse);
-                        TempData["Success"] = AccountOptions.API_Response_Saved;
-                        return RedirectToAction("Index");
-
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
+                    response.Status = clientResponse.StatusCode;
+                    response.ActionResponseCode = clientResponseMessage.MessageCode;
+                    response.Message = clientResponseMessage.MessageDetails;
                 }
+                else
+                {
+                    response.Message = clientResponseMessage.MessageDetails;
+                }
+                TempData["MessageCode"] = response.ActionResponseCode;
+                TempData["MessageDetails"] = response.Message;
+                return RedirectToAction("Index");
             }
-            TempData["Failed"] = AccountOptions.API_Response_Failed;
+
             return View(model);
         }
 
         public async Task<IActionResult> Delete(string id)
         {
-            using (var client = new HttpClient())
-            {
-                //HTTP POST
-                client.BaseAddress = new Uri("https://localhost:44391/APIClaims/deleteclaim");
-                ClaimsViewModel model = new ClaimsViewModel { Name = "NotRequired", ID = new Guid(id) };
-                var json = JsonConvert.SerializeObject(model);
-                var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-                var postTask = await client.PostAsync(client.BaseAddress, stringContent);
+            var response = new Response<string>();
 
-                string apiResponse = await postTask.Content.ReadAsStringAsync();
-                var resultjson = JsonConvert.DeserializeObject<APIReturnedModel>(apiResponse);
-                if (resultjson.status == AccountOptions.API_Response_Deleted)
-                    TempData["Success"] = AccountOptions.API_Response_Deleted;
-                else
-                    TempData["Failed"] = AccountOptions.API_Response_Failed;
+            ClaimsViewModel model = new ClaimsViewModel { Name = "NotRequired", ID = new Guid(id) };
+            var clientResponse = await _client.Send($"APIClaims/deleteclaim", HttpMethod.Post, JsonConvert.SerializeObject(model));
+            var clientResponseMessage = JsonConvert.DeserializeObject<dynamic>(await clientResponse.Content.ReadAsStringAsync());
+            if (clientResponse.IsSuccessStatusCode)
+            {
+                response.Status = clientResponse.StatusCode;
+                response.ActionResponseCode = clientResponseMessage.MessageCode;
+                response.Message = clientResponseMessage.MessageDetails;
             }
+            else
+            {
+                response.Message = clientResponseMessage.MessageDetails;
+            }
+            TempData["MessageCode"] = response.ActionResponseCode;
+            TempData["MessageDetails"] = response.Message;
             return RedirectToAction("Index");
         }
 

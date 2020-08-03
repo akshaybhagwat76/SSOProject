@@ -17,6 +17,7 @@ using Newtonsoft.Json;
 using SSOApp.Controllers.Home;
 using SSOApp.Controllers.UI;
 using SSOApp.Models;
+using SSOApp.Proxy;
 using SSOApp.Utility;
 using SSOApp.ViewModels;
 
@@ -27,12 +28,9 @@ namespace SSOApp.Controllers.Admin
         public FeildModelView FieldViewModel { get; set; }
         public TenantRoleModel TenantRoleViewModel { get; set; }
 
-        public readonly ApplicationDbContext _context;
-        IEnumerable<Claim> claims = null;
 
-        public ModuleManagementController(ApplicationDbContext context) : base(context)
+        public ModuleManagementController(ApplicationDbContext context, IAPIClientProxy clientProxy) : base(context, clientProxy)
         {
-            _context = context;
             TenantRoleViewModel = new TenantRoleModel();
             FieldViewModel = new FeildModelView();
             FieldViewModel.ModuleFieldDetails = new ModuleFieldDetails();
