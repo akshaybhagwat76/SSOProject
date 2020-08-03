@@ -1,6 +1,6 @@
-﻿@model SSOApp.ViewModels.UserViewModel
+﻿@model SSOApp.Proxy.Response<SSOApp.ViewModels.UserViewModel>
 @{
-    ViewData["Title"] = "Users";
+    ViewData["Title"] = Model.PageTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script>
@@ -24,21 +24,8 @@
         </div>
 
         <partial name="_ValidationSummary" />
-        <p>
-            @if (TempData["Success"] != null)
-            {
-                <label class="bg-success">@TempData["Success"]</label>
-                TempData["Success"] = null;
-            }
-            @if (TempData["Failed"] != null)
-            {
-                <label class="bg-danger">@TempData["Failed"]</label>
-                TempData["Failed"] = null;
-            }
-        </p>
 
         <div class="row">
-            <div><b> @TempData["TenaneDetails"];</b></div>
 
             <div class="col-sm-6">
                 <div class="panel panel-default">
@@ -47,28 +34,28 @@
                     </div>
                     <div class="panel-body">
 
-                        <form asp-controller="Users" asp-action="Edit" method="post">
-                            <input type="hidden" name="UserID" value="@Model.UserID" />
+                        <form asp-controller="Users" asp-action="SaveUser" method="post">
+                            <input type="hidden" name="UserID" value="@Model.Body.UserID" />
                             <fieldset>
                                 <div class="form-group">
-                                    <label asp-for="FirstName"></label>
-                                    <input class="form-control" placeholder="FirstName" asp-for="FirstName" value="@Model.FirstName" autofocus required>
-                                    <span asp-validation-for="FirstName"></span>
+                                    <label asp-for="@Model.Body.FirstName"></label>
+                                    <input class="form-control" placeholder="FirstName" asp-for="@Model.Body.FirstName" value="@Model.Body.FirstName" autofocus required>
+                                    <span asp-validation-for="@Model.Body.FirstName"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="LastName"></label>
-                                    <input class="form-control" placeholder="LastName" asp-for="LastName" value="@Model.LastName">
-                                    <span asp-validation-for="LastName"></span>
+                                    <label asp-for="@Model.Body.LastName"></label>
+                                    <input class="form-control" placeholder="LastName" asp-for="@Model.Body." value="@Model.Body.LastName">
+                                    <span asp-validation-for="@Model.Body.LastName"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="Email"></label>
-                                    <input class="form-control" placeholder="Email" asp-for="Email" value="@Model.Email" required>
-                                    <span asp-validation-for="Email"></span>
+                                    <label asp-for="@Model.Body.Email"></label>
+                                    <input class="form-control" placeholder="Email" asp-for="@Model.Body.Email" value="@Model.Body.Email" required>
+                                    <span asp-validation-for="@Model.Body.Email"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="UserName"></label>
-                                    <input class="form-control" placeholder="Username" asp-for="UserName" value="@Model.UserName" readonly>
-                                    <span asp-validation-for="UserName"></span>
+                                    <label asp-for="@Model.Body.UserName"></label>
+                                    <input class="form-control" placeholder="Username" asp-for="@Model.Body.UserName" value="@Model.Body.UserName" readonly>
+                                    <span asp-validation-for="@Model.Body.UserName"></span>
                                 </div>
                                 @*<h3>Change Password</h3>
                                     <input type="hidden" name="Password" value="xxxx" />
@@ -90,8 +77,8 @@
                                         <span asp-validation-for="TenanntCode"></span>
                                     </div>*@
                                 <div class="form-group">
-                                    <label asp-for="IsActive">Active</label>
-                                    <input type="checkbox" id="UserIsActive" name="UserIsActive" @if (Model.IsActive) { <text> checked="checked" </text> } />
+                                    <label asp-for="@Model.Body.IsActive">Active</label>
+                                    <input type="checkbox" id="UserIsActive" name="UserIsActive" @if (Model.Body.IsActive) { <text> checked="checked" </text> } />
                                 </div>
                                 @*<div class="form-group">
                                         <label>Assign Roles</label>

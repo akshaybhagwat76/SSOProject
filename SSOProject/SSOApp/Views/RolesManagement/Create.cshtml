@@ -1,40 +1,28 @@
-﻿@model SSOApp.ViewModels.RoleViewModel
+﻿@model SSOApp.Proxy.Response<SSOApp.ViewModels.RoleViewModel>
 @{
-    ViewData["Title"] = "Roles";
+    ViewData["Title"] = Model.PageTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container">
     <div class="card-header">
-        <h1>Add Roles</h1>
+        <h1>Add Role</h1>
     </div>
-
-
-    <p>
-        @if (TempData["Success"] != null)
-        {
-            <label class="bg-success">@TempData["Success"]</label>
-            TempData["Success"] = null;
-        }
-        @if (TempData["Failed"] != null)
-        {
-            <label class="bg-danger">@TempData["Failed"]</label>
-            TempData["Failed"] = null;
-        }
-    </p>
+    <br />
     <div>
-        <b> @TempData["TenaneDetails"];</b>
+        <b>@Model.PageSubheading</b>
     </div>
+    <br />
     <form asp-controller="RolesManagement" asp-action="Edit" method="post" class="form-horizontal">
-
         <div asp-validation-summary="ModelOnly">
             <span>Please correct the following errors</span>
         </div>
         <div class="form-group">
-            <label asp-for="Name" class="control-label col-sm-2">Role Name:</label>
+            <label asp-for="@Model.Body.Name" class="control-label col-sm-2">Role Name:</label>
             <div class="col-sm-5">
-                <input type="text" name="Name" class="form-control" value="@Model.Name" required />
+                <input type="text" name="Name" class="form-control" value="@Model.Body.Name" required />
             </div>
-            <input type="hidden" value="@Model.TenantCode" />
+            <input type="hidden" value="@Model.Body.TenantCode" />
         </div>
 
         <div class="form-group">
@@ -45,6 +33,4 @@
         </div>
 
     </form>
-
-
 </div>

@@ -24,6 +24,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using SSOApp.Models;
 using App.SQLServer.Data;
 using SSOApp.Hubs;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using SSOApp.Proxy;
 
 namespace SSOApp
 {
@@ -35,7 +37,7 @@ namespace SSOApp
         }
 
         public IConfiguration Configuration { get; }
-        
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -61,10 +63,10 @@ namespace SSOApp
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
                 .AddInMemoryIdentityResources(SSOApp.Configuration.Resources.GetIdentityResources())
-                .AddInMemoryApiResources(SSOApp.Configuration.Resources.GetApiResources())                
+                .AddInMemoryApiResources(SSOApp.Configuration.Resources.GetApiResources())
                 .AddInMemoryClients(Clients.Get())
                 .AddAspNetIdentity<ApplicationUser>();
-        
+
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthentication(options =>
             {
@@ -74,7 +76,7 @@ namespace SSOApp
         .AddCookie("Cookies")
         .AddOpenIdConnect("oidc", options =>
         {
-            options.Authority = "https://localhost:44391";            
+            options.Authority = "https://localhost:44391";
             options.RequireHttpsMetadata = false;
 
             options.ClientId = "mvc";
@@ -87,10 +89,14 @@ namespace SSOApp
             builder =>
             {
                 builder.AllowAnyMethod().AllowAnyHeader()
-                       .WithOrigins("http://localhost:44391")
+                       .WithOrigins("http://localhost:5001")
                        .AllowCredentials();
             }));
 
+            services.AddHttpClient<IAPIClientProxy, APIClientProxy>(x =>
+            {
+                x.BaseAddress = new Uri(Configuration["SSO.API:hostaddress"]);
+            });
             services.AddSignalR();
 
         }
@@ -98,10 +104,10 @@ namespace SSOApp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-           
+
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();              
+                app.UseDeveloperExceptionPage();
             }
             else
             {
@@ -122,7 +128,7 @@ namespace SSOApp
             {
                 endpoints.MapHub<ChatHub>("/chatHub");
             });
-           
+
 
             app.UseEndpoints(endpoints =>
             {

@@ -14,7 +14,7 @@
     }
 </div>
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
         <tr>
             @foreach (System.Data.DataColumn dc in Model.List.Tables[0].Columns)
             {
@@ -41,7 +41,9 @@
                         }
                         if (claim.ClaimName == "Delete")
                         {
-                            <input type="button" class="btn btn-danger" name="btnDelete" value="Delete" />
+                            <a href="@Url.Content("~/Generic/Delete?moduleId=" + Model.ID + "&recID=" + dr[0])">
+                                <input type="button" class="btn btn-danger" name="btnDelete" value="Delete" onclick="return confirm('Are you sure want to delete this role?')" />
+                            </a>
                         }
                     }
                 </td>
