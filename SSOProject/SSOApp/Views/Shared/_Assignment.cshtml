@@ -1,17 +1,17 @@
-﻿@model SSOApp.ViewModels.AssignmentViewModule
+﻿@model SSOApp.Proxy.Response<SSOApp.API.ViewModels.AssignmentViewModule>
 
 
 <table class="table-borderless" style="width:80%">
     <thead>
         <tr>
             <th>
-                Available @Model.Entity
+                Available @Model.Body.Entity
             </th>
             <th>
                 &nbsp;
             </th>
             <th>
-                Current @Model.Entity
+                Current @Model.Body.Entity
             </th>
         </tr>
     </thead>
@@ -19,7 +19,7 @@
         <tr>
             <td valign="top">
                 <select class="custom-select" id="avaialbleRoles" multiple size="8" style="width:40%">
-                    @foreach (var i in Model.AvailableValues)
+                    @foreach (var i in Model.Body.AvailableValues)
                     {
                         <option value=@i.DisplayValue>@i.DisplayText</option>
                     }
@@ -35,7 +35,7 @@
             </td>
             <td valign="top">
                 <select class="custom-select" id="currentRoles" multiple size="8" style="width:40%">
-                    @foreach (var i in Model.CurrentValues)
+                    @foreach (var i in Model.Body.CurrentValues)
                     {
                         <option value=@i.DisplayValue>@i.DisplayText</option>
                     }
@@ -64,14 +64,14 @@
 
                 }
             }
-            
+
             var input = $("<input>")
                 .attr("type", "hidden")
                 .attr("name", "selectedValue").val(a);
 
             var input1 = $("<input>")
                 .attr("type", "hidden")
-                .attr("name", "selectedforItem").val('@Model.SelectedValue')
+                .attr("name", "selectedforItem").val('@Model.Body.SelectedValue')
 
             $('#saveUserRole').append(input);
             $('#saveUserRole').append(input1);
@@ -80,7 +80,7 @@
             return true;
         });
         $('#btnRight').click(function (e) {
-            
+
             var selectedOpts = $('#avaialbleRoles option:selected');
             if (selectedOpts.length == 0) {
                 alert("Nothing to move.");

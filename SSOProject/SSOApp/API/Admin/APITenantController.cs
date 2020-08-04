@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using SSOApp.ViewModels;
+using SSOApp.API.ViewModels;
 using SSOApp.Controllers.UI;
 
 namespace SSOApp.API.Admin

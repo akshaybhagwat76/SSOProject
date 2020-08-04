@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\James\\SSOProject\\SSOProject\\SSOApp.API\\SSOApp.API.csproj": {}
+    "C:\\My Files\\Freelancer Projects\\SSOProject\\SSOProject\\SSOApp.API\\SSOApp.API.csproj": {}
   },
   "projects": {
-    "F:\\James\\SSOProject\\SSOProject\\App.SQLServer\\App.SQLServer\\App.SQLServer.csproj": {
+    "C:\\My Files\\Freelancer Projects\\SSOProject\\SSOProject\\App.SQLServer\\App.SQLServer\\App.SQLServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\James\\SSOProject\\SSOProject\\App.SQLServer\\App.SQLServer\\App.SQLServer.csproj",
+        "projectUniqueName": "C:\\My Files\\Freelancer Projects\\SSOProject\\SSOProject\\App.SQLServer\\App.SQLServer\\App.SQLServer.csproj",
         "projectName": "App.SQLServer",
-        "projectPath": "F:\\James\\SSOProject\\SSOProject\\App.SQLServer\\App.SQLServer\\App.SQLServer.csproj",
-        "packagesPath": "C:\\Users\\balaji\\.nuget\\packages\\",
-        "outputPath": "F:\\James\\SSOProject\\SSOProject\\App.SQLServer\\App.SQLServer\\obj\\",
+        "projectPath": "C:\\My Files\\Freelancer Projects\\SSOProject\\SSOProject\\App.SQLServer\\App.SQLServer\\App.SQLServer.csproj",
+        "packagesPath": "C:\\Users\\Alok Kumar\\.nuget\\packages\\",
+        "outputPath": "C:\\My Files\\Freelancer Projects\\SSOProject\\SSOProject\\App.SQLServer\\App.SQLServer\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\balaji\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alok Kumar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -41,10 +38,6 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
-            "CodeGeneration.FluentApi": {
-              "target": "Package",
-              "version": "[3.1.0, )"
-            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.0.0, )"
@@ -96,24 +89,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\James\\SSOProject\\SSOProject\\SSOApp.API\\SSOApp.API.csproj": {
+    "C:\\My Files\\Freelancer Projects\\SSOProject\\SSOProject\\SSOApp.API\\SSOApp.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\James\\SSOProject\\SSOProject\\SSOApp.API\\SSOApp.API.csproj",
+        "projectUniqueName": "C:\\My Files\\Freelancer Projects\\SSOProject\\SSOProject\\SSOApp.API\\SSOApp.API.csproj",
         "projectName": "SSOApp.API",
-        "projectPath": "F:\\James\\SSOProject\\SSOProject\\SSOApp.API\\SSOApp.API.csproj",
-        "packagesPath": "C:\\Users\\balaji\\.nuget\\packages\\",
-        "outputPath": "F:\\James\\SSOProject\\SSOProject\\SSOApp.API\\obj\\",
+        "projectPath": "C:\\My Files\\Freelancer Projects\\SSOProject\\SSOProject\\SSOApp.API\\SSOApp.API.csproj",
+        "packagesPath": "C:\\Users\\Alok Kumar\\.nuget\\packages\\",
+        "outputPath": "C:\\My Files\\Freelancer Projects\\SSOProject\\SSOProject\\SSOApp.API\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\balaji\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alok Kumar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -126,8 +116,8 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "F:\\James\\SSOProject\\SSOProject\\App.SQLServer\\App.SQLServer\\App.SQLServer.csproj": {
-                "projectPath": "F:\\James\\SSOProject\\SSOProject\\App.SQLServer\\App.SQLServer\\App.SQLServer.csproj"
+              "C:\\My Files\\Freelancer Projects\\SSOProject\\SSOProject\\App.SQLServer\\App.SQLServer\\App.SQLServer.csproj": {
+                "projectPath": "C:\\My Files\\Freelancer Projects\\SSOProject\\SSOProject\\App.SQLServer\\App.SQLServer\\App.SQLServer.csproj"
               }
             }
           }
@@ -208,7 +198,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,27 +1,18 @@
-﻿@model SSOApp.ViewModels.ModuleViewModel
+﻿@model SSOApp.Proxy.Response<SSOApp.API.ViewModels.ModuleViewModel>
 @{
-    ViewData["Title"] = "Roles";
+    ViewData["Title"] = Model.PageTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container">
     <div class="card-header">
         <h1>Add Module</h1>
     </div>
-
-
-    <p>
-
-        @if (TempData["Success"] != null)
-        {
-            <label class="bg-success">@TempData["Success"]</label>
-            TempData["Success"] = null;
-        }
-        @if (TempData["Failed"] != null)
-        {
-            <label class="bg-danger">@TempData["Failed"]</label>
-            TempData["Failed"] = null;
-        }
-    </p>
+    <br />
+    <div>
+        <b>@Model.PageSubheading</b>
+    </div>
+    <br />
     <div class="row">
         <div class="col-md-4">
             <form asp-controller="ModuleManagement" asp-action="Edit" method="post" class="form-horizontal">
@@ -30,14 +21,14 @@
                 </div>
                 <div class="form-group">
                     <div class="form-group">
-                        <label asp-for="ModuleLabel" class="control-label"></label>
-                        <input asp-for="ModuleLabel" class="form-control" />
-                        <span asp-validation-for="ModuleLabel" class="text-danger"></span>
+                        <label asp-for="@Model.Body.ModuleLabel" class="control-label">Module Label</label>
+                        <input name="ModuleLabel" type="text" value="@Model.Body.ModuleLabel" class="form-control" required />
+                        <span asp-validation-for="@Model.Body.ModuleLabel" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="ModuleName" class="control-label"></label>
-                        <input asp-for="ModuleName" class="form-control" />
-                        <span asp-validation-for="ModuleName" class="text-danger"></span>
+                        <label asp-for="@Model.Body.ModuleName" class="control-label">Module Name</label>
+                        <input name="ModuleName" type="text" value="@Model.Body.ModuleName" class="form-control" required />
+                        <span asp-validation-for="@Model.Body.ModuleName" class="text-danger"></span>
                     </div>
                 </div>
 
@@ -52,3 +43,4 @@
 
         </div>
     </div>
+</div>

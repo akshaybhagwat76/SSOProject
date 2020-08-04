@@ -16,7 +16,7 @@ using SSOApp.Controllers.Home;
 using SSOApp.Controllers.UI;
 using SSOApp.Models;
 using SSOApp.Proxy;
-using SSOApp.ViewModels;
+using SSOApp.API.ViewModels;
 
 namespace SSOApp.Controllers.Admin
 {
@@ -56,7 +56,7 @@ namespace SSOApp.Controllers.Admin
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SaveUser(SSOApp.Proxy.Response<SSOApp.ViewModels.UserViewModel> model)
+        public async Task<IActionResult> SaveUser(SSOApp.Proxy.Response<SSOApp.API.ViewModels.UserViewModel> model)
         {
             model.Body.TenanntCode = TenantCode;
             var response = new Response<string>();
@@ -81,31 +81,6 @@ namespace SSOApp.Controllers.Admin
             }
 
             return View("Create", model);
-        }
-
-        public async Task<IActionResult> DeleteRole(string rolename, string userid)
-        {
-            using (var client = new HttpClient())
-            {
-                //HTTP POST
-                client.BaseAddress = new Uri("https://localhost:44391/APIRoles/deletuserfromerole");
-                var data = new UserToRolesViewModel()
-                {
-                    RoleName = rolename,
-                    UserID = userid
-                };
-                var json = JsonConvert.SerializeObject(data);
-                var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-                var postTask = await client.PostAsync(client.BaseAddress, stringContent);
-
-                string apiResponse = await postTask.Content.ReadAsStringAsync();
-                var resultjson = JsonConvert.DeserializeObject<APIReturnedModel>(apiResponse);
-                if (resultjson.status == AccountOptions.API_Response_Success)
-                    TempData["Success"] = AccountOptions.API_Response_Success;
-                else
-                    TempData["Failed"] = AccountOptions.API_Response_Failed;
-            }
-            return RedirectToAction("UserIndex", "RolesManagement", new { id = userid });
         }
 
         public async Task<IActionResult> Edit(string id)
@@ -150,53 +125,95 @@ namespace SSOApp.Controllers.Admin
 
         public async Task<IActionResult> AddRoleToUser(string roleid)
         {
+            var response = new Response<AssignmentViewModule>();
+            var roleName = await _context.Roles.FirstOrDefaultAsync(x => x.Id == roleid);
+            response.Body = new AssignmentViewModule
+            {
+                AvailableValues = new List<ListItemValue>(),
+                CurrentValues = new List<ListItemValue>()
+            };
+
             var model = new RoletoUserViewModel();
 
-            using (var client1 = new HttpClient())
+            var userListByRole = await UserListByRole(roleid);
+            var userListByTenant = await UserListByTenant();
+
+            foreach (var module in userListByRole)
             {
-                client1.BaseAddress = new Uri("https://localhost:44391/APIUser/getusersbyrole?rid=" + roleid);
-                var postTask1 = await client1.GetAsync(client1.BaseAddress);
-                var apiResponse1 = await postTask1.Content.ReadAsStringAsync();
-                model.CurrentUser = JsonConvert.DeserializeObject<List<ApplicationUser>>(apiResponse1);
+                response.Body.CurrentValues.Add(new ListItemValue { DisplayText = module.FirstName + " "+module.LastName, DisplayValue = module.UserID.ToString() });
             }
-            using (var client = new HttpClient())
+
+            foreach (var module in userListByTenant)
             {
-                client.BaseAddress = new Uri("https://localhost:44391/APIUser/getusersbytenant?code=" + TenantCode);
-                var postTask = await client.GetAsync(client.BaseAddress);
-                string apiResponse = await postTask.Content.ReadAsStringAsync();
-                model.AvaialbleUser = JsonConvert.DeserializeObject<List<ApplicationUser>>(apiResponse);
+                response.Body.AvailableValues.Add(new ListItemValue { DisplayText = module.FirstName + " " + module.LastName, DisplayValue = module.UserID.ToString() });
             }
-            model.SelectedRoleId = roleid;
-            return View(model);
+
+            response.Body.SelectedValue = roleid;
+            response.Body.Controller = "Users";
+            response.Body.Action = "SaveRolesForUser";
+            response.Body.Entity = "User";
+            response.PageSubheading = $"Tenant: {TenantName} (Code: {TenantCode}) Role: {roleName}";
+            response.PageTitle = "User Role";
+            response.Message = TempData["MessageDetails"] == null ? "" : Convert.ToString(TempData["MessageDetails"]);
+            response.ActionResponseCode = TempData["MessageCode"] == null ? "" : Convert.ToString(TempData["MessageCode"]);
+            return View("View", response);
+            return View("View", response);
+        }
+
+
+
+        private async Task<List<UserViewModel>> UserListByRole(string roleid)
+        {
+            List<UserViewModel> response = new List<UserViewModel>();
+            var clientResponse = await _client.Send($"APIUser/getusersbyrole?rid={roleid}", HttpMethod.Get);
+            if (clientResponse.IsSuccessStatusCode)
+            {
+                response = JsonConvert.DeserializeObject<List<UserViewModel>>(await clientResponse.Content.ReadAsStringAsync());
+            }
+            return response;
+        }
+
+        private async Task<List<UserViewModel>> UserListByTenant()
+        {
+            var getroles = new List<UserViewModel>();
+            var clientResponse = await _client.Send($"APIUser/getusersbytenant?code={TenantCode}", HttpMethod.Get);
+            if (clientResponse.IsSuccessStatusCode)
+            {
+                getroles = JsonConvert.DeserializeObject<List<UserViewModel>>(await clientResponse.Content.ReadAsStringAsync());
+            }
+            return getroles;
         }
 
         public async Task<IActionResult> SaveRolesForUser(IFormCollection formCollection)
         {
-            var selectedUsers = formCollection["selectedUsers"][0].Split(",");
-            var selectedRole = formCollection["selectedRole"][0];
+            var selectedUsers = formCollection["selectedValue"][0].Split(",");
+            var selectedRole = formCollection["selectedforItem"][0];
             List<string> chkRoles = new List<string>();
             chkRoles.AddRange(selectedUsers);
 
-            using (var client = new HttpClient())
+            var assignmentViewModel = new AssignmentSaveViewModule
             {
-                //HTTP POST
-                client.BaseAddress = new Uri("https://localhost:44391/APIRoles/saveroletouser");
-                var data = new UserToRolesViewModel()
-                {
-                    SelectedUsers = selectedUsers.ToList(),
-                    RoleID = selectedRole
-                };
-                var json = JsonConvert.SerializeObject(data);
-                var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-                var postTask = await client.PostAsync(client.BaseAddress, stringContent);
-
-                string apiResponse = await postTask.Content.ReadAsStringAsync();
-                var resultjson = JsonConvert.DeserializeObject<APIReturnedModel>(apiResponse);
-                if (resultjson.status == AccountOptions.API_Response_Saved)
-                    TempData["Success"] = AccountOptions.API_Response_Saved;
-                else
-                    TempData["Failed"] = AccountOptions.API_Response_Failed;
+                ListofAssignment = new List<string>()
+            };
+            assignmentViewModel.ListofAssignment.AddRange(selectedUsers);
+            assignmentViewModel.SelectedValue = selectedRole;
+            assignmentViewModel.TenantId = TenantId;
+            var clientResponse = await _client.Send($"APIRoles/saveroletouser", HttpMethod.Post, JsonConvert.SerializeObject(assignmentViewModel));
+            var clientResponseMessage = JsonConvert.DeserializeObject<dynamic>(await clientResponse.Content.ReadAsStringAsync());
+            var response = new Response<string>();
+            if (clientResponse.IsSuccessStatusCode)
+            {
+                response.Status = clientResponse.StatusCode;
+                response.ActionResponseCode = clientResponseMessage.MessageCode;
+                response.Message = clientResponseMessage.MessageDetails;
             }
+            else
+            {
+                response.Message = clientResponseMessage.MessageDetails;
+            }
+            TempData["MessageCode"] = response.ActionResponseCode;
+            TempData["MessageDetails"] = response.Message;
+
             return RedirectToAction("AddRoleToUser", new { selectedRole = selectedRole, });
         }
 
@@ -205,14 +222,12 @@ namespace SSOApp.Controllers.Admin
             var getuser = new UserViewModel();
             var selectedUser = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
             TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode}) User: {selectedUser.FirstName} {selectedUser.LastName}";
-            using (var client = new HttpClient())
+            var clientResponse = await _client.Send($"APIUser/getuserbyid?ID={id}", HttpMethod.Get);
+            if (clientResponse.IsSuccessStatusCode)
             {
-                //getrolebyname
-                client.BaseAddress = new Uri("https://localhost:44391/APIUser/getuserbyid?ID=" + id);
-                var postTask = await client.GetAsync(client.BaseAddress);
-                string apiResponse = await postTask.Content.ReadAsStringAsync();
-                getuser = JsonConvert.DeserializeObject<UserViewModel>(apiResponse);
+                getuser = JsonConvert.DeserializeObject<UserViewModel>(await clientResponse.Content.ReadAsStringAsync());
             }
+
             return View(getuser);
         }
 
@@ -221,14 +236,12 @@ namespace SSOApp.Controllers.Admin
             var selectedUser = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
             var getuser = new UserPasswordViewModel();
             TempData["TenaneDetails"] = $"Tenant: {TenantName} (Code: {TenantCode}) User: {selectedUser.FirstName} {selectedUser.LastName}";
-            using (var client = new HttpClient())
+            var clientResponse = await _client.Send($"APIUser/getuserbyid?ID={id}", HttpMethod.Get);
+            if (clientResponse.IsSuccessStatusCode)
             {
-                //getrolebyname
-                client.BaseAddress = new Uri("https://localhost:44391/APIUser/getuserbyid?ID=" + id);
-                var postTask = await client.GetAsync(client.BaseAddress);
-                string apiResponse = await postTask.Content.ReadAsStringAsync();
-                getuser = JsonConvert.DeserializeObject<UserPasswordViewModel>(apiResponse);
+                getuser = JsonConvert.DeserializeObject<UserPasswordViewModel>(await clientResponse.Content.ReadAsStringAsync());
             }
+
             return View(getuser);
         }
 
@@ -236,20 +249,11 @@ namespace SSOApp.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangeUserPassword(UserPasswordViewModel model)
         {
-
-
-            using (var client = new HttpClient())
+            var clientResponse = await _client.Send($"APIUser/savechangepassword?ID={model.UserID}&datacurrent={model.NewPassword}&data={model.ConfirmPassword}", HttpMethod.Get);
+            if (clientResponse.IsSuccessStatusCode)
             {
-                //getrolebyname
-                client.BaseAddress = new Uri("https://localhost:44391/APIUser/savechangepassword?ID=" + model.UserID + "&datacurrent=" + model.NewPassword + "&data=" + model.ConfirmPassword);
-                var postTask = await client.GetAsync(client.BaseAddress);
-                string apiResponse = await postTask.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<bool>(apiResponse);
-                if (result)
-                {
-                    TempData["Success"] = AccountOptions.API_Response_Saved;
-                    return RedirectToAction("Index");
-                }
+                TempData["Success"] = AccountOptions.API_Response_Saved;
+                return RedirectToAction("Index");
             }
 
             TempData["Failed"] = AccountOptions.API_Response_Failed;
@@ -262,18 +266,11 @@ namespace SSOApp.Controllers.Admin
         {
             if (ModelState.IsValid)
             {
-                using (var client = new HttpClient())
+                var clientResponse = await _client.Send($"APIUser/savepassword?ID={model.UserID}&datacurrent={model.NewPassword}&data={model.ConfirmPassword}", HttpMethod.Get);
+                if (clientResponse.IsSuccessStatusCode)
                 {
-                    //getrolebyname
-                    client.BaseAddress = new Uri("https://localhost:44391/APIUser/savepassword?ID=" + model.UserID + "&datacurrent=" + model.Password + "&data=" + model.NewPassword);
-                    var postTask = await client.GetAsync(client.BaseAddress);
-                    string apiResponse = await postTask.Content.ReadAsStringAsync();
-                    var result = JsonConvert.DeserializeObject<bool>(apiResponse);
-                    if (result)
-                    {
-                        TempData["Success"] = AccountOptions.API_Response_Saved;
-                        return RedirectToAction("Edit", new { id = model.UserID });
-                    }
+                    TempData["Success"] = AccountOptions.API_Response_Saved;
+                    return RedirectToAction("Index");
                 }
             }
             else

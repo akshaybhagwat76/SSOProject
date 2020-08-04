@@ -6,10 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="API\Admin\APIClaimsController.cs" />
     <Compile Remove="API\Admin\APIRolesController.cs" />
     <Compile Remove="API\Admin\APIUserController.cs" />
+    <Compile Remove="ViewModels\AssignmentViewModule.cs" />
+    <Compile Remove="ViewModels\ClaimsViewModel.cs" />
+    <Compile Remove="ViewModels\Field.cs" />
+    <Compile Remove="ViewModels\ModuleClaimViewModel.cs" />
+    <Compile Remove="ViewModels\ModuleViewModel.cs" />
     <Compile Remove="ViewModels\RoleViewModel.cs" />
+    <Compile Remove="ViewModels\TenantViewModel.cs" />
     <Compile Remove="ViewModels\UserToRolesViewModel.cs" />
     <Compile Remove="ViewModels\UserViewModel.cs" />
   </ItemGroup>

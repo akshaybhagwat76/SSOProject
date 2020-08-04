@@ -1,7 +1,7 @@
 ﻿using App.SQLServer.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SSOApp.ViewModels;
+using SSOApp.API.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

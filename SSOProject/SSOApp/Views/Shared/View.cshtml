@@ -1,10 +1,25 @@
-﻿
-@model SSOApp.ViewModels.AssignmentViewModule
+﻿@model SSOApp.Proxy.Response<SSOApp.API.ViewModels.AssignmentViewModule>
+
+@{
+    ViewData["Title"] = Model.PageTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
     <div>
         <div>
-            <b>@TempData["TenaneDetails"]</b>
+            <b>@Model.PageSubheading</b>
         </div>
-        <form asp-controller="@Model.Controller" asp-action="@Model.Action" id="saveUserRole" method="post">
+        <p>
+            @if (Model.ActionResponseCode == "Success")
+            {
+                <label class="bg-success">@Model.Message</label>
+            }
+            else if (!string.IsNullOrEmpty(Model.ActionResponseCode))
+            {
+                <label class="bg-danger">@Model.Message</label>
+            }
+        </p>
+        <form asp-controller="@Model.Body.Controller" asp-action="@Model.Body.Action" id="saveUserRole" method="post">
             @Html.Partial("_Assignment", Model)
         </form>
     </div>

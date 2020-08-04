@@ -1,7 +1,7 @@
 ﻿using App.SQLServer.Data;
 using System.Collections.Generic;
 
-namespace SSOApp.ViewModels
+namespace SSOApp.API.ViewModels
 {
     public class UserToRolesViewModel
     {
