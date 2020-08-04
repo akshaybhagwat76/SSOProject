@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using SSOApp.Controllers.UI;
-using SSOApp.ViewModels;
+using SSOApp.API.ViewModels;
 
 namespace SSOApp.API.Admin
 {
@@ -213,7 +213,7 @@ namespace SSOApp.API.Admin
             {
                 MessageCode = responseCode,
                 MessageDetails = responseMessage
-            }); 
+            });
         }
 
         [HttpPost("saveuserrole")]
@@ -247,39 +247,36 @@ namespace SSOApp.API.Admin
         }
 
         [HttpPost("saveroletouser")]
-        public async Task<IActionResult> SaveRolesToUser(UserToRolesViewModel model)
+        public async Task<IActionResult> SaveRolesToUser(AssignmentSaveViewModule model)
         {
-            string message = string.Empty;
+            string responseCode = string.Empty;
+            string responseMessage = string.Empty;
             try
             {
-                var roleName = await _context.Roles.FirstOrDefaultAsync(x => x.Id == model.RoleID);
-                var previousroleUser = await _context.UserRoles.Where(x => x.RoleId == model.RoleID).ToListAsync();
+                var roleName = await _context.Roles.FirstOrDefaultAsync(x => x.Id == model.SelectedValue);
+                var previousroleUser = await _context.UserRoles.Where(x => x.RoleId == model.SelectedValue).ToListAsync();
                 _context.UserRoles.RemoveRange(previousroleUser);
                 await _context.SaveChangesAsync();
-                foreach (var role in model.SelectedUsers)
+                foreach (var role in model.ListofAssignment)
                 {
                     var user = await _userManager.FindByIdAsync(role);
                     await _userManager.AddToRoleAsync(user, roleName.Name);
-                    message = AccountOptions.API_Response_Saved;
                 }
+                _context.SaveChanges();
+                responseCode = "Success";
+                responseMessage = string.Format(AccountOptions.API_Response_Saved, "Role");
 
-
-                //if (result.Succeeded)
-                //    message = AccountOptions.API_Response_Saved;
-                //else
-                //    message = AccountOptions.API_Response_Failed;
-
-
-                //else
-                //    message = AccountOptions.API_Response_Failed;
             }
             catch (Exception ex)
             {
-                message = AccountOptions.API_Response_Exception;
+                responseCode = "Error";
+                responseMessage = string.Format(AccountOptions.API_Response_Failed, ex.Message);
             }
+
             return Ok(new
             {
-                Status = message
+                MessageCode = responseCode,
+                MessageDetails = responseMessage
             });
         }
 

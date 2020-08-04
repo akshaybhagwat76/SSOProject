@@ -1,199 +1,40 @@
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\appsettings.Development.json
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\appsettings.json
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.exe
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\staticwebassets\App.SQLServer.StaticWebAssets.Manifest.cache
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\staticwebassets\App.SQLServer.StaticWebAssets.xml
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.AssemblyInfoInputs.cache
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.AssemblyInfo.cs
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.RazorTargetAssemblyInfo.cache
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Relational.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.csproj.CopyComplete
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.deps.json
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.runtimeconfig.json
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.runtimeconfig.dev.json
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.pdb
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.Data.SqlClient.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.Identity.Client.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Configuration.ConfigurationManager.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Runtime.Caching.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Security.Cryptography.ProtectedData.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-arm64\native\sni.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-x64\native\sni.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-x86\native\sni.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.pdb
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.dll
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.csprojAssemblyReference.cache
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.MvcApplicationPartsAssemblyInfo.cache
-D:\Works\SSOApp\SQLServer\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\CodeGeneration.FluentApi.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\appsettings.Development.json
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\appsettings.json
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.exe
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.deps.json
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.runtimeconfig.json
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.runtimeconfig.dev.json
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.pdb
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\CodeGeneration.FluentApi.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.Data.SqlClient.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Relational.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.Identity.Client.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Configuration.ConfigurationManager.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Runtime.Caching.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Security.Cryptography.ProtectedData.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-arm64\native\sni.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-x64\native\sni.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-x86\native\sni.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.csprojAssemblyReference.cache
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\staticwebassets\App.SQLServer.StaticWebAssets.Manifest.cache
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\staticwebassets\App.SQLServer.StaticWebAssets.xml
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.MvcApplicationPartsAssemblyInfo.cache
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.AssemblyInfoInputs.cache
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.AssemblyInfo.cs
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.RazorTargetAssemblyInfo.cache
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.csproj.CopyComplete
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.dll
-D:\Works\SSOApp\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.pdb
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.csprojAssemblyReference.cache
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\staticwebassets\App.SQLServer.StaticWebAssets.Manifest.cache
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\staticwebassets\App.SQLServer.StaticWebAssets.xml
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.AssemblyInfoInputs.cache
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.AssemblyInfo.cs
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.pdb
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\appsettings.Development.json
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\appsettings.json
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.exe
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.deps.json
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.runtimeconfig.json
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.runtimeconfig.dev.json
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.pdb
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\CodeGeneration.FluentApi.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.Data.SqlClient.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.Identity.Client.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Configuration.ConfigurationManager.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Runtime.Caching.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-arm64\native\sni.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-x64\native\sni.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-x86\native\sni.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.RazorTargetAssemblyInfo.cache
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.csproj.CopyComplete
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\appsettings.Development.json
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\appsettings.json
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.exe
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.deps.json
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.runtimeconfig.json
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.runtimeconfig.dev.json
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.pdb
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\CodeGeneration.FluentApi.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.Data.SqlClient.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Relational.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.Identity.Client.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Configuration.ConfigurationManager.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Runtime.Caching.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Security.Cryptography.ProtectedData.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-arm64\native\sni.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-x64\native\sni.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-x86\native\sni.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.csprojAssemblyReference.cache
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.AssemblyInfoInputs.cache
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.AssemblyInfo.cs
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.csproj.CoreCompileInputs.cache
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.MvcApplicationPartsAssemblyInfo.cache
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.RazorTargetAssemblyInfo.cache
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.csproj.CopyComplete
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\staticwebassets\App.SQLServer.StaticWebAssets.Manifest.cache
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\staticwebassets\App.SQLServer.StaticWebAssets.xml
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.dll
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.pdb
-E:\vicky\New folder\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.genruntimeconfig.cache
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\appsettings.Development.json
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\appsettings.json
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.exe
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.deps.json
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.runtimeconfig.json
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.runtimeconfig.dev.json
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.pdb
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\CodeGeneration.FluentApi.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.Data.SqlClient.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Relational.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.Identity.Client.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Configuration.ConfigurationManager.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Runtime.Caching.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Security.Cryptography.ProtectedData.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-arm64\native\sni.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-x64\native\sni.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-x86\native\sni.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.csprojAssemblyReference.cache
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.csproj.CoreCompileInputs.cache
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.MvcApplicationPartsAssemblyInfo.cache
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.AssemblyInfoInputs.cache
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.AssemblyInfo.cs
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.RazorTargetAssemblyInfo.cache
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.csproj.CopyComplete
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\staticwebassets\App.SQLServer.StaticWebAssets.Manifest.cache
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\staticwebassets\App.SQLServer.StaticWebAssets.xml
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.dll
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.pdb
-F:\James\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.genruntimeconfig.cache
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\appsettings.Development.json
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\appsettings.json
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.exe
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.deps.json
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.runtimeconfig.json
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.runtimeconfig.dev.json
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\App.SQLServer.pdb
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.Data.SqlClient.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\Microsoft.Identity.Client.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Configuration.ConfigurationManager.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Runtime.Caching.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\System.Security.Cryptography.ProtectedData.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-arm64\native\sni.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-x64\native\sni.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win-x86\native\sni.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\bin\Debug\netcoreapp3.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.csprojAssemblyReference.cache
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.AssemblyInfoInputs.cache
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.AssemblyInfo.cs
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.csproj.CoreCompileInputs.cache
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.MvcApplicationPartsAssemblyInfo.cache
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.RazorTargetAssemblyInfo.cache
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.csproj.CopyComplete
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\staticwebassets\App.SQLServer.StaticWebAssets.Manifest.cache
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\staticwebassets\App.SQLServer.StaticWebAssets.xml
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.pdb
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\App.SQLServer\App.SQLServer\obj\Debug\netcoreapp3.0\App.SQLServer.genruntimeconfig.cache

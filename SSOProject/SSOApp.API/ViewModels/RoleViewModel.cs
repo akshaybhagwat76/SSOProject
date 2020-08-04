@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SSOApp.ViewModels
+namespace SSOApp.API.ViewModels
 {
     public class RoleViewModel
     {

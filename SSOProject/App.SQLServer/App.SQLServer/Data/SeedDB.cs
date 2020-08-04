@@ -65,11 +65,12 @@ namespace App.SQLServer.Data
                 await context.SaveChangesAsync();
             }
 
+            var tenantId = Guid.NewGuid();
             if (!context.Tenants.Any())
             {
                 var ten1 = new Tenant()
                 {
-                    Id = Guid.NewGuid(),
+                    Id = tenantId,
                     Code = "ABCO",
                     Name = "ABC Co.",
                     Email = "abcTenant@example.com",
@@ -88,6 +89,9 @@ namespace App.SQLServer.Data
                 var role = new IdentityRole();
                 role.Name = "Admin";
                 await roleManager.CreateAsync(role);
+                //var roleid = roleManager.GetRoleIdAsync(role);
+                var tenantRole = new TenantRoles { Role = role, TenantID = tenantId };
+                await context.TenantRoles.AddAsync(tenantRole);
             }
 
             if (!context.Users.Any())
@@ -97,6 +101,8 @@ namespace App.SQLServer.Data
                 user.LastName = "Admin";
                 user.UserName = "admin";
                 user.Email = "abcTenant@example.com";
+                user.IsActive = true;
+                user.isDeleted = false;
                 user.TenantCode = "ABCO";
                 string userPWD = "Admin123!";
                 await userManager.CreateAsync(user, userPWD);

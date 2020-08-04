@@ -15,7 +15,7 @@ using SSOApp.Controllers.Home;
 using SSOApp.Controllers.UI;
 using SSOApp.Models;
 using SSOApp.Proxy;
-using SSOApp.ViewModels;
+using SSOApp.API.ViewModels;
 
 namespace SSOApp.Controllers.Admin
 {
@@ -129,21 +129,16 @@ namespace SSOApp.Controllers.Admin
 
             UserRoleViewModel userRoleView = new UserRoleViewModel();
 
-            using (var client = new HttpClient())
+            var clientResponse = await _client.Send($"APIRoles/getrolesbyuser?ID={selectedUserid}", HttpMethod.Get);
+            if (clientResponse.IsSuccessStatusCode)
             {
-                client.BaseAddress = new Uri("https://localhost:44391/APIRoles/getallrolesbytenant?tcode=" + TenantCode);
-                var postTask = await client.GetAsync(client.BaseAddress);
-                string apiResponse = await postTask.Content.ReadAsStringAsync();
-                userRoleView.AvaialbleRoles = JsonConvert.DeserializeObject<List<RoleViewModel>>(apiResponse);
+                userRoleView.CurrentRoles = JsonConvert.DeserializeObject<List<RoleViewModel>>(await clientResponse.Content.ReadAsStringAsync());
             }
-            using (var client1 = new HttpClient())
+
+            var clientResponse1 = await _client.Send($"APIRoles/getallrolesbytenant?tcode={TenantId}", HttpMethod.Get);
+            if (clientResponse1.IsSuccessStatusCode)
             {
-                client1.BaseAddress = new Uri("https://localhost:44391/APIRoles/getrolesbyuser?ID=" + selectedUserid);
-                var postTask1 = await client1.GetAsync(client1.BaseAddress);
-                var apiResponse1 = await postTask1.Content.ReadAsStringAsync();
-                userRoleView.CurrentRoles = JsonConvert.DeserializeObject<List<RoleViewModel>>(apiResponse1);
-                var role = userRoleView.AvaialbleRoles.Except(userRoleView.CurrentRoles).ToList();
-                userRoleView.AvaialbleRoles = role;
+                userRoleView.AvaialbleRoles = JsonConvert.DeserializeObject<List<RoleViewModel>>(await clientResponse1.Content.ReadAsStringAsync());
             }
             userRoleView.SelectedUserID = selectedUserid;
             return View(userRoleView);
@@ -157,25 +152,21 @@ namespace SSOApp.Controllers.Admin
             List<string> chkRoles = new List<string>();
             chkRoles.AddRange(selectedRoles);
 
-            using (var client = new HttpClient())
+            var data = new UserToRolesViewModel()
             {
-                //HTTP POST
-                client.BaseAddress = new Uri("https://localhost:44391/APIRoles/saveuserrole");
-                var data = new UserToRolesViewModel()
-                {
-                    UserID = selectedUser,
-                    Roles = chkRoles
-                };
-                var json = JsonConvert.SerializeObject(data);
-                var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-                var postTask = await client.PostAsync(client.BaseAddress, stringContent);
+                UserID = selectedUser,
+                Roles = chkRoles
+            };
 
-                string apiResponse = await postTask.Content.ReadAsStringAsync();
-                var resultjson = JsonConvert.DeserializeObject<APIReturnedModel>(apiResponse);
-                if (resultjson.status == AccountOptions.API_Response_Saved)
-                    TempData["Success"] = AccountOptions.API_Response_Saved;
-                else
-                    TempData["Failed"] = AccountOptions.API_Response_Failed;
+            var clientResponse = await _client.Send($"APIRoles/saveuserrole", HttpMethod.Post, JsonConvert.SerializeObject(data));
+            var clientResponseMessage = JsonConvert.DeserializeObject<dynamic>(await clientResponse.Content.ReadAsStringAsync());
+            if (clientResponse.IsSuccessStatusCode)
+            {
+
+            }
+            else
+            {
+                //response.Message = clientResponseMessage.MessageDetails;
             }
             return RedirectToAction("UserIndex", new { selectedUserid = selectedUser });
         }

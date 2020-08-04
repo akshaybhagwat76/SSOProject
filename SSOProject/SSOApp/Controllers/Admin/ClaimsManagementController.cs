@@ -15,7 +15,7 @@ using SSOApp.Controllers.Home;
 using SSOApp.Controllers.UI;
 using SSOApp.Models;
 using SSOApp.Proxy;
-using SSOApp.ViewModels;
+using SSOApp.API.ViewModels;
 
 namespace SSOApp.Controllers.Admin
 {

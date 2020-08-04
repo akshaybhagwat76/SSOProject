@@ -1,79 +1,83 @@
-﻿@model List<SSOApp.ViewModels.ModuleViewModel>
+﻿@model SSOApp.Proxy.Response<List<SSOApp.API.ViewModels.ModuleViewModel>>
+
 @{
-    ViewData["Title"] = "Roles";
-    List<SelectListItem> tenants = ViewBag.TenantDD as List<SelectListItem>;
+    ViewData["Title"] = Model.PageTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Module Management</h1>
-<p>
-    @if (TempData["Success"] != null)
-    {
-        <label class="bg-success">@TempData["Success"]</label>
-        TempData["Success"] = null;
-    }
-    @if (TempData["Failed"] != null)
-    {
-        <label class="bg-danger">@TempData["Failed"]</label>
-        TempData["Failed"] = null;
-    }
-</p>
 
-<div style="float:right;">
-    <a href="@Url.Content("~/ModuleManagement/Create")"><input type="button" name="btnCreate" value="Add Module" /></a>
-</div>
-<div>
-    <b>@TempData["TenaneDetails"];</b>
-</div>
+<div class="container">
+    <div class="card-header">
+        <h1>Claim Management</h1>
+    </div>
+    <br />
+    <div>
+        <b>@Model.PageSubheading</b>
+    </div>
+    <p>
+        @if (Model.ActionResponseCode == "Success")
+        {
+            <label class="bg-success">@Model.Message</label>
+        }
+        else if (!string.IsNullOrEmpty(Model.ActionResponseCode))
+        {
+            <label class="bg-danger">@Model.Message</label>
+        }
+    </p>
+    <div style="float:right;">
+        <a href="@Url.Content("~/ModuleManagement/Create")"><input type="button" name="btnCreate" value="Add Module" /></a>
+    </div>
+    
+    <table width="80%" class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Module
+                </th>
+                <th>
+                    Fields
+                </th>
+                <th>
+                    Roles
+                </th>
 
-<table width="80%" class="table table-hover">
-    <thead class="thead-dark">
-        <tr>
-            <th>
-                Module
-            </th>
-            <th>
-                Fields
-            </th>
-            <th>
-                Roles
-            </th>
+                <th>
+                    View
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        @if (Model.Body.Count > 0)
+        {
+            foreach (var item in Model.Body)
+            {
+                <tr>
+                    <td>@item.ModuleName</td>
+                    <td>
+                        <a href="@Url.Content("~/ModuleManagement/FieldsList?cid="+item.ID+"&tcode="+item.Tenant.Id +"&moduleId="+item.ID)">Field List</a>
+                    </td>
+                    <td>
+                        <a href="@Url.Content("~/ModuleManagement/AddRoleToModule?moduleid="+item.ID+"&tenantcode="+item.Tenant.Id)">Roles List</a>
+                    </td>
+                    <td>
+                        <a href="@Url.Content("~/ModuleManagement/Edit?cid="+item.ID+"&tcode="+item.Tenant.Id)">View</a>
+                    </td>
 
-            <th>
-                View
-            </th>
-            <th>
-            </th>
-        </tr>
-    </thead>
-    @if (Model.Count > 0)
-    {
-        foreach (var item in Model)
+                    <td>
+                        <a href="@Url.Content("~/ModuleManagement/Edit?cid="+item.ID+"&tcode="+item.Tenant.Id)">Edit</a>
+                        <a href="@Url.Content("~/ModuleManagement/Delete/"+item.ID)" onclick="return confirm('Are you sure want to delete this module?')">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
         {
             <tr>
-                <td>@item.ModuleName</td>
-                <td>
-                    <a href="@Url.Content("~/ModuleManagement/FieldsList?cid="+item.ID+"&tcode="+item.Tenant.Id +"&moduleId="+item.ID)">Field List</a>
-                </td>
-                <td>
-                    <a href="@Url.Content("~/ModuleManagement/AddRoleToModule?moduleid="+item.ID+"&tenantcode="+item.Tenant.Id)">Roles List</a>
-                </td>
-                <td>
-                    <a href="@Url.Content("~/ModuleManagement/Edit?cid="+item.ID+"&tcode="+item.Tenant.Id)">View</a>
-                </td>
-
-                <td>
-                    <a href="@Url.Content("~/ModuleManagement/Edit?cid="+item.ID+"&tcode="+item.Tenant.Id)">Edit</a>
-                    <a href="@Url.Content("~/ModuleManagement/Delete/"+item.ID)" onclick="return confirm('Are you sure want to delete this module?')">Delete</a>
+                <td colspan="6">
+                    No Modules Available
                 </td>
             </tr>
         }
-    }
-    else
-    {
-        <tr>
-            <td colspan="6">
-                No Modules Available
-            </td>
-        </tr>
-    }
-</table>
+    </table>
+</div>

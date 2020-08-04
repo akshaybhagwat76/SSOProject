@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using SSOApp.Controllers.UI;
-using SSOApp.ViewModels;
+using SSOApp.API.ViewModels;
 
 namespace SSOApp.API.Admin
 {

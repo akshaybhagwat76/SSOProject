@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SSOApp.Controllers.UI;
-using SSOApp.ViewModels;
+using SSOApp.API.ViewModels;
 
 namespace SSOApp.API.Admin
 {
@@ -103,14 +103,21 @@ namespace SSOApp.API.Admin
         }
 
         [HttpGet("getusersbyrole")]
-        public async Task<List<ApplicationUser>> GetUsersByRole(string rid)
+        public async Task<List<UserViewModel>> GetUsersByRole(string rid)
         {
             var result = new UserToRolesViewModel();
             var getuser = await (from ur in _context.UserRoles
                                  join u in _context.Users on ur.UserId equals u.Id
                                  join r in _context.Roles on ur.RoleId equals r.Id
                                  where r.Id == rid
-                                 select u).ToListAsync();
+                                 select new UserViewModel
+                                 {
+                                     UserID = u.Id,
+                                     Email = u.Email,
+                                     FirstName = u.FirstName,
+                                     LastName = u.LastName,                                     
+                                     TenanntCode = u.TenantCode,
+                                 }).ToListAsync();
             return getuser;
         }
 
@@ -233,7 +240,7 @@ namespace SSOApp.API.Admin
                 var previoususers = await GetUsersByRole(model.RoleID);
                 foreach (var item in previoususers)
                 {
-                    _context.UserRoles.Remove(new IdentityUserRole<string> { RoleId = model.RoleID, UserId = item.Id });
+                    _context.UserRoles.Remove(new IdentityUserRole<string> { RoleId = model.RoleID, UserId = item.UserID });
                     _context.SaveChanges();
                 }
                 foreach (var item in model.SelectedUsers)

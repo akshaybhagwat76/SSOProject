@@ -1,519 +1,131 @@
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\appsettings.Development.json
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\appsettings.json
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.exe
-D:\Works\SSOApp\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.csprojAssemblyReference.cache
-D:\Works\SSOApp\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\staticwebassets\SSOApp.API.StaticWebAssets.Manifest.cache
-D:\Works\SSOApp\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\staticwebassets\SSOApp.API.StaticWebAssets.xml
-D:\Works\SSOApp\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.AssemblyInfoInputs.cache
-D:\Works\SSOApp\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.AssemblyInfo.cs
-D:\Works\SSOApp\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.RazorTargetAssemblyInfo.cache
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Razor.Language.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.CSharp.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.Razor.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.Workspaces.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\dotnet-aspnet-codegenerator-design.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\NuGet.Frameworks.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.AttributedModel.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.Convention.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.Hosting.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.Runtime.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.TypedParts.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.csproj.CopyComplete
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Data.SqlClient.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Relational.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Identity.Client.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.Configuration.ConfigurationManager.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.Runtime.Caching.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.Security.Cryptography.ProtectedData.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win-arm64\native\sni.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win-x64\native\sni.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win-x86\native\sni.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.deps.json
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.runtimeconfig.json
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.runtimeconfig.dev.json
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.pdb
-D:\Works\SSOApp\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.pdb
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.JsonWebTokens.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Logging.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Tokens.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.IdentityModel.Tokens.Jwt.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.JsonPatch.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.DotNet.PlatformAbstractions.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Extensions.DependencyModel.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\App.SQLServer.exe
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\CodeGeneration.FluentApi.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\App.SQLServer.dll
-D:\Works\SSOApp\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\App.SQLServer.pdb
-D:\Works\SSOApp\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\appsettings.Development.json
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\App.SQLServer.exe
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\appsettings.json
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.exe
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.deps.json
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.runtimeconfig.json
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.runtimeconfig.dev.json
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.pdb
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\CodeGeneration.FluentApi.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.JsonPatch.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Razor.Language.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.Razor.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.Workspaces.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Data.SqlClient.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.DotNet.PlatformAbstractions.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Extensions.DependencyModel.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Identity.Client.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Logging.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Tokens.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\dotnet-aspnet-codegenerator-design.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\NuGet.Frameworks.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.AttributedModel.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.Convention.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.Hosting.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.Runtime.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.TypedParts.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.Configuration.ConfigurationManager.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.Drawing.Common.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.Runtime.Caching.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win-arm64\native\sni.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win-x64\native\sni.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win-x86\native\sni.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\App.SQLServer.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\bin\Debug\netcoreapp3.0\App.SQLServer.pdb
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.csprojAssemblyReference.cache
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\staticwebassets\SSOApp.API.StaticWebAssets.Manifest.cache
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\staticwebassets\SSOApp.API.StaticWebAssets.xml
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.AssemblyInfoInputs.cache
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.AssemblyInfo.cs
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.RazorTargetAssemblyInfo.cache
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.csproj.CopyComplete
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.dll
-C:\Users\Sanjeev Kalakuntla\Downloads\SSOApp12-11-2019\SSOApp\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.pdb
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\appsettings.Development.json
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\appsettings.json
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\App.SQLServer.exe
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.exe
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.deps.json
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.runtimeconfig.json
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.runtimeconfig.dev.json
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.pdb
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\CodeGeneration.FluentApi.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.JsonPatch.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Razor.Language.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.CSharp.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.Razor.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.Workspaces.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Data.SqlClient.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.DotNet.PlatformAbstractions.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Relational.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Extensions.DependencyModel.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Identity.Client.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.JsonWebTokens.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Logging.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Tokens.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\dotnet-aspnet-codegenerator-design.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\NuGet.Frameworks.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.AttributedModel.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.Convention.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.Hosting.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.Runtime.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.TypedParts.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Configuration.ConfigurationManager.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Drawing.Common.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.IdentityModel.Tokens.Jwt.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Runtime.Caching.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Security.Cryptography.ProtectedData.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win-arm64\native\sni.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win-x64\native\sni.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win-x86\native\sni.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\App.SQLServer.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\App.SQLServer.pdb
-E:\vicky\New folder\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.csprojAssemblyReference.cache
-E:\vicky\New folder\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.AssemblyInfoInputs.cache
-E:\vicky\New folder\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.AssemblyInfo.cs
-E:\vicky\New folder\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.csproj.CoreCompileInputs.cache
-E:\vicky\New folder\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.MvcApplicationPartsAssemblyInfo.cache
-E:\vicky\New folder\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.RazorTargetAssemblyInfo.cache
-E:\vicky\New folder\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.csproj.CopyComplete
-E:\vicky\New folder\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\staticwebassets\SSOApp.API.StaticWebAssets.Manifest.cache
-E:\vicky\New folder\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\staticwebassets\SSOApp.API.StaticWebAssets.xml
-E:\vicky\New folder\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.dll
-E:\vicky\New folder\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.pdb
-E:\vicky\New folder\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.genruntimeconfig.cache
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\appsettings.Development.json
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\appsettings.json
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\App.SQLServer.exe
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.exe
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.deps.json
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.runtimeconfig.json
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.runtimeconfig.dev.json
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.pdb
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\CodeGeneration.FluentApi.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.JsonPatch.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Razor.Language.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.CSharp.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.Razor.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.Workspaces.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Data.SqlClient.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.DotNet.PlatformAbstractions.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Relational.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Extensions.DependencyModel.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Identity.Client.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.JsonWebTokens.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Logging.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Tokens.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\dotnet-aspnet-codegenerator-design.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\NuGet.Frameworks.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.AttributedModel.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.Convention.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.Hosting.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.Runtime.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.TypedParts.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Configuration.ConfigurationManager.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Drawing.Common.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.IdentityModel.Tokens.Jwt.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Runtime.Caching.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Security.Cryptography.ProtectedData.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win-arm64\native\sni.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win-x64\native\sni.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win-x86\native\sni.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\App.SQLServer.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\App.SQLServer.pdb
-F:\James\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.csprojAssemblyReference.cache
-F:\James\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.csproj.CoreCompileInputs.cache
-F:\James\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.MvcApplicationPartsAssemblyInfo.cache
-F:\James\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.AssemblyInfoInputs.cache
-F:\James\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.AssemblyInfo.cs
-F:\James\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.RazorTargetAssemblyInfo.cache
-F:\James\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.csproj.CopyComplete
-F:\James\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\staticwebassets\SSOApp.API.StaticWebAssets.Manifest.cache
-F:\James\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\staticwebassets\SSOApp.API.StaticWebAssets.xml
-F:\James\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.dll
-F:\James\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.pdb
-F:\James\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.genruntimeconfig.cache
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\appsettings.Development.json
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\appsettings.json
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\App.SQLServer.exe
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.exe
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.deps.json
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.runtimeconfig.json
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.runtimeconfig.dev.json
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\SSOApp.API.pdb
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Razor.Language.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.CSharp.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.Razor.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.Workspaces.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Data.SqlClient.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Extensions.DependencyModel.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Identity.Client.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Logging.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Tokens.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\dotnet-aspnet-codegenerator-design.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\NuGet.Frameworks.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.AttributedModel.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.Convention.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.Hosting.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.Runtime.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Composition.TypedParts.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Configuration.ConfigurationManager.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Drawing.Common.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.IdentityModel.Tokens.Jwt.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Runtime.Caching.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\System.Security.Cryptography.ProtectedData.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win-arm64\native\sni.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win-x64\native\sni.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win-x86\native\sni.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\App.SQLServer.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\bin\Debug\netcoreapp3.0\App.SQLServer.pdb
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.csprojAssemblyReference.cache
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.AssemblyInfoInputs.cache
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.AssemblyInfo.cs
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.csproj.CoreCompileInputs.cache
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.MvcApplicationPartsAssemblyInfo.cache
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.RazorTargetAssemblyInfo.cache
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.csproj.CopyComplete
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\staticwebassets\SSOApp.API.StaticWebAssets.Manifest.cache
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\staticwebassets\SSOApp.API.StaticWebAssets.xml
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.dll
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.pdb
+C:\My Files\Freelancer Projects\SSOProject\SSOProject\SSOApp.API\obj\Debug\netcoreapp3.0\SSOApp.API.genruntimeconfig.cache

@@ -27,35 +27,28 @@ namespace SSOApp.API
     [ApiController]
     public class AppAccountController : ControllerBase
     {
-        private ApplicationDbContext _context = new ApplicationDbContext(new DbContextOptions<ApplicationDbContext>());
+        //private ApplicationDbContext _context = new ApplicationDbContext(new DbContextOptions<ApplicationDbContext>());
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private IHttpContextAccessor _httpContextAccessor;
         private readonly AppSettings _appSettings;
+        private readonly ApplicationDbContext _context;
 
         public AppAccountController(
-           UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor, RoleManager<IdentityRole> roleManager, IOptions<AppSettings> appSettings)
+           UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor, RoleManager<IdentityRole> roleManager, IOptions<AppSettings> appSettings, ApplicationDbContext context)
         {
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
             _roleManager = roleManager;
             _appSettings = appSettings.Value;
+            _context = context;
         }
         [HttpGet("gettenant")]
         public async Task<IActionResult> GetTanant(string teancode)
         {
             
-            var chcek = await _userManager.Users.FirstOrDefaultAsync(d => d.TenantCode == teancode);
-            if(chcek!=null)
-                return Ok(new
-                {
-                    Status = "Tenant Found"
-                });
-
-            return Ok(new
-            {
-                Status = "Tenant Not Found"
-            });
+            var tenant = await _context.Tenants.FirstOrDefaultAsync(d => d.Code == teancode);
+            return Ok(tenant);
         }
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]RegisterViewModel model)

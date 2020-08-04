@@ -73,7 +73,7 @@ namespace SSOApp.Controllers.UI
 
             // build a model so we know what to show on the login page
             var vm = await BuildLoginViewModelAsync(returnUrl);
-            
+
             if (vm.IsExternalLoginOnly)
             {
                 // we only have one option for logging in and it's an external provider
@@ -127,29 +127,39 @@ namespace SSOApp.Controllers.UI
                 {
                     //Check tenant code from api.
                     client.BaseAddress = new Uri("https://localhost:44391/AppAccount/gettenant?teancode=" + model.TenantCode);
-                    var data = new
-                    {
-                        teancode = model.TenantCode
-                    };
                     var json = JsonConvert.SerializeObject(model);
                     var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-                    //HTTP POST                  
-
                     var postTask = await client.GetAsync(client.BaseAddress);
                     string apiResponse = await postTask.Content.ReadAsStringAsync();
-                    //postTask.Wait();
-                    var resultjson = JsonConvert.DeserializeObject<APIReturnedModel>(apiResponse);
-                    if (resultjson.status.Contains("Not"))
+                    var resultjson = JsonConvert.DeserializeObject<Tenant>(apiResponse);
+                    LoginViewModel loginViewModel = new LoginViewModel();
+                    if (resultjson == null)
                     {
                         //Tenant does not exist.
                         await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid tenant code", clientId: context?.ClientId));
-                        ModelState.AddModelError(string.Empty, AccountOptions.InvalidTenantErrorMessage);
-                        //Validation failed.
-                        var rm = await BuildLoginViewModelAsync(model);
-                        return View(rm);
+                        ModelState.AddModelError(string.Empty, "Invalid Tenant Code.");
+                        loginViewModel = await BuildLoginViewModelAsync(model);
+                        return View(loginViewModel);
                     }
+                    if (resultjson != null && !resultjson.IsActive)
+                    {
+                        //Tenant does not exist.
+                        await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "Tenant is Inactive.", clientId: context?.ClientId));
+                        ModelState.AddModelError(string.Empty, "Tenant is Inactive. Please contact with administraor.");
+                        loginViewModel = await BuildLoginViewModelAsync(model);
+                        return View(loginViewModel);
+                    }
+                    if (resultjson == null && resultjson.IsOnHold)
+                    {
+                        //Tenant does not exist.
+                        await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "Tenant is on hold.", clientId: context?.ClientId));
+                        ModelState.AddModelError(string.Empty, "Tenant is On Hold. Please contact with administraor");
+                        loginViewModel = await BuildLoginViewModelAsync(model);
+                        return View(loginViewModel);
+                    }
+
                 }
-                ChatHub ch = new ChatHub(_userManager,_signInManager);
+                ChatHub ch = new ChatHub(_userManager, _signInManager);
                 await ch.UserOnlineIncrement(model.Username, model.Password, model.TenantCode);
                 //Sign-In chcek SignalR
                 int loginerror = 1;

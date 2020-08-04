@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGeneration;
 using Newtonsoft.Json;
 using SSOApp.Controllers.UI;
-using SSOApp.ViewModels;
+using SSOApp.API.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using System.Text;
 using SSOApp.Models;

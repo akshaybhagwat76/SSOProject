@@ -1,11 +1,12 @@
-﻿@model List<SSOApp.ViewModels.ModuleViewModel>
+﻿@model List<SSOApp.API.ViewModels.ModuleViewModel>
 @using IdentityServer4.Extensions
 @{
     string name = null;
-
+    string userID = null;
     if (!true.Equals(ViewData["signed-out"]))
     {
         name = Context.User?.GetDisplayName();
+        userID = Context.User?.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
     }
 
 }
@@ -17,21 +18,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    @name
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    @if (Context.User.IsInRole("Admin"))
-                    {
-                        <a class="dropdown-item" asp-action="Edit" asp-controller="Users" asp-route-id="0040746f-ad4e-468a-9793-15cf5ad2e293">Update Profile</a>
-                        <a class="dropdown-item" asp-action="ChangePassword" asp-controller="Users" asp-route-id="0040746f-ad4e-468a-9793-15cf5ad2e293">Change Password</a>
-                    }
-                    <a class="dropdown-item" asp-action="Logout" asp-controller="Account">Logout</a>
-                </div>
-
-            </li>
-
+            @if (!string.IsNullOrEmpty(name))
+            {
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @name
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" asp-action="Edit" asp-controller="Users" asp-route-id='@userID'>Update Profile</a>
+                        <a class="dropdown-item" asp-action="ChangePassword" asp-controller="Users" asp-route-id='@userID'>Change Password</a>
+                        <a class="dropdown-item" asp-action="Logout" asp-controller="Account">Logout</a>
+                    </div>
+                </li>
+            }
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
             </li>
@@ -48,7 +47,6 @@
                         @foreach (var module in Model)
                         {
                             <a class="dropdown-item" href='@Url.Content("~/Generic/Index?moduleId="+module.ID)'>@module.ModuleName</a>
-                            @*<a class="dropdown-item" asp-action="Index" asp-controller="Generic" asp-route='@module.ID'>@module.ModuleName</a>*@
                         }
                     </div>
                 </li>

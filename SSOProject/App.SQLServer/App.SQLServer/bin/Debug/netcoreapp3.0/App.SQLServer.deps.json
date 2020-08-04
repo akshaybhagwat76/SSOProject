@@ -24,7 +24,6 @@
     ".NETCoreApp,Version=v3.0": {
       "App.SQLServer/1.0.0": {
         "dependencies": {
-          "CodeGeneration.FluentApi": "3.1.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.0.0",
           "Microsoft.EntityFrameworkCore.Design": "3.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.0.0",
@@ -316,17 +315,6 @@
         },
         "compile": {
           "App.SQLServer.dll": {}
-        }
-      },
-      "CodeGeneration.FluentApi/3.1.0": {
-        "runtime": {
-          "lib/net35/CodeGeneration.FluentApi.dll": {
-            "assemblyVersion": "3.1.0.0",
-            "fileVersion": "3.1.0.0"
-          }
-        },
-        "compile": {
-          "lib/net35/CodeGeneration.FluentApi.dll": {}
         }
       },
       "Microsoft.AspNetCore.Cryptography.Internal/3.0.0": {},
@@ -2823,13 +2811,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "CodeGeneration.FluentApi/3.1.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-2JkDLMfd/aGgL/XWj12+hyzsaOVW4mYrSlR0fflrE9MQ5snvKH+flFbW5G1+sqz6ATpj2spMVcN/HuBYxw2dvg==",
-      "path": "codegeneration.fluentapi/3.1.0",
-      "hashPath": "codegeneration.fluentapi.3.1.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/3.0.0": {
       "type": "package",
